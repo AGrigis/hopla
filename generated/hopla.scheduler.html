@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>HOPLA &mdash; hopla</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../_static/css/bootstrap.min.css" media="screen" />
+
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="hopla" href="../index.html" />
+  
+   
+       <script type="text/javascript" src="../_static/sidebar.js"></script>
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="../_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script src="../_static/js/angular.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var app = angular.module("navApp", []);
+    app.controller('navCtrl', ['$scope', '$window', function($scope, $window) {
+      $scope.isActive = function (viewLocation) {
+        var rel = $window.location.pathname.split("/")
+        rel = rel[rel.length - 1]
+        rel = rel.split(".")[0]
+        var active = (viewLocation === rel);
+        return active;};
+    }]);
+  </script>
+
+  </head>
+  <body role="document"><nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+        <img alt="Logo" src="../_static/hopla.png">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" ng-controller="navCtrl" ng-app="navApp">
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('index') }"><a href="../index.html">Home</a></li>
+        <li ng-class="{ active: isActive('installation') }"><a href="installation.html">Installation</a></li>
+        <li ng-class="{ active: isActive('documentation') }"><a href="documentation.html">Documentation</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+	        <li><a href="hopla.html">Hopla</a></li>
+          </ul>
+        </li>
+        <li><a href="https://github.com/AGrigis/pysphinxdoc">PYSPHINXDOC</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+      <div class="sphinxsidebarwrapper">
+
+        <!-- info setup -->
+          <p class="doc-version">
+           This documentation is for hopla <strong>version 1.0.0</strong>
+          </p>
+        <p class="citing">
+          If you use the software, please do not esitate to 
+          <a &mdash; <a href="https://github.com/AGrigis/hopla">
+          Report a Bug</a>.
+        </p>
+
+      <!-- toc tree -->
+      <ul class="simple">
+</ul>
+
+
+      </div>
+    </div>
+  
+
+  <div class="content">
+      
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-hopla.scheduler"></span><p>This module proposes a simple scheduler used to execute a list of tasks
+controlling the machine load.</p>
+<dl class="function">
+<dt id="hopla.scheduler.scheduler">
+<code class="descclassname">hopla.scheduler.</code><code class="descname">scheduler</code><span class="sig-paren">(</span><em>commands</em>, <em>outputdir=None</em>, <em>cpus=1</em>, <em>logfile=None</em>, <em>cluster=False</em>, <em>cluster_logdir=None</em>, <em>cluster_queue=None</em>, <em>cluster_memory=1</em>, <em>cluster_walltime=24</em>, <em>cluster_python_cmd='python'</em>, <em>verbose=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/scheduler.html#scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hopla.scheduler.scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute some commands (python scripts) using a scheduler.</p>
+<p>If the script contains a &#8216;__hopla__&#8217; list of parameter names to keep
+trace on, all the specified parameters values are stored in the execution
+status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>commands: list of list of str (mandatory)</strong></p>
+<blockquote>
+<div><p>some commands to be executed: the first command element must be a
+path to a python script.</p>
+</div></blockquote>
+<p><strong>outputdir: str (optional, default None)</strong></p>
+<blockquote>
+<div><p>a folder where a summary of the executed jobs are written.</p>
+</div></blockquote>
+<p><strong>cpus: int (optional, default 1)</strong></p>
+<blockquote>
+<div><p>the number of cpus to be used.</p>
+</div></blockquote>
+<p><strong>logfile: str (optional, default None)</strong></p>
+<blockquote>
+<div><p>location where the log messages are redirected: INFO and DEBUG.</p>
+</div></blockquote>
+<p><strong>cluster: bool (optional, default False)</strong></p>
+<blockquote>
+<div><p>if True use a worker that submits the jobs to a cluster.</p>
+</div></blockquote>
+<p><strong>cluster_logdir: str (optional, default None)</strong></p>
+<blockquote>
+<div><p>an existing path where the cluster error and output files will be
+stored. This folder must be empty.</p>
+</div></blockquote>
+<p><strong>cluster_queue: str (optional, default None)</strong></p>
+<blockquote>
+<div><p>the name of the queue where the jobs will be submited.</p>
+</div></blockquote>
+<p><strong>cluster_memory: float (optional, default 1)</strong></p>
+<blockquote>
+<div><p>the memory allocated to each job submitted on a cluster (in GB).</p>
+</div></blockquote>
+<p><strong>cluster_walltime: int (optional, default 24)</strong></p>
+<blockquote>
+<div><p>the walltime used for each job submitted on the cluster (in hours).</p>
+</div></blockquote>
+<p><strong>cluster_python_cmd: str (optional, default &#8216;python&#8217;)</strong></p>
+<blockquote>
+<div><p>the path to the python binary.</p>
+</div></blockquote>
+<p><strong>verbose: int (optional, default 1)</strong></p>
+<blockquote>
+<div><p>0 - display no log in console,
+1 - display information log in console,
+2 - display debug log in console.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">execution_status: dict</p>
+<blockquote>
+<div><p>a dictionary that contains all the executed command return codes.</p>
+</div></blockquote>
+<p>exitcodes: dict</p>
+<blockquote class="last">
+<div><p>a dictionary with a summary of the executed jobs exit codes.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer">
+    </div>
+  </div>
+  
+</div>
+
+<div class="footer">
+    &copy; 2016, Antoine Grigis &lt;antoine.grigis@cea.fr&gt;.
+</div>
+  </body>
+</html>

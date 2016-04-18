@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+  
+    <title>HOPLA &mdash; hopla</title>
+  <!-- htmltitle is before nature.css - we use this hack to load bootstrap first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="_static/css/bootstrap.min.css" media="screen" />
+
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="hopla" href="#" />
+    <link rel="next" title="Installing hopla" href="generated/installation.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="_static/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <script src="_static/js/angular.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var app = angular.module("navApp", []);
+    app.controller('navCtrl', ['$scope', '$window', function($scope, $window) {
+      $scope.isActive = function (viewLocation) {
+        var rel = $window.location.pathname.split("/")
+        rel = rel[rel.length - 1]
+        rel = rel.split(".")[0]
+        var active = (viewLocation === rel);
+        return active;};
+    }]);
+  </script>
+
+  </head>
+  <body role="document"><nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+        <img alt="Logo" src="_static/hopla.png">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" ng-controller="navCtrl" ng-app="navApp">
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('index') }"><a href="#">Home</a></li>
+        <li ng-class="{ active: isActive('installation') }"><a href="generated/installation.html">Installation</a></li>
+        <li ng-class="{ active: isActive('documentation') }"><a href="generated/documentation.html">Documentation</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+	        <li><a href="generated/hopla.html">Hopla</a></li>
+          </ul>
+        </li>
+        <li><a href="https://github.com/AGrigis/pysphinxdoc">PYSPHINXDOC</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Banner -->
+<div class="container-fluid banner-container">
+  <div class="row banner-inner">
+      <div class="col-xs-4">
+        <div id="examples_carousel" class="carousel slide" data-ride="carousel">
+	      <ol class="carousel-indicators">
+            <li data-target='#examples_carousel' data-slide-to='0' class='active'></li>
+	      </ol>
+	      <!-- Carousel items -->
+	      <div class="carousel-inner" role="listbox">
+            <div class="active item"><a href="#"><img src="_static/carousel/hopla.png"></div></a>
+	      </div>
+	      <!-- Carousel nav -->
+          <a class="left carousel-control" href="#examples_carousel" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#examples_carousel" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+       </div>
+	  </div>
+      <div class="col-xs-8">
+            <p>[hopla] Easy to use pure-Python scheduler.</p>   
+      </div>   
+  </div>
+</div>
+
+
+<div class="content-wrapper">
+    <div class="sphinxsidebar">
+      <div class="sphinxsidebarwrapper">
+
+        <!-- info setup -->
+          <p class="doc-version">
+           This documentation is for hopla <strong>version 1.0.0</strong>
+          </p>
+        <p class="citing">
+          If you use the software, please do not esitate to 
+          <a &mdash; <a href="https://github.com/AGrigis/hopla">
+          Report a Bug</a>.
+        </p>
+
+      <!-- toc tree -->
+      <ul>
+<li><a class="reference internal" href="#">Overview</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#perspectives">Perspectives</a></li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#search">Search</a></li>
+</ul>
+
+
+      </div>
+    </div>
+  
+
+  <div class="content">
+      
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Easy to use pure-Python scheduler.</p>
+<div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>With the increasing amount of data to be treated, efficient scaling strategies
+are necessary. This observation made me start &#8216;hopla&#8217; which provides:</p>
+<ul class="simple">
+<li>a scheduler that produces human readable outputs.</li>
+<li>a converter that enables to execute kilometer command lines</li>
+<li>workers that enable local or cluster executions.</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>The proposed module has been currently developped to execute Python scripts.
+Consider the following demonstration script that lists an input folder (the
+latter is available in the &#8216;hopla.demo.my_ls_script&#8217; module):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># System import</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Parameters to keep trace</span>
+<span class="n">__hopla__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;directory&quot;</span><span class="p">,</span> <span class="s2">&quot;files&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">is_directory</span><span class="p">(</span><span class="n">dirarg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Type for argparse - checks that directory exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dirarg</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
+            <span class="s2">&quot;The directory &#39;</span><span class="si">{0}</span><span class="s2">&#39; does not exist!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dirarg</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dirarg</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;List a directory.&quot;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--dir&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;dir&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a valid directory to be listed.&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">is_directory</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;increase the verbosity level: 0 silent, [1, 2] verbose.&quot;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">directory</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dir</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note the &#8216;__hopla__&#8217; list that specifies which parameters will be dispalyed in
+the scheduler execution log. This mechanism is usefull to keep trace of
+important script elements (ie., the outputs). The scaled execution of this
+script on two CPUs is realized using a simple call:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hopla.converter</span> <span class="k">import</span> <span class="n">hopla</span>
+<span class="kn">import</span> <span class="nn">hopla.demo</span> <span class="k">as</span> <span class="nn">demo</span>
+
+<span class="n">apath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">__file__</span><span class="p">),</span>
+                      <span class="s2">&quot;my_ls_script.py&quot;</span><span class="p">)</span>
+<span class="n">status</span><span class="p">,</span> <span class="n">exitcodes</span> <span class="o">=</span> <span class="n">hopla</span><span class="p">(</span>
+    <span class="n">script</span><span class="p">,</span> <span class="n">hopla_iterative_kwargs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">d</span><span class="o">=</span><span class="p">[</span><span class="n">apath</span><span class="p">,</span> <span class="n">apath</span><span class="p">,</span> <span class="n">apath</span><span class="p">],</span> <span class="n">hopla_verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hopla_cpus</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">exitcode</span> <span class="ow">in</span> <span class="n">exitcodes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">exitcode</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="n">job_name</span><span class="p">][</span><span class="s2">&quot;info&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>After the execution call (through the hopla function), exit codes are
+inspected. The &#8216;hopla_verbose&#8217; has been set to one, some logging information
+has been displayed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">733</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Using</span> <span class="s1">&#39;hopla&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.0&#39;</span><span class="o">.</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">733</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">For</span> <span class="n">exitcode</span> <span class="n">values</span><span class="p">:</span>
+    <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">no</span> <span class="n">error</span> <span class="n">was</span> <span class="n">produced</span><span class="o">.</span>
+    <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">the</span> <span class="n">process</span> <span class="n">had</span> <span class="n">an</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">that</span> <span class="n">code</span><span class="o">.</span>
+    <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">the</span> <span class="n">process</span> <span class="n">was</span> <span class="n">killed</span> <span class="k">with</span> <span class="n">a</span> <span class="n">signal</span> <span class="n">of</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">exitcode</span><span class="o">.</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">838</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">839</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">839</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">verbose</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">839</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">839</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">839</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">840</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">verbose</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">840</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">842</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">842</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">842</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">verbose</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">842</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">843</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Using</span> <span class="s1">&#39;hopla&#39;</span> <span class="n">version</span> <span class="s1">&#39;1.0.0&#39;</span><span class="o">.</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">843</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">For</span> <span class="n">exitcode</span> <span class="n">values</span><span class="p">:</span>
+    <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">no</span> <span class="n">error</span> <span class="n">was</span> <span class="n">produced</span><span class="o">.</span>
+    <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">the</span> <span class="n">process</span> <span class="n">had</span> <span class="n">an</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">that</span> <span class="n">code</span><span class="o">.</span>
+    <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">the</span> <span class="n">process</span> <span class="n">was</span> <span class="n">killed</span> <span class="k">with</span> <span class="n">a</span> <span class="n">signal</span> <span class="n">of</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">exitcode</span><span class="o">.</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">951</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">951</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">952</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">v</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">952</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_1</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">952</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">953</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">953</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">v</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">953</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_0</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">955</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">test</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">955</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py~&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;test.pyc&#39;</span><span class="p">,</span> <span class="s1">&#39;test.py&#39;</span><span class="p">]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">955</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/home/ag239446/git/hopla/</span>
+    <span class="n">hopla</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">my_ls_script</span><span class="o">.</span><span class="n">py</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">d</span><span class="s1">&#39;, &#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ag239446</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span><span class="n">hopla</span><span class="o">/</span>
+    <span class="n">test</span><span class="s1">&#39;, &#39;</span><span class="o">-</span><span class="n">v</span><span class="s1">&#39;, &#39;</span><span class="mi">0</span><span class="s1">&#39;]</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">06</span> <span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="mi">955</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">job_2</span><span class="o">.</span><span class="n">exitcode</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="perspectives">
+<h1>Perspectives<a class="headerlink" href="#perspectives" title="Permalink to this headline">¶</a></h1>
+<p>It will be nice to generalize some concepts (ie., accept different kind
+of script).</p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/installation.html">Installing <cite>hopla</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/documentation.html">Documentation of HOPLA</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="search">
+<h1>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer">
+    </div>
+  </div>
+  
+</div>
+
+<div class="footer">
+    &copy; 2016, Antoine Grigis &lt;antoine.grigis@cea.fr&gt;.
+</div>
+  </body>
+</html>
