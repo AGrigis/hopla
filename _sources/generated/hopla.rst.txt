@@ -1,0 +1,49 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+:orphan:
+
+API documentation of *hopla*
+=============================
+
+hopla
+^^^^^
+
+
+
+.. rst-class:: documentation-contents
+
+  **Classes**:
+    * `hopla.Executor <hopla.executor.Executor.html>`_
+
+hopla.pbs
+^^^^^^^^^
+
+Contains PBS specific functions.
+
+.. rst-class:: documentation-contents
+
+  **Classes**:
+    * `hopla.pbs.DelayedPbsJob <hopla.pbs.DelayedPbsJob.html>`_
+    * `hopla.pbs.PbsInfoWatcher <hopla.pbs.PbsInfoWatcher.html>`_
+
+hopla.utils
+^^^^^^^^^^^
+
+Contains some utility functions.
+
+.. rst-class:: documentation-contents
+
+  **Classes**:
+    * `hopla.utils.JobPaths <hopla.utils.JobPaths.html>`_
+
+hopla.executor
+^^^^^^^^^^^^^^
+
+Contains job execution functions.
+
+.. rst-class:: documentation-contents
+
+  **Classes**:
+    * `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+    * `hopla.executor.Executor <hopla.executor.Executor.html>`_
+

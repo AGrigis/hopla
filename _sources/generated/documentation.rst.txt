@@ -1,0 +1,50 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+API documentation of HOPLA
+===========================
+
+This is the classes and functions reference in hopla. Please refer to the gallery for further details, as the class and function raw specifications may not be enough to give full guidelines on their uses.
+
+.. raw:: html
+
+    <!-- Block section -->
+
+    <div class='container-fluid'>
+
+    <div class='float-left'>
+
+    <div class='row'>
+
+    <div class='col-md-4'>
+    <h3><a href='hopla.html'>
+    hopla
+    </a></h3>
+    <blockquote>
+    </blockquote>
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+.. rst-class:: documentation-contents
+
+  **Contents**:
+    * `hopla <hopla.html>`_
+        .. hidden-technical-block::
+          :label: [+ show/hide members]
+          :starthidden: true
+
+          `hopla.Executor <hopla.executor.Executor.html>`_
+
+          `hopla.pbs.DelayedPbsJob <hopla.pbs.DelayedPbsJob.html>`_
+
+          `hopla.pbs.PbsInfoWatcher <hopla.pbs.PbsInfoWatcher.html>`_
+
+          `hopla.utils.JobPaths <hopla.utils.JobPaths.html>`_
+
+          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+
+          `hopla.executor.Executor <hopla.executor.Executor.html>`_
+
+

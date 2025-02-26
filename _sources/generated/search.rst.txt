@@ -1,0 +1,22 @@
+.. AUTO-GENERATED FILE -- DO NOT EDIT!
+
+Search in API documentation of HOPLA
+=====================================
+
+.. raw:: html
+
+    <!-- Block section -->
+
+    <div class='my-search-bar'>
+    <i class='icon fa fa-search'></i>
+    <input type='text' id='my-search' onkeyup='mySearch()' placeholder='Search for functions & classes...' title='Search'>
+
+    </div>
+    <ul id='my-search-entries'>
+        <li><a href='hopla.executor.Executor.html'>hopla.Executor</a></li>
+        <li><a href='hopla.executor.DelayedSubmission.html'>hopla.executor.DelayedSubmission</a></li>
+        <li><a href='hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
+        <li><a href='hopla.pbs.DelayedPbsJob.html'>hopla.pbs.DelayedPbsJob</a></li>
+        <li><a href='hopla.pbs.PbsInfoWatcher.html'>hopla.pbs.PbsInfoWatcher</a></li>
+        <li><a href='hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>
+    </ul>
