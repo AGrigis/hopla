@@ -164,6 +164,8 @@
 <span class="sd">        folder for storing job submission/output and logs.</span>
 <span class="sd">    queue: str</span>
 <span class="sd">        the name of the queue where the jobs will be submited.</span>
+<span class="sd">    name: str, default &#39;hopla&#39;</span>
+<span class="sd">        the name of the submitted jobs.</span>
 <span class="sd">    memory: float , default 2</span>
 <span class="sd">        the memory allocated to each job (in GB).</span>
 <span class="sd">    walltime: int default 72</span>
@@ -187,29 +189,34 @@
     <span class="n">_job_class</span> <span class="o">=</span> <span class="n">DelayedPbsJob</span>
     <span class="n">_watcher_class</span> <span class="o">=</span> <span class="n">PbsInfoWatcher</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">walltime</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">n_cpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">n_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hopla&quot;</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">walltime</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                 <span class="n">n_cpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">watcher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_watcher_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delay_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;hopla&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;queue&quot;</span><span class="p">:</span> <span class="n">queue</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">memory</span><span class="p">,</span> <span class="s2">&quot;walltime&quot;</span><span class="p">:</span> <span class="n">walltime</span><span class="p">,</span>
             <span class="s2">&quot;ncpus&quot;</span><span class="p">:</span> <span class="n">n_cpus</span><span class="p">,</span> <span class="s2">&quot;ngpus&quot;</span><span class="p">:</span> <span class="n">n_gpus</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_jobs</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_jobs</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Run jobs controlling the maximum number of concurrent submissions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        max_jobs: int, default 300</span>
 <span class="sd">            the maximum number of concurrent submissions.</span>
+<span class="sd">        debug: bool, default False</span>
+<span class="sd">            optionaly print job info at each refresh.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">_start</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;QSUB&quot;</span><span class="p">)</span>
         <span class="k">while</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_waiting_jobs</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span>
                <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">job</span><span class="o">.</span><span class="n">done</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_waiting_jobs</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_running_jobs</span> <span class="o">&lt;</span> <span class="n">max_jobs</span><span class="p">:</span>
                 <span class="n">_delta</span> <span class="o">=</span> <span class="n">max_jobs</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_running_jobs</span>
                 <span class="n">_stop</span> <span class="o">=</span> <span class="n">_start</span> <span class="o">+</span> <span class="n">_delta</span>
