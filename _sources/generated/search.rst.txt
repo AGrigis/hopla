@@ -14,9 +14,13 @@ Search in API documentation of HOPLA
     </div>
     <ul id='my-search-entries'>
         <li><a href='hopla.executor.Executor.html'>hopla.Executor</a></li>
+        <li><a href='hopla.ccc.CCCInfoWatcher.html'>hopla.ccc.CCCInfoWatcher</a></li>
+        <li><a href='hopla.ccc.DelayedCCCJob.html'>hopla.ccc.DelayedCCCJob</a></li>
         <li><a href='hopla.executor.DelayedSubmission.html'>hopla.executor.DelayedSubmission</a></li>
         <li><a href='hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
         <li><a href='hopla.pbs.DelayedPbsJob.html'>hopla.pbs.DelayedPbsJob</a></li>
         <li><a href='hopla.pbs.PbsInfoWatcher.html'>hopla.pbs.PbsInfoWatcher</a></li>
+        <li><a href='hopla.utils.DelayedJob.html'>hopla.utils.DelayedJob</a></li>
+        <li><a href='hopla.utils.InfoWatcher.html'>hopla.utils.InfoWatcher</a></li>
         <li><a href='hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>
     </ul>

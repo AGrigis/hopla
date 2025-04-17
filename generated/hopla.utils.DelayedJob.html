@@ -183,6 +183,30 @@
                                         
                                         
                                     
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
                                 
                                     
                                         
@@ -193,19 +217,23 @@
                                 
                                     <li>SECTIONS</li>
                                     
-						                <li> <a href='#hopla.Executor.n_done_jobs'>Executor.n_done_jobs</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.done'>Delayedjob.done</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.n_jobs'>Executor.n_jobs</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.exitcode'>Delayedjob.exitcode</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.n_running_jobs'>Executor.n_running_jobs</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.read_jobid'>Delayedjob.read_jobid()</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.n_waiting_jobs'>Executor.n_waiting_jobs</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.report'>Delayedjob.report</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.report'>Executor.report</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.start'>Delayedjob.start()</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.status'>Executor.status</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.start_command'>Delayedjob.start_command</a> </li>                                    
                                     
-						                <li> <a href='#hopla.Executor.submit'>Executor.submit()</a> </li>                                    
+						                <li> <a href='#hopla.utils.DelayedJob.status'>Delayedjob.status</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.DelayedJob.stop'>Delayedjob.stop()</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.DelayedJob.stop_command'>Delayedjob.stop_command</a> </li>                                    
                                     
                                 
                             
@@ -263,117 +291,79 @@
 <p>This page is a reference documentation. It only explains the class signature, and not how to use it. Please refer to the <a class="reference internal" href="../auto_gallery/index.html#sphx-glr-auto-gallery"><span class="std std-ref">gallery</span></a> for the big picture.</p>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="hopla.Executor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.</span></span><span class="sig-name descname"><span class="pre">Executor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hopla'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">72</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_gpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/executor.html#Executor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.Executor" title="Link to this definition">¶</a></dt>
-<dd><p>Base job executor.</p>
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">DelayedJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a job that have been queue for submission by an executor,
+but hasn’t yet been scheduled.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>folder</strong> : Path/str</p>
+<dd class="field-odd"><p><strong>delayed_submission</strong> : DelayedSubmission</p>
 <blockquote>
-<div><p>folder for storing job submission/output and logs.</p>
+<div><p>a delayed submission allowing to generate the command line to
+execute.</p>
 </div></blockquote>
-<p><strong>queue</strong> : str</p>
+<p><strong>executor</strong> : Executor</p>
 <blockquote>
-<div><p>the name of the queue where the jobs will be submited.</p>
+<div><p>base job executor.</p>
 </div></blockquote>
-<p><strong>name</strong> : str, default ‘hopla’</p>
+<p><strong>job_id</strong> : str</p>
 <blockquote>
-<div><p>the name of the submitted jobs.</p>
-</div></blockquote>
-<p><strong>memory</strong> : float , default 2</p>
-<blockquote>
-<div><p>the memory allocated to each job (in GB).</p>
-</div></blockquote>
-<p><strong>walltime</strong> : int default 72</p>
-<blockquote>
-<div><p>the walltime used for each job (in hours).</p>
-</div></blockquote>
-<p><strong>n_cpus</strong> : int, default 1</p>
-<blockquote>
-<div><p>the number of cores allocated for each job.</p>
-</div></blockquote>
-<p><strong>n_gpus</strong> : int, default 0</p>
-<blockquote>
-<div><p>the number of GPUs allocated for each job.</p>
-</div></blockquote>
-<p><strong>modules</strong> : list of str, default None</p>
-<blockquote>
-<div><p>the environment modules to be loaded.</p>
-</div></blockquote>
-<p><strong>image_path</strong> : str, default None</p>
-<blockquote>
-<div><p>path to an exported docker image.</p>
-</div></blockquote>
-<p><strong>project_id</strong> : str, default None</p>
-<blockquote>
-<div><p>the project ID where you have computing hours.</p>
+<div><p>the job identifier.</p>
 </div></blockquote>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span> <span class="o">=</span> <span class="n">hopla</span><span class="o">.</span><span class="n">Executor</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s2">&quot;/tmp/hopla&quot;</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;Nspin_long&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">report</span><span class="p">)</span>
-</pre></div>
-</div>
 <dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.n_done_jobs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_done_jobs</span></span><a class="headerlink" href="#hopla.Executor.n_done_jobs" title="Link to this definition">¶</a></dt>
-<dd><p>Get the number of finished jobs.</p>
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.done">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.done" title="Link to this definition">¶</a></dt>
+<dd><p>Checks whether the job is finished properly.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.n_jobs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_jobs</span></span><a class="headerlink" href="#hopla.Executor.n_jobs" title="Link to this definition">¶</a></dt>
-<dd><p>Get the number of stacked jobs.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.n_running_jobs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_running_jobs</span></span><a class="headerlink" href="#hopla.Executor.n_running_jobs" title="Link to this definition">¶</a></dt>
-<dd><p>Get the number of running jobs.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.n_waiting_jobs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_waiting_jobs</span></span><a class="headerlink" href="#hopla.Executor.n_waiting_jobs" title="Link to this definition">¶</a></dt>
-<dd><p>Get the number of waiting jobs.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.report">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">report</span></span><a class="headerlink" href="#hopla.Executor.report" title="Link to this definition">¶</a></dt>
-<dd><p>Generate a general report for all jobs.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.Executor.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#hopla.Executor.status" title="Link to this definition">¶</a></dt>
-<dd><p>Display current status.</p>
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.exitcode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exitcode</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.exitcode" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the code finished properly.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="hopla.Executor.submit">
-<span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">script</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/executor.html#Executor.submit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.Executor.submit" title="Link to this definition">¶</a></dt>
-<dd><p>Create a delayed job.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>script</strong> : Path/str</p>
-<blockquote>
-<div><p>script to execute.</p>
-</div></blockquote>
-<p><strong>*args</strong> : any positional argument of the script.</p>
-<p><strong>**kwargs</strong> : any named argument of the script.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>job</strong> : DelayedJob</p>
-<blockquote>
-<div><p>a job instance.</p>
-</div></blockquote>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.read_jobid">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_jobid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob.read_jobid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob.read_jobid" title="Link to this definition">¶</a></dt>
+<dd><p>Return the started job ID.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.report">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">report</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.report" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a report for the submitted job.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob.start" title="Link to this definition">¶</a></dt>
+<dd><p>Start a job.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.start_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_command</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.start_command" title="Link to this definition">¶</a></dt>
+<dd><p>Return the start job command.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.status" title="Link to this definition">¶</a></dt>
+<dd><p>Checks the job status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob.stop" title="Link to this definition">¶</a></dt>
+<dd><p>Stop a job.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.stop_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_command</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.stop_command" title="Link to this definition">¶</a></dt>
+<dd><p>Return the stop job command.</p>
 </dd></dl>
 
 </dd></dl>

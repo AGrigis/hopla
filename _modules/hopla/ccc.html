@@ -135,7 +135,7 @@
 		        </div>
                     
                     <div class="document">
-                        <h1>Source code for hopla.pbs</h1><div class='divider-1 wow fadeInUp'><span></span></div><div class="highlight"><pre>
+                        <h1>Source code for hopla.ccc</h1><div class='divider-1 wow fadeInUp'><span></span></div><div class="highlight"><pre>
 <span></span><span class="c1">##########################################################################</span>
 <span class="c1"># Hopla - Copyright (C) AGrigis, 2015 - 2025</span>
 <span class="c1"># Distributed under the terms of the CeCILL-B license, as published by</span>
@@ -148,18 +148,20 @@
 <span class="sd">Contains PBS specific functions.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DelayedJob</span><span class="p">,</span> <span class="n">InfoWatcher</span>
 
 
-<div class="viewcode-block" id="PbsInfoWatcher">
-<a class="viewcode-back" href="../../generated/hopla.pbs.PbsInfoWatcher.html#hopla.pbs.PbsInfoWatcher">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">PbsInfoWatcher</span><span class="p">(</span><span class="n">InfoWatcher</span><span class="p">):</span>
+<div class="viewcode-block" id="CCCInfoWatcher">
+<a class="viewcode-back" href="../../generated/hopla.ccc.CCCInfoWatcher.html#hopla.ccc.CCCInfoWatcher">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CCCInfoWatcher</span><span class="p">(</span><span class="n">InfoWatcher</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; An instance of this class is shared by all jobs, and is in charge of</span>
-<span class="sd">    calling pbs to check status for all jobs at once.</span>
+<span class="sd">    calling ccc to check status for all jobs at once.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -174,33 +176,34 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Return the command to list jobs status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">active_jobs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registered</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finished</span>
-        <span class="k">return</span> <span class="s2">&quot;qstat -fx -F json &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">active_jobs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;squeue --states=all --json -j &quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">active_jobs</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">valid_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Return the list of valid status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span> <span class="s2">&quot;PENDING&quot;</span><span class="p">,</span> <span class="s2">&quot;SUSPENDED&quot;</span><span class="p">,</span> <span class="s2">&quot;COMPLETING&quot;</span><span class="p">,</span> <span class="s2">&quot;CONFIGURING&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="PbsInfoWatcher.read_info">
-<a class="viewcode-back" href="../../generated/hopla.pbs.PbsInfoWatcher.html#hopla.pbs.PbsInfoWatcher.read_info">[docs]</a>
+<div class="viewcode-block" id="CCCInfoWatcher.read_info">
+<a class="viewcode-back" href="../../generated/hopla.ccc.CCCInfoWatcher.html#hopla.ccc.CCCInfoWatcher.read_info">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_info</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads the output of qstat and returns a dictionary containing</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads the output of squeue and returns a dictionary containing</span>
 <span class="sd">        main jobs information.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-        <span class="n">all_stats</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">val</span>
-                     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">string</span><span class="p">)[</span><span class="s2">&quot;Jobs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">all_stats</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;job_id&quot;</span><span class="p">]):</span> <span class="n">val</span>
+                     <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">string</span><span class="p">)[</span><span class="s2">&quot;jobs&quot;</span><span class="p">]}</span>
         <span class="k">return</span> <span class="n">all_stats</span></div>
 </div>
 
 
 
-<div class="viewcode-block" id="DelayedPbsJob">
-<a class="viewcode-back" href="../../generated/hopla.pbs.DelayedPbsJob.html#hopla.pbs.DelayedPbsJob">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">DelayedPbsJob</span><span class="p">(</span><span class="n">DelayedJob</span><span class="p">):</span>
+<div class="viewcode-block" id="DelayedCCCJob">
+<a class="viewcode-back" href="../../generated/hopla.ccc.DelayedCCCJob.html#hopla.ccc.DelayedCCCJob">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DelayedCCCJob</span><span class="p">(</span><span class="n">DelayedJob</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Represents a job that have been queue for submission by an executor,</span>
 <span class="sd">    but hasn&#39;t yet been scheduled.</span>
 
@@ -214,39 +217,77 @@
 <span class="sd">    job_id: str</span>
 <span class="sd">        the job identifier.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_submission_cmd</span> <span class="o">=</span> <span class="s2">&quot;qsub&quot;</span>
+    <span class="n">_hub</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="n">_submission_cmd</span> <span class="o">=</span> <span class="s2">&quot;ccc_msub&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delayed_submission</span><span class="p">,</span> <span class="n">executor</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">delayed_submission</span><span class="p">,</span> <span class="n">executor</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;pbs_batch_template.txt&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;ccc_batch_template.txt&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">of</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">image_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_executor</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;image_path&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">image_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">(),</span> <span class="n">image_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<div class="viewcode-block" id="DelayedPbsJob.generate_batch">
-<a class="viewcode-back" href="../../generated/hopla.pbs.DelayedPbsJob.html#hopla.pbs.DelayedPbsJob.generate_batch">[docs]</a>
+<div class="viewcode-block" id="DelayedCCCJob.generate_batch">
+<a class="viewcode-back" href="../../generated/hopla.ccc.DelayedCCCJob.html#hopla.ccc.DelayedCCCJob.generate_batch">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Write the batch file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_executor</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;walltime&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">3600</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;memory&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">1000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">import_image</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;image_path&quot;</span><span class="p">])</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pcocc-rs run </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_hub</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">image_name</span><span class="si">}</span><span class="s2"> &quot;</span>
+               <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delayed_submission</span><span class="o">.</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">submission_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">of</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
             <span class="n">of</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delayed_submission</span><span class="o">.</span><span class="n">command</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="n">cmd</span><span class="p">,</span>
                 <span class="n">stdout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
                 <span class="n">stderr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
-                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_executor</span><span class="o">.</span><span class="n">parameters</span><span class="p">))</span></div>
+                <span class="o">**</span><span class="n">params</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="DelayedPbsJob.read_jobid">
-<a class="viewcode-back" href="../../generated/hopla.pbs.DelayedPbsJob.html#hopla.pbs.DelayedPbsJob.read_jobid">[docs]</a>
+<div class="viewcode-block" id="DelayedCCCJob.import_image">
+<a class="viewcode-back" href="../../generated/hopla.ccc.DelayedCCCJob.html#hopla.ccc.DelayedCCCJob.import_image">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">import_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Load the docker image if not available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pcocc-rs&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hub</span><span class="p">]</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_index</span><span class="p">(</span><span class="n">stdout</span><span class="p">):</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;pcocc-rs&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;import&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;docker-archive:</span><span class="si">{</span><span class="n">image_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_hub</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">image_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DelayedCCCJob.read_index">
+<a class="viewcode-back" href="../../generated/hopla.ccc.DelayedCCCJob.html#hopla.ccc.DelayedCCCJob.read_index">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_index</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads the output of of pcocc-rs image list and returns a</span>
+<span class="sd">        list available container.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">names</span></div>
+
+
+<div class="viewcode-block" id="DelayedCCCJob.read_jobid">
+<a class="viewcode-back" href="../../generated/hopla.ccc.DelayedCCCJob.html#hopla.ccc.DelayedCCCJob.read_jobid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_jobid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Return the started job ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">string</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
 
     <span class="nd">@property</span>
@@ -259,11 +300,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_command</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Return the stop job command.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;qdel&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;ccc_mqdel&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&lt;job_id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="si">}</span><span class="s2">,&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;submission_id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">submission_id</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span></div>
+                <span class="sa">f</span><span class="s2">&quot;submission_id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">submission_id</span><span class="si">}</span><span class="s2">,image=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_hub</span><span class="si">}</span><span class="s2">:&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">image_name</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span></div>
 
 </pre></div>
                     </div>

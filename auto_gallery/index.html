@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../_static/css/animate.css">
         <link rel="stylesheet" href="../_static/css/style.css">
         <link rel="stylesheet" href="../_static/css/jquery.mosaic.css">
-        <link rel="stylesheet" href="../_static/gallery.css">
+        <link rel="stylesheet" href="../_static/sg_gallery.css">
         <link rel="stylesheet" href="../_static/css/media-queries.css">
         <link rel="stylesheet" href="../_static/css/pygment.css">
 
@@ -99,6 +99,48 @@
                                         
                                         
                                     
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
                                 
                                     
                                         
@@ -106,6 +148,23 @@
                                         
                                     
                                 
+                                    
+                                        
+                                        
+                                        
+                                    
+                                
+                                
+                                    <li>SECTIONS</li>
+                                    
+						                <li> <a href='#how-it-works'>How It Works</a> </li>                                    
+                                    
+						                <li> <a href='#pbs-cluster'>Pbs Cluster</a> </li>                                    
+                                    
+						                <li> <a href='#ccc-cluster'>Ccc Cluster</a> </li>                                    
+                                    
+						                <li> <a href='#docker'>Docker</a> </li>                                    
+                                    
                                 
                             
                             <li>API</li>
@@ -157,9 +216,44 @@
 		        </div>
                     
                     <div class="document">
-                        <div class="section" id="hopla-usage-examples">
-<span id="sphx-glr-auto-gallery"></span><h1>hopla usage examples<a class="headerlink" href="#hopla-usage-examples" title="Permalink to this headline">¶</a></h1><div class='divider-1 wow fadeInUp'><span></span></div>
-<p>From inside an environment with hopla installed:</p>
+                        <section id="usage-examples">
+<span id="sphx-glr-auto-gallery"></span><h1>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h1><div class='divider-1 wow fadeInUp'><span></span></div>
+<p>From within an environment with hopla installed, you can seamlessly connect
+to a cluster, configure nodes, and deploy applications while managing
+resources and scaling workloads by running dynamic scripts. The execution
+pipeline is as follows:</p>
+<ul class="simple">
+<li><p><strong>Cluster Configuration</strong>: All cluster settings are stored within the
+Executor context manager, ensuring a centralized and consistent
+configuration.</p></li>
+<li><p><strong>Job Submission</strong>: The Executor context manager enables you to submit
+delayed jobs, allowing for deferred execution based on resource
+availability and job priorities.</p></li>
+<li><p><strong>Start the Job</strong>: You can manually start and stop these jobs, or leverage
+the Executor context manager to automatically launch them, controlling
+the number of jobs running concurrently to optimize resource utilization.</p></li>
+<li><p><strong>Execution Reporting</strong>: Finally, the Executor context manager provides
+an execution report, offering insights into the status, performance, and
+resource usage of each job executed within the cluster.</p></li>
+</ul>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<ul class="simple">
+<li><p><strong>Executor Context</strong>: The <cite>Executor</cite> context manages all cluster
+configurations and task execution.</p></li>
+<li><p><strong>Submit a Job</strong>: The function <cite>executor.submit()</cite> configure as a delayed
+job to the Executor.</p></li>
+<li><p><strong>Start the Job</strong>: You can either start the job manually or have it
+automatically executed when executor() is called. You can control
+concurrency by setting <cite>max_jobs</cite> to limit the number of tasks running
+simultaneously.</p></li>
+<li><p><strong>Execution Reporting</strong>: Once the job completes, the result is retrieved in
+the <cite>executor.reprot</cite>.</p></li>
+</ul>
+</section>
+<section id="pbs-cluster">
+<h2>PBS cluster<a class="headerlink" href="#pbs-cluster" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<p>Execution of a simple <cite>sleep</cite> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
 
@@ -173,16 +267,51 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">report</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-clear"></div><div class="sphx-glr-footer class sphx-glr-footer-gallery docutils container">
+<p>Execution of a brainprep command available in an apptainer image (adapt and
+pass this command to the <cite>executor.submit()</cite> function):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apptainer</span> <span class="n">run</span> <span class="o">--</span><span class="n">bind</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cleanenv</span> <span class="o">&lt;</span><span class="n">image_path</span><span class="o">&gt;</span> <span class="n">brainprep</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="ccc-cluster">
+<h2>CCC cluster<a class="headerlink" href="#ccc-cluster" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<p>Execution of a simple <cite>sleep</cite> command available in an docker image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">hopla</span><span class="o">.</span><span class="n">Executor</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s2">&quot;/tmp/hopla&quot;</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;rome&quot;</span><span class="p">,</span>
+                          <span class="n">walltime</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dfldatadir/n4h00001&quot;</span><span class="p">,</span>
+                          <span class="n">image_path</span><span class="o">=</span><span class="s2">&quot;/tmp/hopla/my-docker-img.tar&quot;</span><span class="p">)</span>
+
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
+
+<span class="n">executor</span><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">report</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Execution of a brainprep command available in an docker image (adapt and
+pass this command to the <cite>executor.submit()</cite> function):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brainprep</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Don’t forget to set the <cite>CCCWORKDIR</cite> environment variable to the location
+of the hub workspace (<cite>n4h00001/n4h00001/gaia</cite> by default).</p>
+</section>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<p>You can’t export your docker image as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">save</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span> <span class="o">-</span><span class="n">o</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span><span class="o">.</span><span class="n">tar</span>
+</pre></div>
+</div>
+<div class="sphx-glr-thumbnails"></div><div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/50be3561a31b6f8ab9ba12e67a90316b/auto_gallery_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">auto_gallery_python.zip</span></code></a></p>
 </div>
-<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/0e1efe86a924d1258b06285627be2550/auto_gallery_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">auto_gallery_jupyter.zip</span></code></a></p>
-</div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
+</section>
+</section>
 
                     </div>
                 <div class="spacer"></div>

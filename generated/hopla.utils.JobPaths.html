@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../_static/css/animate.css">
         <link rel="stylesheet" href="../_static/css/style.css">
         <link rel="stylesheet" href="../_static/css/jquery.mosaic.css">
-        <link rel="stylesheet" href="../_static/gallery.css">
+        <link rel="stylesheet" href="../_static/sg_gallery.css">
         <link rel="stylesheet" href="../_static/css/media-queries.css">
         <link rel="stylesheet" href="../_static/css/pygment.css">
 
@@ -60,6 +60,8 @@
                 <!-- links -->
                 
                 
+                    
+                
 				<ul class="list-unstyled menu-elements">
 					<li class="active">
 						<a href="../index.html"><i class="fas fa-home"></i> Home</a>
@@ -85,6 +87,71 @@
 						</a>
 						<ul class="collapse list-unstyled" id="otherSections">
                             
+                            
+                                
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                
+                                
+                                    <li>SECTIONS</li>
+                                    
+						                <li> <a href='#hopla.utils.JobPaths.stderr'>Jobpaths.stderr</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.JobPaths.stdout'>Jobpaths.stdout</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.JobPaths.submission_file'>Jobpaths.submission_file</a> </li>                                    
+                                    
+                                
                             
                             <li>API</li>
                             <li><a href="hopla.html">hopla</a></li>
@@ -140,11 +207,11 @@
 <p>This page is a reference documentation. It only explains the class signature, and not how to use it. Please refer to the <a class="reference internal" href="../auto_gallery/index.html#sphx-glr-auto-gallery"><span class="std std-ref">gallery</span></a> for the big picture.</p>
 </div>
 <dl class="py class">
-<dt id="hopla.utils.JobPaths">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">hopla.utils.</span></code><code class="sig-name descname"><span class="pre">JobPaths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#JobPaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.JobPaths" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="hopla.utils.JobPaths">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">JobPaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#JobPaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.JobPaths" title="Link to this definition">¶</a></dt>
 <dd><p>Creates paths related to a job and its submission.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>folder</strong> : Path</p>
 <blockquote>
 <div><p>the current execution folder.</p>
@@ -155,21 +222,21 @@
 </div></blockquote>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="hopla.utils.JobPaths.stderr">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">stderr</span></code><a class="headerlink" href="#hopla.utils.JobPaths.stderr" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.stderr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stderr</span></span><a class="headerlink" href="#hopla.utils.JobPaths.stderr" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the stderr file location.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="hopla.utils.JobPaths.stdout">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">stdout</span></code><a class="headerlink" href="#hopla.utils.JobPaths.stdout" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.stdout">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stdout</span></span><a class="headerlink" href="#hopla.utils.JobPaths.stdout" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the stdout file location.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="hopla.utils.JobPaths.submission_file">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">submission_file</span></code><a class="headerlink" href="#hopla.utils.JobPaths.submission_file" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.submission_file">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">submission_file</span></span><a class="headerlink" href="#hopla.utils.JobPaths.submission_file" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the submission file location.</p>
 </dd></dl>
 

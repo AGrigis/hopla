@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../../_static/css/animate.css">
         <link rel="stylesheet" href="../../_static/css/style.css">
         <link rel="stylesheet" href="../../_static/css/jquery.mosaic.css">
-        <link rel="stylesheet" href="../../_static/gallery.css">
+        <link rel="stylesheet" href="../../_static/sg_gallery.css">
         <link rel="stylesheet" href="../../_static/css/media-queries.css">
         <link rel="stylesheet" href="../../_static/css/pygment.css">
 
@@ -148,14 +148,18 @@
 <span class="sd">Contains job execution functions.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ccc</span><span class="w"> </span><span class="kn">import</span> <span class="n">CCCInfoWatcher</span><span class="p">,</span> <span class="n">DelayedCCCJob</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.pbs</span><span class="w"> </span><span class="kn">import</span> <span class="n">DelayedPbsJob</span><span class="p">,</span> <span class="n">PbsInfoWatcher</span>
 
 
-<div class="viewcode-block" id="Executor"><a class="viewcode-back" href="../../generated/hopla.executor.Executor.html#hopla.Executor">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="Executor">
+<a class="viewcode-back" href="../../generated/hopla.executor.Executor.html#hopla.Executor">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Base job executor.</span>
 
 <span class="sd">    Parameters</span>
@@ -174,6 +178,12 @@
 <span class="sd">        the number of cores allocated for each job.</span>
 <span class="sd">    n_gpus: int, default 0</span>
 <span class="sd">        the number of GPUs allocated for each job.</span>
+<span class="sd">    modules: list of str, default None</span>
+<span class="sd">        the environment modules to be loaded.</span>
+<span class="sd">    image_path: str, default None</span>
+<span class="sd">        path to an exported docker image.</span>
+<span class="sd">    project_id: str, default None</span>
+<span class="sd">        the project ID where you have computing hours.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -186,17 +196,25 @@
     <span class="n">_delay_s</span> <span class="o">=</span> <span class="mi">60</span>
     <span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">_job_class</span> <span class="o">=</span> <span class="n">DelayedPbsJob</span>
-    <span class="n">_watcher_class</span> <span class="o">=</span> <span class="n">PbsInfoWatcher</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;hopla&quot;</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">walltime</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
-                 <span class="n">n_cpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+                 <span class="n">n_cpus</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">project_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_job_class</span> <span class="o">=</span> <span class="n">DelayedPbsJob</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_watcher_class</span> <span class="o">=</span> <span class="n">PbsInfoWatcher</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_job_class</span> <span class="o">=</span> <span class="n">DelayedCCCJob</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_watcher_class</span> <span class="o">=</span> <span class="n">CCCInfoWatcher</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">watcher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_watcher_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delay_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+        <span class="n">image_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">image_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">modules</span> <span class="o">=</span> <span class="n">modules</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;queue&quot;</span><span class="p">:</span> <span class="n">queue</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">memory</span><span class="p">,</span> <span class="s2">&quot;walltime&quot;</span><span class="p">:</span> <span class="n">walltime</span><span class="p">,</span>
-            <span class="s2">&quot;ncpus&quot;</span><span class="p">:</span> <span class="n">n_cpus</span><span class="p">,</span> <span class="s2">&quot;ngpus&quot;</span><span class="p">:</span> <span class="n">n_gpus</span>
+            <span class="s2">&quot;ncpus&quot;</span><span class="p">:</span> <span class="n">n_cpus</span><span class="p">,</span> <span class="s2">&quot;ngpus&quot;</span><span class="p">:</span> <span class="n">n_gpus</span><span class="p">,</span> <span class="s2">&quot;modules&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">modules</span><span class="p">),</span>
+            <span class="s2">&quot;image_path&quot;</span><span class="p">:</span> <span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;project_id&quot;</span><span class="p">:</span> <span class="n">project_id</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -211,9 +229,10 @@
 <span class="sd">            optionaly print job info at each refresh.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">_start</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;QSUB&quot;</span><span class="p">)</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_job_class</span><span class="o">.</span><span class="n">_submission_cmd</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">desc</span><span class="p">)</span>
         <span class="k">while</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_waiting_jobs</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span>
-               <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">job</span><span class="o">.</span><span class="n">done</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="p">])):</span>
+               <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">done</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="p">)</span>
@@ -228,7 +247,9 @@
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_delay_s</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">watcher</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Executor.submit"><a class="viewcode-back" href="../../generated/hopla.executor.Executor.html#hopla.Executor.submit">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Executor.submit">
+<a class="viewcode-back" href="../../generated/hopla.executor.Executor.html#hopla.Executor.submit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Create a delayed job.</span>
 
 <span class="sd">        Parameters</span>
@@ -248,6 +269,7 @@
                               <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_delayed_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">job</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -294,7 +316,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_done_jobs</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_waiting_jobs</span></div>
 
 
-<div class="viewcode-block" id="DelayedSubmission"><a class="viewcode-back" href="../../generated/hopla.executor.DelayedSubmission.html#hopla.DelayedSubmission">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">DelayedSubmission</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DelayedSubmission">
+<a class="viewcode-back" href="../../generated/hopla.executor.DelayedSubmission.html#hopla.DelayedSubmission">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DelayedSubmission</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Object for specifying the submit parameters for further processing.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -310,6 +335,7 @@
         <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
         <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="o">-</span><span class="n">key</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
         <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">command</span><span class="p">)</span></div>
+
 </pre></div>
                     </div>
                 <div class="spacer"></div>
