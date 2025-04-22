@@ -9,7 +9,7 @@
 .. autoclass:: hopla.executor.Executor
      :members:
 
-.. minigallery:: hopla.Executor hopla.executor.Executor
+.. minigallery:: hopla.executor.Executor hopla.Executor
     :add-heading: Examples
     :heading-level: -
 

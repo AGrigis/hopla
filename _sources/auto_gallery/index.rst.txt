@@ -76,8 +76,8 @@ Execution of a simple `sleep` command available in an docker image::
     from pprint import pprint
 
     executor = hopla.Executor(folder="/tmp/hopla", queue="rome",
-                              walltime=1, modules=["dfldatadir/n4h00001",
-                              image_path="/tmp/hopla/my-docker-img.tar")
+                              walltime=1, project_id="genXXX",
+                              image="/tmp/hopla/my-docker-img.tar")
 
     jobs = [executor.submit("sleep", k) for k in range(1, 11)]
     pprint(jobs)
