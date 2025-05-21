@@ -45,14 +45,14 @@ This is the classes and functions reference in hopla. Please refer to the galler
 
           `hopla.ccc.DelayedCCCJob <hopla.ccc.DelayedCCCJob.html>`_
 
+          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+
+          `hopla.executor.Executor <hopla.executor.Executor.html>`_
+
           `hopla.utils.DelayedJob <hopla.utils.DelayedJob.html>`_
 
           `hopla.utils.InfoWatcher <hopla.utils.InfoWatcher.html>`_
 
           `hopla.utils.JobPaths <hopla.utils.JobPaths.html>`_
-
-          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
-
-          `hopla.executor.Executor <hopla.executor.Executor.html>`_
 
 

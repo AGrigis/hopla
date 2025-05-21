@@ -43,9 +43,9 @@
 					<i class="fas fa-arrow-left"></i>
 				</div>
 				
-				<div class="logo"">
+				<!-- <div class="logo"">
 					<h3><a href="../index.html">Sidebar Menu</a></h3>
-				</div>
+				</div> -->
 
                 <!-- info setup -->
                     <p class="doc-version">
@@ -78,10 +78,10 @@
 					<li>
 						<a href="../generated/search.html"><i class="fas fa-search"></i> Search</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="https://gaia.neurospin.fr"><i class="fas fa-external-link-alt"></i> GAIA laboratory</a>
-					</li>
-					<li>
+					</li> -->
+					<!-- <li>
 						<a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" role="button" aria-controls="otherSections">
 							<i class="fas fa-sync"></i>Sections Shortcuts
 						</a>
@@ -170,21 +170,21 @@
                             <li>API</li>
                             <li><a href="../generated/hopla.html">hopla</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 				
                 <!-- go top page -->
-				<div class="to-top">
+				<!-- <div class="to-top">
 					<a class="btn btn-primary btn-customized-3" href="#" role="button">
 	                    <i class="fas fa-arrow-up"></i> Top
 	                </a>
-				</div>
+				</div> -->
 			
                 <!-- change color -->
-				<div class="dark-light-buttons">
+				<!-- <div class="dark-light-buttons">
 					<a class="btn btn-primary btn-customized-4 btn-customized-dark" href="#" role="button">Dark</a>
 					<a class="btn btn-primary btn-customized-4 btn-customized-light" href="#" role="button">Light</a>
-				</div>
+				</div> -->
 			
 			</nav>
 			<!-- End sidebar -->
@@ -217,7 +217,7 @@
                     
                     <div class="document">
                         <section id="usage-examples">
-<span id="sphx-glr-auto-gallery"></span><h1>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h1><div class='divider-1 wow fadeInUp'><span></span></div>
+<span id="sphx-glr-auto-gallery"></span><h1>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h1><div class='divider-1 wow fadeInUp' style='margin-top: -20px;'><span></span></div>
 <p>From within an environment with hopla installed, you can seamlessly connect
 to a cluster, configure nodes, and deploy applications while managing
 resources and scaling workloads by running dynamic scripts. The execution
@@ -237,7 +237,7 @@ an execution report, offering insights into the status, performance, and
 resource usage of each job executed within the cluster.</p></li>
 </ul>
 <section id="how-it-works">
-<h2>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<h2 style='text-decoration: underline overline #aF8A4B;'>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Executor Context</strong>: The <cite>Executor</cite> context manages all cluster
 configurations and task execution.</p></li>
@@ -252,7 +252,7 @@ the <cite>executor.reprot</cite>.</p></li>
 </ul>
 </section>
 <section id="pbs-cluster">
-<h2>PBS cluster<a class="headerlink" href="#pbs-cluster" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<h2 style='text-decoration: underline overline #aF8A4B;'>PBS cluster<a class="headerlink" href="#pbs-cluster" title="Link to this heading">¶</a></h2>
 <p>Execution of a simple <cite>sleep</cite> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
@@ -274,7 +274,7 @@ pass this command to the <cite>executor.submit()</cite> function):</p>
 </div>
 </section>
 <section id="ccc-cluster">
-<h2>CCC cluster<a class="headerlink" href="#ccc-cluster" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<h2 style='text-decoration: underline overline #aF8A4B;'>CCC cluster<a class="headerlink" href="#ccc-cluster" title="Link to this heading">¶</a></h2>
 <p>Execution of a simple <cite>sleep</cite> command available in an docker image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
@@ -295,12 +295,13 @@ pass this command to the <cite>executor.submit()</cite> function):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brainprep</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Don’t forget to set decalre the <cite>n4h00001</cite> hub by copying the
-<cite>n4h00001/n4h00001/config/repositories.yaml</cite> file in your home directory
-<cite>$HOME/.config/pcocc/repositories.yaml</cite>.</p>
+<p>Don’t forget to decalre the <cite>n4h00001</cite> hub by copying the
+<cite>…/n4h00001/n4h00001/config/repositories.yaml</cite> file in your home directory
+<cite>$HOME/.config/pcocc/repositories.yaml</cite>. To list images don’t forget to
+export the CCCWORKDIR env variable to n4h00001/n4h00001/gaia.</p>
 </section>
 <section id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a><i class='fas fa-angle-right'></i></h2>
+<h2 style='text-decoration: underline overline #aF8A4B;'>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h2>
 <p>You can’t export your docker image as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">save</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span> <span class="o">-</span><span class="n">o</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span><span class="o">.</span><span class="n">tar</span>
 </pre></div>
@@ -329,7 +330,7 @@ pass this command to the <cite>executor.submit()</cite> function):</p>
 			                    	<a href="https://www.facebook.com/pages/NeuroSpin/171075046414933"><i class="fab fa-facebook-f"></i></a>
 									<a href="https://www.youtube.com/CEASaclay"><i class="fab fa-youtube"></i></a>
 									<a href="https://twitter.com/neurospin_91"><i class="fab fa-twitter"></i></a>
-									<a href="https://github.com/AGrigis/pysphinxdoc"><i class="fab fa-github"></i></a>
+									<a href="https://gaia.neurospin.fr"><i class="fa fa-link"></i></a>
                                     <p>&copy; 2025, hopla developers <antoine.grigis@cea.fr></p>
 		                    	</div>
 		                    </div>
