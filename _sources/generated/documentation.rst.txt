@@ -37,6 +37,10 @@ This is the classes and functions reference in hopla. Please refer to the galler
 
           `hopla.Executor <hopla.executor.Executor.html>`_
 
+          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+
+          `hopla.executor.Executor <hopla.executor.Executor.html>`_
+
           `hopla.pbs.DelayedPbsJob <hopla.pbs.DelayedPbsJob.html>`_
 
           `hopla.pbs.PbsInfoWatcher <hopla.pbs.PbsInfoWatcher.html>`_
@@ -44,10 +48,6 @@ This is the classes and functions reference in hopla. Please refer to the galler
           `hopla.ccc.CCCInfoWatcher <hopla.ccc.CCCInfoWatcher.html>`_
 
           `hopla.ccc.DelayedCCCJob <hopla.ccc.DelayedCCCJob.html>`_
-
-          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
-
-          `hopla.executor.Executor <hopla.executor.Executor.html>`_
 
           `hopla.utils.DelayedJob <hopla.utils.DelayedJob.html>`_
 
