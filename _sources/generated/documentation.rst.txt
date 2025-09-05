@@ -1,7 +1,7 @@
 .. AUTO-GENERATED FILE -- DO NOT EDIT!
 
-API documentation of HOPLA
-===========================
+API documentation of ``hopla``
+===============================
 
 This is the classes and functions reference in hopla. Please refer to the gallery for further details, as the class and function raw specifications may not be enough to give full guidelines on their uses.
 
@@ -35,24 +35,28 @@ This is the classes and functions reference in hopla. Please refer to the galler
           :label: [+ show/hide members]
           :starthidden: true
 
+          `hopla.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+
           `hopla.Executor <hopla.executor.Executor.html>`_
-
-          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
-
-          `hopla.executor.Executor <hopla.executor.Executor.html>`_
 
           `hopla.pbs.DelayedPbsJob <hopla.pbs.DelayedPbsJob.html>`_
 
           `hopla.pbs.PbsInfoWatcher <hopla.pbs.PbsInfoWatcher.html>`_
-
-          `hopla.ccc.CCCInfoWatcher <hopla.ccc.CCCInfoWatcher.html>`_
-
-          `hopla.ccc.DelayedCCCJob <hopla.ccc.DelayedCCCJob.html>`_
 
           `hopla.utils.DelayedJob <hopla.utils.DelayedJob.html>`_
 
           `hopla.utils.InfoWatcher <hopla.utils.InfoWatcher.html>`_
 
           `hopla.utils.JobPaths <hopla.utils.JobPaths.html>`_
+
+          `hopla.utils.format_attributes <hopla.utils.format_attributes.html>`_
+
+          `hopla.executor.DelayedSubmission <hopla.executor.DelayedSubmission.html>`_
+
+          `hopla.executor.Executor <hopla.executor.Executor.html>`_
+
+          `hopla.ccc.CCCInfoWatcher <hopla.ccc.CCCInfoWatcher.html>`_
+
+          `hopla.ccc.DelayedCCCJob <hopla.ccc.DelayedCCCJob.html>`_
 
 

@@ -1,7 +1,7 @@
 .. AUTO-GENERATED FILE -- DO NOT EDIT!
 
-Search in API documentation of HOPLA
-=====================================
+Search in API documentation of ``hopla``
+=========================================
 
 .. raw:: html
 
@@ -13,6 +13,7 @@ Search in API documentation of HOPLA
 
     </div>
     <ul id='my-search-entries'>
+        <li><a href='hopla.executor.DelayedSubmission.html'>hopla.DelayedSubmission</a></li>
         <li><a href='hopla.executor.Executor.html'>hopla.Executor</a></li>
         <li><a href='hopla.ccc.CCCInfoWatcher.html'>hopla.ccc.CCCInfoWatcher</a></li>
         <li><a href='hopla.ccc.DelayedCCCJob.html'>hopla.ccc.DelayedCCCJob</a></li>
@@ -23,4 +24,5 @@ Search in API documentation of HOPLA
         <li><a href='hopla.utils.DelayedJob.html'>hopla.utils.DelayedJob</a></li>
         <li><a href='hopla.utils.InfoWatcher.html'>hopla.utils.InfoWatcher</a></li>
         <li><a href='hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>
+        <li><a href='hopla.utils.format_attributes.html'>hopla.utils.format_attributes</a></li>
     </ul>

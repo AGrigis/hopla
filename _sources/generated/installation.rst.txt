@@ -2,9 +2,9 @@
 
 .. _install_guid:
 
-==================
-Installing `hopla`
-==================
+====================
+Installing ``hopla``
+====================
 
 This tutorial will walk you through the process of intalling HOPLA...
 
@@ -25,9 +25,6 @@ Installing a stable version
 
 >>> pip install hopla
 
-**Install the package with the root privilege**
-
->>> sudo pip install hopla
 
 
 .. _install_development:

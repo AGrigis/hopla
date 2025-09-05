@@ -135,6 +135,42 @@
                                         
                                         
                                     
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
                                 
                                     
                                         
@@ -145,11 +181,17 @@
                                 
                                     <li>SECTIONS</li>
                                     
+						                <li> <a href='#hopla.utils.JobPaths.flux_dir'>Jobpaths.flux_dir</a> </li>                                    
+                                    
 						                <li> <a href='#hopla.utils.JobPaths.stderr'>Jobpaths.stderr</a> </li>                                    
                                     
 						                <li> <a href='#hopla.utils.JobPaths.stdout'>Jobpaths.stdout</a> </li>                                    
                                     
 						                <li> <a href='#hopla.utils.JobPaths.submission_file'>Jobpaths.submission_file</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.JobPaths.task_file'>Jobpaths.task_file</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.JobPaths.worker_file'>Jobpaths.worker_file</a> </li>                                    
                                     
                                 
                             
@@ -209,7 +251,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="hopla.utils.JobPaths">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">JobPaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#JobPaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.JobPaths" title="Link to this definition">¶</a></dt>
-<dd><p>Creates paths related to a job and its submission.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Creates paths related to a job and its submission.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>folder</strong> : Path</p>
@@ -222,6 +265,12 @@
 </div></blockquote>
 </dd>
 </dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.flux_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flux_dir</span></span><a class="headerlink" href="#hopla.utils.JobPaths.flux_dir" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the flux output dir.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="hopla.utils.JobPaths.stderr">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stderr</span></span><a class="headerlink" href="#hopla.utils.JobPaths.stderr" title="Link to this definition">¶</a></dt>
@@ -238,6 +287,18 @@
 <dt class="sig sig-object py" id="hopla.utils.JobPaths.submission_file">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">submission_file</span></span><a class="headerlink" href="#hopla.utils.JobPaths.submission_file" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the submission file location.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.task_file">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_file</span></span><a class="headerlink" href="#hopla.utils.JobPaths.task_file" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the task file location.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hopla.utils.JobPaths.worker_file">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">worker_file</span></span><a class="headerlink" href="#hopla.utils.JobPaths.worker_file" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the worker file location.</p>
 </dd></dl>
 
 </dd></dl>

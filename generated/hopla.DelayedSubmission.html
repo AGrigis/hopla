@@ -111,42 +111,6 @@
                                         
                                         
                                     
-                                        
-                                        
-                                        
-                                            
-                                            
-                                    
-                                
-                                    
-                                        
-                                        
-                                        
-                                    
-                                        
-                                        
-                                        
-                                            
-                                            
-                                    
-                                
-                                    
-                                        
-                                        
-                                        
-                                    
-                                        
-                                        
-                                        
-                                            
-                                            
-                                    
-                                
-                                    
-                                        
-                                        
-                                        
-                                    
                                 
                                     
                                         
@@ -157,13 +121,7 @@
                                 
                                     <li>SECTIONS</li>
                                     
-						                <li> <a href='#hopla.pbs.DelayedPbsJob.generate_batch'>Delayedpbsjob.generate_batch()</a> </li>                                    
-                                    
-						                <li> <a href='#hopla.pbs.DelayedPbsJob.read_jobid'>Delayedpbsjob.read_jobid()</a> </li>                                    
-                                    
-						                <li> <a href='#hopla.pbs.DelayedPbsJob.start_command'>Delayedpbsjob.start_command</a> </li>                                    
-                                    
-						                <li> <a href='#hopla.pbs.DelayedPbsJob.stop_command'>Delayedpbsjob.stop_command</a> </li>                                    
+						                <li> <a href='#hopla.DelayedSubmission.command'>Delayedsubmission.command</a> </li>                                    
                                     
                                 
                             
@@ -221,50 +179,14 @@
 <p>This page is a reference documentation. It only explains the class signature, and not how to use it. Please refer to the <a class="reference internal" href="../auto_gallery/index.html#sphx-glr-auto-gallery"><span class="std std-ref">gallery</span></a> for the big picture.</p>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="hopla.pbs.DelayedPbsJob">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.pbs.</span></span><span class="sig-name descname"><span class="pre">DelayedPbsJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/pbs.html#DelayedPbsJob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.DelayedPbsJob" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="hopla.utils.DelayedJob.html#hopla.utils.DelayedJob" title="hopla.utils.DelayedJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayedJob</span></code></a></p>
-<p>Represents a job that have been queue for submission by an executor,
-but hasn’t yet been scheduled.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>delayed_submission</strong> : DelayedSubmission</p>
-<blockquote>
-<div><p>a delayed submission allowing to generate the command line to
-execute.</p>
-</div></blockquote>
-<p><strong>executor</strong> : Executor</p>
-<blockquote>
-<div><p>base job executor.</p>
-</div></blockquote>
-<p><strong>job_id</strong> : str</p>
-<blockquote>
-<div><p>the job identifier.</p>
-</div></blockquote>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hopla.pbs.DelayedPbsJob.generate_batch">
-<span class="sig-name descname"><span class="pre">generate_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/pbs.html#DelayedPbsJob.generate_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.DelayedPbsJob.generate_batch" title="Link to this definition">¶</a></dt>
-<dd><p>Write the batch file.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hopla.pbs.DelayedPbsJob.read_jobid">
-<span class="sig-name descname"><span class="pre">read_jobid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/pbs.html#DelayedPbsJob.read_jobid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.DelayedPbsJob.read_jobid" title="Link to this definition">¶</a></dt>
-<dd><p>Return the started job ID.</p>
-</dd></dl>
-
+<dt class="sig sig-object py" id="hopla.DelayedSubmission">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.</span></span><span class="sig-name descname"><span class="pre">DelayedSubmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">script</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/executor.html#DelayedSubmission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.DelayedSubmission" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object for specifying the submit parameters for further processing.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="hopla.pbs.DelayedPbsJob.start_command">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_command</span></span><a class="headerlink" href="#hopla.pbs.DelayedPbsJob.start_command" title="Link to this definition">¶</a></dt>
-<dd><p>Return the start job command.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.pbs.DelayedPbsJob.stop_command">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_command</span></span><a class="headerlink" href="#hopla.pbs.DelayedPbsJob.stop_command" title="Link to this definition">¶</a></dt>
-<dd><p>Return the stop job command.</p>
+<dt class="sig sig-object py" id="hopla.DelayedSubmission.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><a class="headerlink" href="#hopla.DelayedSubmission.command" title="Link to this definition">¶</a></dt>
+<dd><p>Return the command to execute.</p>
 </dd></dl>
 
 </dd></dl>

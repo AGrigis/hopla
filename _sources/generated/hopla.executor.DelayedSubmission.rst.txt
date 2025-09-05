@@ -8,8 +8,9 @@
 
 .. autoclass:: hopla.executor.DelayedSubmission
      :members:
+     :show-inheritance:
 
-.. minigallery:: hopla.executor.DelayedSubmission
+.. minigallery:: hopla.executor.DelayedSubmission hopla.DelayedSubmission
     :add-heading: Examples
     :heading-level: -
 

@@ -207,6 +207,18 @@
                                         
                                         
                                     
+                                        
+                                        
+                                        
+                                            
+                                            
+                                    
+                                
+                                    
+                                        
+                                        
+                                        
+                                    
                                 
                                     
                                         
@@ -234,6 +246,8 @@
 						                <li> <a href='#hopla.utils.DelayedJob.stop'>Delayedjob.stop()</a> </li>                                    
                                     
 						                <li> <a href='#hopla.utils.DelayedJob.stop_command'>Delayedjob.stop_command</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.utils.DelayedJob.sub_report'>Delayedjob.sub_report()</a> </li>                                    
                                     
                                 
                             
@@ -293,7 +307,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="hopla.utils.DelayedJob">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">DelayedJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob" title="Link to this definition">¶</a></dt>
-<dd><p>Represents a job that have been queue for submission by an executor,
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Represents a job that have been queue for submission by an executor,
 but hasn’t yet been scheduled.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -364,6 +379,12 @@ execute.</p>
 <dt class="sig sig-object py" id="hopla.utils.DelayedJob.stop_command">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_command</span></span><a class="headerlink" href="#hopla.utils.DelayedJob.stop_command" title="Link to this definition">¶</a></dt>
 <dd><p>Return the stop job command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hopla.utils.DelayedJob.sub_report">
+<span class="sig-name descname"><span class="pre">sub_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/utils.html#DelayedJob.sub_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.DelayedJob.sub_report" title="Link to this definition">¶</a></dt>
+<dd><p>Overload this method to extend the final report.</p>
 </dd></dl>
 
 </dd></dl>

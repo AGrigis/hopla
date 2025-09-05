@@ -193,8 +193,6 @@
                                 
                                     <li>SECTIONS</li>
                                     
-						                <li> <a href='#hopla.ccc.DelayedCCCJob.exitcode'>Delayedcccjob.exitcode</a> </li>                                    
-                                    
 						                <li> <a href='#hopla.ccc.DelayedCCCJob.generate_batch'>Delayedcccjob.generate_batch()</a> </li>                                    
                                     
 						                <li> <a href='#hopla.ccc.DelayedCCCJob.import_image'>Delayedcccjob.import_image()</a> </li>                                    
@@ -206,6 +204,8 @@
 						                <li> <a href='#hopla.ccc.DelayedCCCJob.start_command'>Delayedcccjob.start_command</a> </li>                                    
                                     
 						                <li> <a href='#hopla.ccc.DelayedCCCJob.stop_command'>Delayedcccjob.stop_command</a> </li>                                    
+                                    
+						                <li> <a href='#hopla.ccc.DelayedCCCJob.sub_report'>Delayedcccjob.sub_report()</a> </li>                                    
                                     
                                 
                             
@@ -265,7 +265,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.ccc.</span></span><span class="sig-name descname"><span class="pre">DelayedCCCJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/ccc.html#DelayedCCCJob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob" title="Link to this definition">¶</a></dt>
-<dd><p>Represents a job that have been queue for submission by an executor,
+<dd><p>Bases: <a class="reference internal" href="hopla.utils.DelayedJob.html#hopla.utils.DelayedJob" title="hopla.utils.DelayedJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayedJob</span></code></a></p>
+<p>Represents a job that have been queue for submission by an executor,
 but hasn’t yet been scheduled.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -284,12 +285,6 @@ execute.</p>
 </div></blockquote>
 </dd>
 </dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.exitcode">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exitcode</span></span><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.exitcode" title="Link to this definition">¶</a></dt>
-<dd><p>Check if the code finished properly.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.generate_batch">
 <span class="sig-name descname"><span class="pre">generate_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/ccc.html#DelayedCCCJob.generate_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.generate_batch" title="Link to this definition">¶</a></dt>
@@ -325,6 +320,12 @@ list available container.</p>
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.stop_command">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_command</span></span><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.stop_command" title="Link to this definition">¶</a></dt>
 <dd><p>Return the stop job command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.sub_report">
+<span class="sig-name descname"><span class="pre">sub_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hopla/ccc.html#DelayedCCCJob.sub_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.sub_report" title="Link to this definition">¶</a></dt>
+<dd><p>Overload this method to extend the final report.</p>
 </dd></dl>
 
 </dd></dl>

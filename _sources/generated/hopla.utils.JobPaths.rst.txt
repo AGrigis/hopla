@@ -8,6 +8,7 @@
 
 .. autoclass:: hopla.utils.JobPaths
      :members:
+     :show-inheritance:
 
 .. minigallery:: hopla.utils.JobPaths
     :add-heading: Examples

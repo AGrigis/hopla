@@ -8,6 +8,7 @@
 
 .. autoclass:: hopla.ccc.CCCInfoWatcher
      :members:
+     :show-inheritance:
 
 .. minigallery:: hopla.ccc.CCCInfoWatcher
     :add-heading: Examples

@@ -8,6 +8,7 @@
 
 .. autoclass:: hopla.utils.DelayedJob
      :members:
+     :show-inheritance:
 
 .. minigallery:: hopla.utils.DelayedJob
     :add-heading: Examples

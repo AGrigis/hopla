@@ -8,6 +8,7 @@
 
 .. autoclass:: hopla.utils.InfoWatcher
      :members:
+     :show-inheritance:
 
 .. minigallery:: hopla.utils.InfoWatcher
     :add-heading: Examples

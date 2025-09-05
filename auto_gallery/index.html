@@ -135,18 +135,6 @@
                                         
                                         
                                     
-                                        
-                                        
-                                        
-                                            
-                                            
-                                    
-                                
-                                    
-                                        
-                                        
-                                        
-                                    
                                 
                                     
                                         
@@ -162,8 +150,6 @@
 						                <li> <a href='#pbs-cluster'>Pbs Cluster</a> </li>                                    
                                     
 						                <li> <a href='#ccc-cluster'>Ccc Cluster</a> </li>                                    
-                                    
-						                <li> <a href='#docker'>Docker</a> </li>                                    
                                     
                                 
                             
@@ -216,9 +202,9 @@
 		        </div>
                     
                     <div class="document">
-                        <section id="usage-examples">
-<span id="sphx-glr-auto-gallery"></span><h1>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h1><div class='divider-1 wow fadeInUp' style='margin-top: -20px;'><span></span></div>
-<p>From within an environment with hopla installed, you can seamlessly connect
+                        <section id="examples">
+<span id="sphx-glr-auto-gallery"></span><h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h1><div class='divider-1 wow fadeInUp' style='margin-top: -20px;'><span></span></div>
+<p>From within an environment with <code class="docutils literal notranslate"><span class="pre">hopla</span></code> installed, you can seamlessly connect
 to a cluster, configure nodes, and deploy applications while managing
 resources and scaling workloads by running dynamic scripts. The execution
 pipeline is as follows:</p>
@@ -236,46 +222,55 @@ the number of jobs running concurrently to optimize resource utilization.</p></l
 an execution report, offering insights into the status, performance, and
 resource usage of each job executed within the cluster.</p></li>
 </ul>
+<p><code class="docutils literal notranslate"><span class="pre">hopla</span></code> is designed to run embarrassingly parallel jobs, i.e. independent
+processes in parallel. We recommand to use containers for that purpose.
+These jobs need no communications.</p>
 <section id="how-it-works">
-<h2 style='text-decoration: underline overline #aF8A4B;'>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h2>
+<h2 style='border-bottom: 1px solid #d3dbd5'>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Executor Context</strong>: The <cite>Executor</cite> context manages all cluster
 configurations and task execution.</p></li>
-<li><p><strong>Submit a Job</strong>: The function <cite>executor.submit()</cite> configure as a delayed
+<li><p><strong>Submit a Job</strong>: The function <cite>executor.submit()</cite> configure a delayed
 job to the Executor.</p></li>
 <li><p><strong>Start the Job</strong>: You can either start the job manually or have it
-automatically executed when executor() is called. You can control
+automatically executed when <cite>executor()</cite> is called. You can control
 concurrency by setting <cite>max_jobs</cite> to limit the number of tasks running
-simultaneously.</p></li>
+simultaneously. You can also only generate the batch file associated to
+a job <cite>job.generate_batch()</cite>.</p></li>
 <li><p><strong>Execution Reporting</strong>: Once the job completes, the result is retrieved in
-the <cite>executor.reprot</cite>.</p></li>
+the <cite>executor.reprot</cite> variable.</p></li>
 </ul>
 </section>
 <section id="pbs-cluster">
-<h2 style='text-decoration: underline overline #aF8A4B;'>PBS cluster<a class="headerlink" href="#pbs-cluster" title="Link to this heading">¶</a></h2>
-<p>Execution of a simple <cite>sleep</cite> command:</p>
+<h2 style='border-bottom: 1px solid #d3dbd5'>PBS cluster<a class="headerlink" href="#pbs-cluster" title="Link to this heading">¶</a></h2>
+<p>Execution of 10 simple <cite>sleep</cite> commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
 
 <span class="n">executor</span> <span class="o">=</span> <span class="n">hopla</span><span class="o">.</span><span class="n">Executor</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s2">&quot;/tmp/hopla&quot;</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;Nspin_short&quot;</span><span class="p">,</span>
                           <span class="n">walltime</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="p">]</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
 
 <span class="n">executor</span><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">report</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Execution of a brainprep command available in an apptainer image (adapt and
-pass this command to the <cite>executor.submit()</cite> function):</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To execute a brainprep command available in an apptainer image, adapt and
+pass this command to the <cite>executor.submit()</cite> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apptainer</span> <span class="n">run</span> <span class="o">--</span><span class="n">bind</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cleanenv</span> <span class="o">&lt;</span><span class="n">image_path</span><span class="o">&gt;</span> <span class="n">brainprep</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="ccc-cluster">
-<h2 style='text-decoration: underline overline #aF8A4B;'>CCC cluster<a class="headerlink" href="#ccc-cluster" title="Link to this heading">¶</a></h2>
-<p>Execution of a simple <cite>sleep</cite> command available in an docker image:</p>
+<h2 style='border-bottom: 1px solid #d3dbd5'>CCC cluster<a class="headerlink" href="#ccc-cluster" title="Link to this heading">¶</a></h2>
+<p>Execution of 10 simple <cite>sleep</cite> commands available in an docker image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hopla</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
 
@@ -283,28 +278,61 @@ pass this command to the <cite>executor.submit()</cite> function):</p>
                           <span class="n">walltime</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="s2">&quot;genXXX&quot;</span><span class="p">,</span>
                           <span class="n">image</span><span class="o">=</span><span class="s2">&quot;/tmp/hopla/my-docker-img.tar&quot;</span><span class="p">)</span>
 
-<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="p">]</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">jobs</span><span class="p">)</span>
 
 <span class="n">executor</span><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">report</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Execution of a brainprep command available in an docker image (adapt and
-pass this command to the <cite>executor.submit()</cite> function):</p>
+<p>Execution of 10 simple <cite>sleep</cite> commands available in an docker image using a
+multi tasks strategy (3 chunks here):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">([</span><span class="n">hopla</span><span class="o">.</span><span class="n">DelayedSubmission</span><span class="p">(</span><span class="s2">&quot;sleep&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">c</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chunks</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You need to adapt the the <cite>n_multi_cpus</cite> parameter of the <cite>Executor</cite> in
+order to fit your need. Don’t forget to check that your task fulfill the
+folowing core/memory ratios:</p>
+<ul class="simple">
+<li><p>skylake parititon: 3.6G per core.</p></li>
+<li><p>rome partition: 1.7G par core.</p></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To execution a brainprep command available in an docker image, adapt and
+pass this command to the <cite>executor.submit()</cite> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brainprep</span> <span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>Don’t forget to decalre the <cite>n4h00001</cite> hub by copying the
 <cite>…/n4h00001/n4h00001/config/repositories.yaml</cite> file in your home directory
-<cite>$HOME/.config/pcocc/repositories.yaml</cite>. To list images don’t forget to
-export the CCCWORKDIR env variable to n4h00001/n4h00001/gaia.</p>
-</section>
-<section id="docker">
-<h2 style='text-decoration: underline overline #aF8A4B;'>Docker<a class="headerlink" href="#docker" title="Link to this heading">¶</a></h2>
-<p>You can’t export your docker image as follows:</p>
+<cite>$HOME/.config/pcocc/repositories.yaml</cite>.To list images don’t forget to
+also to export the <cite>CCCWORKDIR</cite> env variable to <cite>n4h00001/n4h00001/gaia</cite>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Don’t forget to load the <cite>gcc/11.1.0</cite> module to launch multi tasks jobs,
+and the <cite>python3/3.12</cite> (or another compatible version of Python) module.
+Dont’t forget also to switch to the appropriate <cite>dfldatadir/XXX</cite> module.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can’t export your docker image in a <cite>.tar</cite> file as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">save</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span> <span class="o">-</span><span class="n">o</span> <span class="n">my</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">img</span><span class="o">.</span><span class="n">tar</span>
 </pre></div>
+</div>
 </div>
 <div class="sphx-glr-thumbnails"></div><div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
