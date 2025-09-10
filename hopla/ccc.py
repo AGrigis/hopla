@@ -161,8 +161,10 @@ class DelayedCCCJob(DelayedJob):
     def import_image(self):
         """ Load the docker image if not available.
         """
+        print("in the DelayedCCCJob>import image function")
         cmd = ["pcocc-rs", "image", "list", "-r", self._hub]
         stdout = subprocess.check_output(cmd)
+        print(f'{self.image_name} should be in {self.read_index(stdout)}')
         if self.image_name not in self.read_index(stdout):
             if self.image_file is None:
                 raise ValueError(
