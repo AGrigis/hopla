@@ -93,7 +93,7 @@ class DelayedCCCJob(DelayedJob):
         assert image is not None, "Please select or give an image."
         if os.path.isfile(image):
             self.image_file = image
-            self.image_name = os.path.basename(image).split(".")[0]
+            self.image_name = os.path.basename(image).split(".tar")[0]
         else:
             self.image_file = None
             self.image_name = image
