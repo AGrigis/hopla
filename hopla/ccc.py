@@ -141,7 +141,7 @@ class DelayedCCCJob(DelayedJob):
                     worker_env_insert += [f'export {e}']
             with open(self.paths.worker_file, "r") as fp:
                 tmp = fp.read()
-            worker_env_insert = "\n".join(worker_env_insert) + "\n"
+            worker_env_insert = "\n" + "\n".join(worker_env_insert)
             tmp = tmp.replace('\n$@', f'{worker_env_insert}\n$@')
             with open(self.paths.worker_file, "w") as fp:
                 fp.write(tmp)
