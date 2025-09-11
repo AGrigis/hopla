@@ -132,12 +132,21 @@ class DelayedCCCJob(DelayedJob):
         if self.multi_task:
             n_multi_cpus = self._executor.parameters["nmulticpus"]
             shutil.copy(self.worker_file, self.paths.worker_file)
-            ccc_env = ""
+            # manage potentionl environment variables
+            worker_env_insert = []
+            pcocc_env_insert = ""
             if self._executor.parameters["ccc_envlist"] != []:
                 for e in self._executor.parameters["ccc_envlist"]:
-                    ccc_env += f"--env {e.split('=')[0]} "
+                    pcocc_env_insert += f"--env {e.split('=')[0]} "
+                    worker_env_insert += [f'export {e}']
+            with open(self.paths.worker_file, "r") as fp:
+                tmp = fp.read()
+            worker_env_insert = "\n".join(worker_env_insert)
+            tmp = tmp.replace('$@', f'{worker_env_insert}\n$@')
+            with open(self.paths.worker_file, "w") as fp:
+                fp.write(tmp)
             subcmds = [
-                f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run {ccc_env} "
+                f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run {pcocc_env_insert} "
                 f"{self._hub}:{self.image_name} -- "
                 f"{submission.command}"
                 for submission in self.delayed_submission
