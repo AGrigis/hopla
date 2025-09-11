@@ -78,9 +78,8 @@ class DelayedCCCJob(DelayedJob):
     _hub = "n4h00001rs"
     _submission_cmd = "ccc_msub"
 
-    def __init__(self, delayed_submission, executor, job_id, ccc_envlist=[]):
+    def __init__(self, delayed_submission, executor, job_id):
         super().__init__(delayed_submission, executor, job_id)
-        self._ccc_envlist = ccc_envlist # example: ['VAR1=10', 'PICK=abcd']
         self.multi_task = isinstance(delayed_submission, (list, tuple))
         resource_dir = Path(__file__).parent / "resources"
         if self.multi_task:
@@ -133,8 +132,12 @@ class DelayedCCCJob(DelayedJob):
         if self.multi_task:
             n_multi_cpus = self._executor.parameters["nmulticpus"]
             shutil.copy(self.worker_file, self.paths.worker_file)
+            ccc_env = ""
+            if self._executor.parameters["ccc_envlist"] != []:
+                for e in self._executor.parameters["ccc_envlist"]:
+                    ccc_env += f"--env {e.split('=')[0]} "
             subcmds = [
-                f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run "
+                f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run {ccc_env} "
                 if self._ccc_envlist == []:
                     for e in self._ccc_envlist:
                         f"--env {e.split('=')[0]} "
