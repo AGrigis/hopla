@@ -62,12 +62,12 @@ class Executor:
 
     def __init__(self, folder, queue, name="hopla", memory=2, walltime=72,
                  n_cpus=1, n_gpus=0, n_multi_cpus=1, modules=None, image=None,
-                 project_id=None):
+                 project_id=None, ccc_envlist=[]):
         if project_id is None:
             self._job_class = DelayedPbsJob
             self._watcher_class = PbsInfoWatcher
         else:
-            self._job_class = DelayedCCCJob
+            self._job_class = DelayedCCCJob(ccc_envlist=ccc_envlist)
             self._watcher_class = CCCInfoWatcher
         self.watcher = self._watcher_class(self._delay_s)
         self.folder = Path(folder).expanduser().absolute()
@@ -77,7 +77,8 @@ class Executor:
             "queue": queue, "memory": memory, "walltime": walltime,
             "ncpus": n_cpus, "nmulticpus": n_multi_cpus, "ngpus": n_gpus,
             "modules": ",".join(modules),
-            "image": image, "project_id": project_id
+            "image": image, "project_id": project_id,
+            "ccc_envlist": ccc_envlist
         }
         self._delayed_jobs = []
 
