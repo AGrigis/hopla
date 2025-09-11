@@ -138,9 +138,6 @@ class DelayedCCCJob(DelayedJob):
                     ccc_env += f"--env {e.split('=')[0]} "
             subcmds = [
                 f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run {ccc_env} "
-                if self._ccc_envlist == []:
-                    for e in self._ccc_envlist:
-                        f"--env {e.split('=')[0]} "
                 f"{self._hub}:{self.image_name} -- "
                 f"{submission.command}"
                 for submission in self.delayed_submission
