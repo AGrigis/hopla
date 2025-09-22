@@ -1,74 +1,106 @@
 **Usage**
 
-|PythonVersion|_ |License| |PoweredBy|_
+.. image:: https://img.shields.io/badge/python-3.9%20%7C%203.12-blue
+    :target: https://github.com/AGrigis/pysphinxdoc
+    :alt: Python Version
+
+.. image:: https://img.shields.io/badge/License-CeCILL--B-blue.svg
+    :target: http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html
+    :alt: License
+
+.. image:: https://img.shields.io/badge/Powered%20by-CEA%2FNeuroSpin-blue.svg
+    :target: https://joliot.cea.fr/drf/joliot/Pages/Entites_de_recherche/NeuroSpin.aspx
+    :alt: Powered By
 
 **Development**
 
-|Pep8|_ |Doc|_
+.. image:: https://github.com/AGrigis/hopla/actions/workflows/pep8.yml/badge.svg
+    :target: https://github.com/AGrigis/hopla/actions
+    :alt: Github Actions Linter Status
+
+.. image:: https://github.com/AGrigis/hopla/actions/workflows/documentation.yml/badge.svg
+    :target: http://AGrigis.github.io/hopla/stable
+    :alt: Github Actions Doc Build Status
 
 **Release**
 
-|PyPi|_
+.. image:: https://badge.fury.io/py/hopla.svg
+    :target: https://badge.fury.io/py/hopla
+    :alt: Pypi Package
 
-
-.. |PythonVersion| image:: https://img.shields.io/badge/python-3.8%20%7C%203.12-blue
-.. _PythonVersion: target:: https://github.com/AGrigis/hopla
-
-.. |Pep8| image:: https://github.com/AGrigis/hopla/actions/workflows/pep8.yml/badge.svg
-.. _Pep8: target:: https://github.com/AGrigis/hopla/actions
-
-.. |PyPi| image:: https://badge.fury.io/py/hopla.svg
-.. _PyPi: target:: https://badge.fury.io/py/hopla
-
-.. |Doc| image:: https://github.com/AGrigis/hopla/actions/workflows/documentation.yml/badge.svg
-.. _Doc: target:: http://AGrigis.github.io/hopla
-
-.. |License| image:: https://img.shields.io/badge/License-CeCILLB-blue.svg
-.. _License: target:: http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.html
-
-.. |PoweredBy| image:: https://img.shields.io/badge/Powered%20by-CEA%2FNeuroSpin-blue.svg
-.. _PoweredBy: target:: https://joliot.cea.fr/drf/joliot/Pages/Entites_de_recherche/NeuroSpin.aspx
 
 
 Hopla!
 ======
 
-\:+1: If you are using the code please add a star to the repository :+1:
-
-
 What Is Hopla?
---------------
+==============
 
 Hopla is a lightweight tool for submitting script for computation within
-different cluster. It basically wraps submission and provide access to logs.
+different clusters. It basically wraps submission and provide access to logs.
 
 
 Important Links
----------------
+===============
 
 - Official source code repo: https://github.com/AGrigis/hopla
-- HTML documentation: http://AGrigis.github.io/hopla
-
-
-Where To Start
---------------
-
-Examples are available in the `gallery <https://agrigis.github.io/hopla/auto_gallery/index.html>`_. You can also refer to the `API documentation <https://agrigis.github.io/hopla/generated/documentation.html>`_.
+- HTML documentation (stable release): http://AGrigis.github.io/hopla/stable
+- HTML documentation (dev): http://AGrigis.github.io/hopla/dev
 
 
 Install
--------
+=======
 
-Complete instructions are available `here <https://agrigis.github.io/hopla/generated/installation.html>`_.
+Latest release
+--------------
+
+**1. Setup a virtual environment**
+
+We recommend that you install ``hopla`` in a virtual Python environment,
+either managed with the standard library ``venv`` or with ``conda``.
+Either way, create and activate a new python environment.
+
+With ``venv``:
+
+.. code-block:: bash
+
+    python3 -m venv /<path_to_new_env>
+    source /<path_to_new_env>/bin/activate
+
+Windows users should change the last line to ``\<path_to_new_env>\Scripts\activate.bat``
+in order to activate their virtual environment.
+
+With ``conda``:
+
+.. code-block:: bash
+
+    conda create -n hopla python=3.12
+    conda activate hopla
+
+**2. Install hopla with pip**
+
+Execute the following command in the command prompt / terminal
+in the proper python environment:
+
+.. code-block:: bash
+
+    python3 -m pip install -U hopla
 
 
-Contributing
-------------
+Check installation
+------------------
 
-If you want to contribute to surfify, be sure to review the `contribution guidelines <./CONTRIBUTING.rst>`_.
+Try importing hopla in a python / iPython session:
+
+.. code-block:: python
+
+    import hopla
+
+If no error is raised, you have installed hopla correctly.
 
 
-License
--------
+Dependencies
+============
 
-This project is under the following `LICENSE <./LICENSE.rst>`_.
+The required dependencies to use the software are listed
+in the file `pyproject.toml <https://github.com/AGrigis/hopla/blob/main/pyproject.toml>`_.

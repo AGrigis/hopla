@@ -345,6 +345,11 @@ class DelayedJob(ABC):
         """ Return the started job ID.
         """
 
+    @abstractmethod
+    def generate_batch(self):
+        """ Write the batch file.
+        """
+
     @property
     @abstractmethod
     def start_command(self):
