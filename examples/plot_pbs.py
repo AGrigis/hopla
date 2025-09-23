@@ -24,8 +24,12 @@ from pprint import pprint
 # Executor Context
 # ----------------
 
-executor = hopla.Executor(folder="/tmp/hopla", queue="Nspin_short",
-                          walltime=1)
+executor = hopla.Executor(
+    folder="/tmp/hopla",
+    queue="Nspin_short",
+    image="/tmp/hopla/my-apptainer-img.simg",
+    walltime=1
+)
 
 
 # %%

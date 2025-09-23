@@ -69,6 +69,7 @@ class DelayedPbsJob(DelayedJob):
         the job identifier.
     """
     _submission_cmd = "qsub"
+    _container_cmd = "apptainer run {params} {image_path} {command}"
 
     def __init__(self, delayed_submission, executor, job_id):
         super().__init__(delayed_submission, executor, job_id)
@@ -76,17 +77,23 @@ class DelayedPbsJob(DelayedJob):
         path = resource_dir / "pbs_batch_template.txt"
         with open(path) as of:
             self.template = of.read()
+        self.image_path = self._executor.parameters["image"]
 
     def generate_batch(self):
         """ Write the batch file.
         """
+        cmd = self._container_cmd.format(
+            image_path=self.image_path,
+            params=self.delayed_submission.execution_parameters,
+            command=self.delayed_submission.command
+        )
         with open(self.paths.submission_file, "w") as of:
             if self.paths.stdout.exists():
                 os.remove(self.paths.stdout)
             if self.paths.stderr.exists():
                 os.remove(self.paths.stderr)
             of.write(self.template.format(
-                command=self.delayed_submission.command,
+                command=cmd,
                 stdout=self.paths.stdout,
                 stderr=self.paths.stderr,
                 **self._executor.parameters))

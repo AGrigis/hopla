@@ -29,6 +29,9 @@ class Executor:
         folder for storing job submission/output and logs.
     queue: str
         the name of the queue where the jobs will be submited.
+    image: str
+        path to a docker '.tar' image or apptainer '.simg' image or name of
+        an existing image.
     name: str, default 'hopla'
         the name of the submitted jobs.
     memory: float , default 2
@@ -43,8 +46,6 @@ class Executor:
         the number of cores reserved fir each multi-tasks job.
     modules: list of str, default None
         the environment modules to be loaded.
-    image: str, default None
-        path to a docker '.tar' image or name of an existing image.
     project_id: str, default None
         the project ID where you have computing hours.
 
@@ -60,8 +61,8 @@ class Executor:
     _counter = 0
     _start = time.time()
 
-    def __init__(self, folder, queue, name="hopla", memory=2, walltime=72,
-                 n_cpus=1, n_gpus=0, n_multi_cpus=1, modules=None, image=None,
+    def __init__(self, folder, queue, image, name="hopla", memory=2,
+                 walltime=72, n_cpus=1, n_gpus=0, n_multi_cpus=1, modules=None,
                  project_id=None):
         if project_id is None:
             self._job_class = DelayedPbsJob
@@ -110,7 +111,7 @@ class Executor:
             time.sleep(self._delay_s)
         self.watcher.update()
 
-    def submit(self, script, *args, **kwargs):
+    def submit(self, script, *args, execution_parameters=None, **kwargs):
         """ Create a delayed job.
 
         Parameters
@@ -118,6 +119,8 @@ class Executor:
         script: Path/str or list of DelayedSubmission
             script(s) to execute.
         *args: any positional argument of the script.
+        execution_parameters: str or list of str
+            parameters passed to the container during execution.
         **kwargs: any named argument of the script.
 
         Returns
@@ -194,9 +197,10 @@ class Executor:
 class DelayedSubmission:
     """ Object for specifying the submit parameters for further processing.
     """
-    def __init__(self, script, *args, **kwargs):
+    def __init__(self, script, *args, execution_parameters=None, **kwargs):
         self.script = script
         self.args = args
+        self.execution_parameters = execution_parameters or ""
         self.kwargs = kwargs
 
     @property
@@ -211,5 +215,5 @@ class DelayedSubmission:
     def __repr__(self):
         return format_attributes(
             self,
-            attrs=["command"]
+            attrs=["command", "execution_parameters"]
         )

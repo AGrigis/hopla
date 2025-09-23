@@ -6,6 +6,19 @@ Clusters
 ``hopla`` is preconfigured to operate with the NeuroSpin clusters. However,
 adapting the code to suit your own infrastructure is possible.
 
+The :class:`~hopla.pbs.DelayedPbsJob` and :class:`~hopla.ccc.DelayedCCCJob`
+``_container_cmd`` class attribute contain the command prototype that will be
+executed. This propotype is filled with the
+:class:`~hopla.executor.DelayedSubmission` and :class:`~hopla.executor.Executor`
+instances infoirmation.
+
+
+.. note::
+
+    The configuration of the container execution is done through the
+    :meth:`~hopla.executor.Executor.submit` method via the
+    ``execution_parameters`` attribute.
+
 
 PBS
 ---
@@ -18,8 +31,12 @@ Execution of 10 simple `sleep` commands.
     import hopla
     from pprint import pprint
 
-    executor = hopla.Executor(folder="/tmp/hopla", queue="Nspin_short",
-                              walltime=1)
+    executor = hopla.Executor(
+        folder="/tmp/hopla",
+        queue="Nspin_short",
+        image="/tmp/hopla/my-apptainer-img.simg",
+        walltime=1
+    )
 
     jobs = [
         executor.submit("sleep", k) for k in range(1, 11)
@@ -37,8 +54,12 @@ Execution of 10 simple `sleep` commands.
 
     .. code-block:: bash
 
-        apptainer run --bind <path> --cleanenv <image_path> brainprep <args>
-
+        executor.submit(
+            "brainprep",
+            *args,
+            execution_parameters=f"--bind {path} --cleanenv",
+            **kwargs
+        )
 
 
 CCC
@@ -52,9 +73,13 @@ Execution of 10 simple `sleep` commands available in an docker image.
     import hopla
     from pprint import pprint
 
-    executor = hopla.Executor(folder="/tmp/hopla", queue="rome",
-                              walltime=1, project_id="genXXX",
-                              image="/tmp/hopla/my-docker-img.tar")
+    executor = hopla.Executor(
+        folder="/tmp/hopla",
+        queue="rome",
+        image="/tmp/hopla/my-docker-img.tar",
+        walltime=1,
+        project_id="genXXX",
+    )
 
     jobs = [
         executor.submit("sleep", k) for k in range(1, 11)

@@ -24,9 +24,13 @@ from pprint import pprint
 # Executor Context
 # ----------------
 
-executor = hopla.Executor(folder="/tmp/hopla", queue="rome",
-                          walltime=1, project_id="genXXX",
-                          image="/tmp/hopla/my-docker-img.tar")
+executor = hopla.Executor(
+    folder="/tmp/hopla",
+    queue="rome",
+    image="/tmp/hopla/my-docker-img.tar",
+    walltime=1,
+    project_id="genXXX",
+)
 
 
 # %%

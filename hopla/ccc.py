@@ -77,6 +77,7 @@ class DelayedCCCJob(DelayedJob):
     """
     _hub = "n4h00001rs"
     _submission_cmd = "ccc_msub"
+    _container_cmd = "pcocc-rs run {hub}:{image_name} {params} -- {command}"
 
     def __init__(self, delayed_submission, executor, job_id):
         super().__init__(delayed_submission, executor, job_id)
@@ -133,19 +134,28 @@ class DelayedCCCJob(DelayedJob):
             n_multi_cpus = self._executor.parameters["nmulticpus"]
             shutil.copy(self.worker_file, self.paths.worker_file)
             subcmds = [
-                f"1-{n_multi_cpus} . {self.paths.worker_file} pcocc-rs run "
-                f"{self._hub}:{self.image_name} -- "
-                f"{submission.command}"
+                self._container_cmd.format(
+                    hub=self._hub,
+                    image_name=self.image_name,
+                    params=submission.execution_parameters,
+                    command=submission.command
+                )
                 for submission in self.delayed_submission
+            ]
+            subcmds = [
+                f"1-{n_multi_cpus} . {self.paths.worker_file} {command}"
+                for command in subcmds
             ]
             params["logdir"] = self.paths.flux_dir
             with open(self.paths.task_file, "w") as of:
                 of.write("\n".join(subcmds))
             cmd = self.paths.task_file
         else:
-            cmd = (
-                f"pcocc-rs run {self._hub}:{self.image_name} "
-                f"{self.delayed_submission.command}"
+            cmd = self._container_cmd.format(
+                hub=self._hub,
+                image_name=self.image_name,
+                params=self.delayed_submission.execution_parameters,
+                command=self.delayed_submission.command
             )
         with open(self.paths.submission_file, "w") as of:
             if self.paths.stdout.exists():
