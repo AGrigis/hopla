@@ -9,7 +9,7 @@ requires-python = ">=3.9"
 authors = [
     {name = "hopla developers", email = "antoine.grigis@cea.fr"},
 ]
-license = {text = "CeCILL-B"}
+license = "CECILL-B"
 classifiers = [
     "Development Status :: 1 - Planning",
     "Environment :: Console",
@@ -18,7 +18,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "tqdm"
+    "tqdm",
 ]
 dynamic = ["version"]
 
@@ -31,7 +31,7 @@ platforms = ["Linux", "OSX"]
 include-package-data = true
 
 [tool.setuptools.dynamic]
-version = {attr = "hopla.info.__version__"}
+version = {attr = "hopla.__version__"}
 
 [tool.setuptools.packages.find]
 exclude = ["doc"]
