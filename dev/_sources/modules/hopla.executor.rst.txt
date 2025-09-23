@@ -1,0 +1,30 @@
+:mod:`hopla.executor`: Contains job execution functions.
+========================================================
+
+.. automodule:: hopla.executor
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.executor
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    hopla.executor.DelayedSubmission
+    hopla.executor.Executor
+
+.. .. autoclasstree:: hopla.executor
+       :strict:
+       :align: center
+
+
+
+
+
+

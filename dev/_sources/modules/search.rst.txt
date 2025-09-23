@@ -1,0 +1,31 @@
+.. _api-search:
+
+==========
+API Search
+==========
+
+This is the class and function reference of ``hopla``. Please refer to
+the :ref:`user guide <user_guide>` for more information and usage examples.
+
+.. raw:: html
+
+    <!-- Block section -->
+
+    <div class='my-search-bar'>
+      <i class='icon fa fa-search'></i>
+      <input type='text' id='my-search' onkeyup='mySearch()' placeholder='Search for functions & classes...' title='Search'>
+    </div>
+    <ul id='my-search-entries'>
+      <li><a href='generated/hopla.DelayedSubmission.html'>hopla.DelayedSubmission</a></li>
+      <li><a href='generated/hopla.Executor.html'>hopla.Executor</a></li>
+      <li><a href='generated/hopla.ccc.CCCInfoWatcher.html'>hopla.ccc.CCCInfoWatcher</a></li>
+      <li><a href='generated/hopla.ccc.DelayedCCCJob.html'>hopla.ccc.DelayedCCCJob</a></li>
+      <li><a href='generated/hopla.executor.DelayedSubmission.html'>hopla.executor.DelayedSubmission</a></li>
+      <li><a href='generated/hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
+      <li><a href='generated/hopla.pbs.DelayedPbsJob.html'>hopla.pbs.DelayedPbsJob</a></li>
+      <li><a href='generated/hopla.pbs.PbsInfoWatcher.html'>hopla.pbs.PbsInfoWatcher</a></li>
+      <li><a href='generated/hopla.utils.DelayedJob.html'>hopla.utils.DelayedJob</a></li>
+      <li><a href='generated/hopla.utils.InfoWatcher.html'>hopla.utils.InfoWatcher</a></li>
+      <li><a href='generated/hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>
+      <li><a href='generated/hopla.utils.format_attributes.html'>hopla.utils.format_attributes</a></li>
+    </ul>

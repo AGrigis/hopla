@@ -1,0 +1,136 @@
+hopla
+=====
+
+
+
+``hopla`` can automate job creation, submission, monitoring, and resubmission,
+saving hours of repetitive work. When you're running hundreds or thousands of
+jobs automating code execution on clusters is convenient, but also essential
+for scalability, and efficiency.
+
+
+
+.. grid::
+
+    .. grid-item-card:: :fas:`rocket` Quickstart
+        :link: quickstart
+        :link-type: ref
+        :columns: 12 12 4 4
+        :class-card: sd-shadow-md
+        :class-title: sd-text-primary
+        :margin: 2 2 0 0
+
+        Get started with hopla
+
+    .. grid-item-card:: :fas:`th` Examples
+        :link: auto_examples/index.html
+        :link-type: url
+        :columns: 12 12 4 4
+        :class-card: sd-shadow-md
+        :class-title: sd-text-primary
+        :margin: 2 2 0 0
+
+        Discover functionalities by reading examples
+
+    .. grid-item-card:: :fas:`book` User guide
+        :link: user_guide
+        :link-type: ref
+        :columns: 12 12 4 4
+        :class-card: sd-shadow-md
+        :class-title: sd-text-primary
+        :margin: 2 2 0 0
+
+        Learn about hopla
+
+
+Featured works
+--------------
+
+.. raw:: html
+
+    <br/>
+    <div class="sphx-glr-thumbnails">
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example on how to use the PBS cluster...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_pbs_thumb.png
+    :alt: Basic example
+
+  :ref:`sphx_glr_auto_examples_plot_pbs.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example</div>
+    </div>
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example on how to use the CCC cluster...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_thumb.png
+    :alt: Basic example
+
+  :ref:`sphx_glr_auto_examples_plot_ccc.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example</div>
+    </div>
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example on how to use the CCC cluster using multi-tasks...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_multi_tasks_thumb.png
+    :alt: Basic example
+
+  :ref:`sphx_glr_auto_examples_plot_ccc_multi_tasks.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example</div>
+    </div>
+
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+   :includehidden:
+   :titlesonly:
+
+   quickstart.md
+   auto_examples/index.rst
+   user_guide/index.rst
+   modules/index.rst
+   modules/search.rst
+
+.. toctree::
+   :hidden:
+   :caption: Development
+
+   contributing.rst
+   ci.rst
+   maintenance.rst
+   whats_new.rst
+   authors.rst
+   license.rst
+   versions.rst
