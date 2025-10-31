@@ -26,8 +26,8 @@ hopla_options = contextvars.ContextVar(
 
 class Config:
     """
-    Context manager for modifying execution options passed to the
-    :mod:`hopla.executor.Executor.__call__` method.
+    Context manager for modifying execution options when the Executor is
+    called.
 
     Parameters
     ----------
