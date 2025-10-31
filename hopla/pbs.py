@@ -34,6 +34,7 @@ class PbsInfoWatcher(InfoWatcher):
         """ Return the command to list jobs status.
         """
         active_jobs = self._registered - self._finished
+        print(self._registered, self._finished)
         return "qstat -fx -F json " + " ".join(active_jobs)
 
     @property

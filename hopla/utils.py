@@ -10,12 +10,14 @@
 Contains some utility functions.
 """
 
+import inspect
 import shutil
 import subprocess
 import textwrap
 import time
 import warnings
 from abc import ABC, abstractmethod
+from pathlib import Path
 
 
 def format_attributes(cls, attrs=None):
@@ -168,7 +170,8 @@ class InfoWatcher(ABC):
         """ Register a job on the instance for shared update.
         """
         assert isinstance(job_id, str), f"{job_id} - {type(job_id)}"
-        self._registered.add(job_id)
+        if job_id != "EXIT":
+            self._registered.add(job_id)
 
     def update(self):
         """ Updates the info of all registered jobs.
@@ -178,11 +181,13 @@ class InfoWatcher(ABC):
         self._num_calls += 1
         try:
             self._output = subprocess.check_output(
-                self.update_command, shell=True)
+                self.update_command,
+                shell=True,
+            )
         except Exception as e:
             warnings.warn(
                 f"Call #{self._num_calls} - Bypassing qstat error {e}, status "
-                "may be inaccurate.", stacklevel=2
+                "may be inaccurate.", stacklevel=find_stack_level()
             )
         else:
             self._info_dict.update(self.read_info(self._output))
@@ -315,20 +320,32 @@ class DelayedJob(ABC):
         """
         return []
 
-    def start(self):
+    def start(self, dryrun=False):
         """ Start a job.
+
+        Parameters
+        ----------
+        dryrun: bool, default False
+            if True, only print the submission command.
         """
         self.generate_batch()
         if self.submission_id is None or self.done:
-            process = subprocess.Popen(
-                [self.start_command, self.paths.submission_file],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE)
-            stdout, stderr = process.communicate()
-            self.submission_id = self.read_jobid(stdout)
-            if not self.submission_id.isdigit():
+            if dryrun:
+                print(
+                    f"[command] {self.start_command} "
+                    f"{self.paths.submission_file}"
+                )
                 self.submission_id = "EXIT"
-                self.stderr = stderr.decode("utf8")
+            else:
+                process = subprocess.Popen(
+                    [self.start_command, self.paths.submission_file],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE)
+                stdout, stderr = process.communicate()
+                self.submission_id = self.read_jobid(stdout)
+                if not self.submission_id.isdigit():
+                    self.submission_id = "EXIT"
+                    self.stderr = stderr.decode("utf8")
             # print(f"Job {self.submission_id} - {self.paths.submission_file} "
             #        "is running!")
             self._register_in_watcher()
@@ -361,3 +378,31 @@ class DelayedJob(ABC):
     def stop_command(self):
         """ Return the stop job command.
         """
+
+
+def find_stack_level():
+    """
+    Find the first place in the stack that is not inside hopla.
+    Taken from the pandas codebase.
+    """
+    import hopla
+
+    pkg_dir = Path(hopla.__file__).parent
+
+    # https://stackoverflow.com/questions/17407119/python-inspect-stack-is-slow
+    frame = inspect.currentframe()
+    try:
+        n = 0
+        while frame:
+            filename = inspect.getfile(frame)
+            is_test_file = Path(filename).name.startswith("test_")
+            in_nilearn_code = filename.startswith(str(pkg_dir))
+            if not in_nilearn_code or is_test_file:
+                break
+            frame = frame.f_back
+            n += 1
+    finally:
+        # See note in
+        # https://docs.python.org/3/library/inspect.html#inspect.Traceback
+        del frame
+    return n

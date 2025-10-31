@@ -15,8 +15,18 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from .ccc import CCCInfoWatcher, DelayedCCCJob
-from .pbs import DelayedPbsJob, PbsInfoWatcher
+from .ccc import (
+    CCCInfoWatcher,
+    DelayedCCCJob,
+)
+from .config import (
+    DEFAULT_OPTIONS,
+    hopla_options,
+)
+from .pbs import (
+    DelayedPbsJob,
+    PbsInfoWatcher,
+)
 from .utils import format_attributes
 
 
@@ -82,22 +92,25 @@ class Executor:
         }
         self._delayed_jobs = []
 
-    def __call__(self, max_jobs=300, debug=False):
+    def __call__(self, max_jobs=300):
         """ Run jobs controlling the maximum number of concurrent submissions.
 
         Parameters
         ----------
         max_jobs: int, default 300
             the maximum number of concurrent submissions.
-        debug: bool, default False
-            optionaly print job info at each refresh.
         """
+        opts = hopla_options.get()
+        verbose = opts.get("verbose", DEFAULT_OPTIONS["verbose"])
+        dryrun = opts.get("dryrun", DEFAULT_OPTIONS["dryrun"])
+        self._delay_s = opts.get("delay_s", DEFAULT_OPTIONS["delay_s"])
+
         _start = 0
         desc = self._job_class._submission_cmd.upper()
         pbar = tqdm(total=self.n_jobs, desc=desc)
         while (self.n_waiting_jobs != 0 or
                not all(job.done for job in self._delayed_jobs)):
-            if debug:
+            if verbose:
                 print(self.status)
                 # print(self._delayed_jobs)
             if self.n_waiting_jobs != 0 and self.n_running_jobs < max_jobs:
@@ -105,7 +118,7 @@ class Executor:
                 _stop = _start + _delta
                 for job in self._delayed_jobs[_start:_stop]:
                     assert job.status == "NOTSTARTED"
-                    job.start()
+                    job.start(dryrun=dryrun)
                 _start = _stop
                 pbar.update(_delta)
             time.sleep(self._delay_s)
@@ -142,7 +155,12 @@ class Executor:
             )
         else:
             job = self._job_class(
-                DelayedSubmission(script, *args, **kwargs),
+                DelayedSubmission(
+                    script,
+                    *args,
+                    execution_parameters=execution_parameters,
+                    **kwargs
+                ),
                 self,
                 self._counter
             )

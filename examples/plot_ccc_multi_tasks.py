@@ -67,8 +67,8 @@ with open(tasks) as of:
 #
 # We can't execute the code on the CI since the CCC infrastructure is not
 # avaialable.
-#
-# .. code-block:: python
-#
-#   executor(max_jobs=2)
-#   print(executor.report)
+
+from hopla.config import Config
+
+with Config(dryrun=True, delay_s=3):
+    executor(max_jobs=2)
