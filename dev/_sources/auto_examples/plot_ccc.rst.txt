@@ -203,15 +203,15 @@ Generate a batch
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-       |  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
        |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
        |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-       |  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/subprocess.py", line 548, in run
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
        |    with Popen(*popenargs, **kwargs) as process:
        |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-       |  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
        |    self._execute_child(args, executable, preexec_fn, close_fds,
-       |  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
        |    raise child_exception_type(errno_num, err_msg, err_filename)
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
@@ -256,7 +256,7 @@ Generate a batch
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-69
+.. GENERATED FROM PYTHON SOURCE LINES 59-64
 
 Start Jobs
 ----------
@@ -264,15 +264,252 @@ Start Jobs
 We can't execute the code on the CI since the CCC infrastructure is not
 avaialable.
 
-.. code-block:: python
+.. GENERATED FROM PYTHON SOURCE LINES 64-69
 
-  executor(max_jobs=2)
-  print(executor.report)
+.. code-block:: Python
+
+
+    from hopla.config import Config
+
+    with Config(dryrun=True, delay_s=3):
+        executor(max_jobs=2)
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    CCC_MSUB:   0%|          | 0/10 [00:00<?, ?it/s]
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/3_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/4_submission.sh
+    CCC_MSUB:  40%|████      | 4/10 [00:03<00:04,  1.33it/s]
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/5_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/6_submission.sh
+    CCC_MSUB:  60%|██████    | 6/10 [00:06<00:04,  1.07s/it]
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/7_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/8_submission.sh
+    CCC_MSUB:  80%|████████  | 8/10 [00:09<00:02,  1.23s/it]
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/9_submission.sh
+
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+      self.generate_batch()
+       |Traceback (most recent call last):
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
+       |    self.import_image()
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 175, in import_image
+       |    stdout = subprocess.check_output(cmd)
+       |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
+       |    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+       |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 548, in run
+       |    with Popen(*popenargs, **kwargs) as process:
+       |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1026, in __init__
+       |    self._execute_child(args, executable, preexec_fn, close_fds,
+       |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
+       |    raise child_exception_type(errno_num, err_msg, err_filename)
+       |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
+
+    [command] ccc_msub /tmp/hopla/submissions/10_submission.sh
+    CCC_MSUB: 100%|██████████| 10/10 [00:12<00:00,  1.32s/it]    CCC_MSUB: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+
+
+
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.203 seconds)
+   **Total running time of the script:** (0 minutes 15.298 seconds)
 
 **Estimated memory usage:**  106 MB
 

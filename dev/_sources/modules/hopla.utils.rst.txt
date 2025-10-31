@@ -16,9 +16,9 @@ Classes
    :toctree: generated/
    :template: class.rst
 
-    hopla.utils.DelayedJob
-    hopla.utils.InfoWatcher
-    hopla.utils.JobPaths
+    DelayedJob
+    InfoWatcher
+    JobPaths
 
 .. .. autoclasstree:: hopla.utils
        :strict:
@@ -34,7 +34,8 @@ Functions
    :toctree: generated/
    :template: function.rst
 
-    hopla.utils.format_attributes
+    find_stack_level
+    format_attributes
 
 
 

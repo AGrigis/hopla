@@ -205,23 +205,50 @@ Generate a batch
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-68
+.. GENERATED FROM PYTHON SOURCE LINES 58-63
 
 Start Jobs
 ----------
 
-We can't execute the code on the CI since the CCC infrastructure is not
+We can't execute the code on the CI since the PBS infrastructure is not
 avaialable.
 
-.. code-block:: python
+.. GENERATED FROM PYTHON SOURCE LINES 63-68
 
-  executor(max_jobs=2)
-  print(executor.report)
+.. code-block:: Python
+
+
+    from hopla.config import Config
+
+    with Config(dryrun=True, delay_s=3):
+        executor(max_jobs=2)
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    QSUB:   0%|          | 0/10 [00:00<?, ?it/s][command] qsub /tmp/hopla/submissions/1_submission.sh
+    [command] qsub /tmp/hopla/submissions/2_submission.sh
+    [command] qsub /tmp/hopla/submissions/3_submission.sh
+    [command] qsub /tmp/hopla/submissions/4_submission.sh
+    QSUB:  40%|████      | 4/10 [00:03<00:04,  1.33it/s][command] qsub /tmp/hopla/submissions/5_submission.sh
+    [command] qsub /tmp/hopla/submissions/6_submission.sh
+    QSUB:  60%|██████    | 6/10 [00:06<00:04,  1.06s/it][command] qsub /tmp/hopla/submissions/7_submission.sh
+    [command] qsub /tmp/hopla/submissions/8_submission.sh
+    QSUB:  80%|████████  | 8/10 [00:09<00:02,  1.23s/it][command] qsub /tmp/hopla/submissions/9_submission.sh
+    [command] qsub /tmp/hopla/submissions/10_submission.sh
+    QSUB: 100%|██████████| 10/10 [00:12<00:00,  1.32s/it]    QSUB: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+
+
+
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.175 seconds)
+   **Total running time of the script:** (0 minutes 15.191 seconds)
 
 **Estimated memory usage:**  106 MB
 

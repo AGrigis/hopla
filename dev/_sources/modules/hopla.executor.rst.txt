@@ -16,8 +16,8 @@ Classes
    :toctree: generated/
    :template: class.rst
 
-    hopla.executor.DelayedSubmission
-    hopla.executor.Executor
+    DelayedSubmission
+    Executor
 
 .. .. autoclasstree:: hopla.executor
        :strict:

@@ -16,8 +16,8 @@ Classes
    :toctree: generated/
    :template: class.rst
 
-    hopla.pbs.DelayedPbsJob
-    hopla.pbs.PbsInfoWatcher
+    DelayedPbsJob
+    PbsInfoWatcher
 
 .. .. autoclasstree:: hopla.pbs
        :strict:

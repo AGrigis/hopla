@@ -20,6 +20,7 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
       <li><a href='generated/hopla.Executor.html'>hopla.Executor</a></li>
       <li><a href='generated/hopla.ccc.CCCInfoWatcher.html'>hopla.ccc.CCCInfoWatcher</a></li>
       <li><a href='generated/hopla.ccc.DelayedCCCJob.html'>hopla.ccc.DelayedCCCJob</a></li>
+      <li><a href='generated/hopla.config.Config.html'>hopla.config.Config</a></li>
       <li><a href='generated/hopla.executor.DelayedSubmission.html'>hopla.executor.DelayedSubmission</a></li>
       <li><a href='generated/hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
       <li><a href='generated/hopla.pbs.DelayedPbsJob.html'>hopla.pbs.DelayedPbsJob</a></li>
@@ -27,5 +28,6 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
       <li><a href='generated/hopla.utils.DelayedJob.html'>hopla.utils.DelayedJob</a></li>
       <li><a href='generated/hopla.utils.InfoWatcher.html'>hopla.utils.InfoWatcher</a></li>
       <li><a href='generated/hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>
+      <li><a href='generated/hopla.utils.find_stack_level.html'>hopla.utils.find_stack_level</a></li>
       <li><a href='generated/hopla.utils.format_attributes.html'>hopla.utils.format_attributes</a></li>
     </ul>
