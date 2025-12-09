@@ -55,12 +55,13 @@ Imports
 Executor Context
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-35
+.. GENERATED FROM PYTHON SOURCE LINES 26-36
 
 .. code-block:: Python
 
 
     executor = hopla.Executor(
+        cluster="pbs",
         folder="/tmp/hopla",
         queue="Nspin_short",
         image="/tmp/hopla/my-apptainer-img.simg",
@@ -75,12 +76,12 @@ Executor Context
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-38
+.. GENERATED FROM PYTHON SOURCE LINES 37-39
 
 Submit Jobs
 -----------
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-46
+.. GENERATED FROM PYTHON SOURCE LINES 39-47
 
 .. code-block:: Python
 
@@ -148,12 +149,12 @@ Submit Jobs
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-49
+.. GENERATED FROM PYTHON SOURCE LINES 48-50
 
 Generate a batch
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-57
+.. GENERATED FROM PYTHON SOURCE LINES 50-58
 
 .. code-block:: Python
 
@@ -205,15 +206,15 @@ Generate a batch
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-63
+.. GENERATED FROM PYTHON SOURCE LINES 59-64
 
 Start Jobs
 ----------
 
 We can't execute the code on the CI since the PBS infrastructure is not
-avaialable.
+available.
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-68
+.. GENERATED FROM PYTHON SOURCE LINES 64-69
 
 .. code-block:: Python
 
@@ -248,9 +249,9 @@ avaialable.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.191 seconds)
+   **Total running time of the script:** (0 minutes 15.193 seconds)
 
-**Estimated memory usage:**  106 MB
+**Estimated memory usage:**  108 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_pbs.py:

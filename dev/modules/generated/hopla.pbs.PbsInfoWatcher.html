@@ -234,6 +234,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of User guide</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -268,7 +269,12 @@
 <li class="toctree-l3"><a class="reference internal" href="hopla.Executor.html">hopla.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="hopla.slurm.DelayedSlurmJob.html">hopla.slurm.DelayedSlurmJob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hopla.slurm.SlurmInfoWatcher.html">hopla.slurm.SlurmInfoWatcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.DelayedJob.html">hopla.utils.DelayedJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.InfoWatcher.html">hopla.utils.InfoWatcher</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.JobPaths.html">hopla.utils.JobPaths</a></li>
@@ -343,7 +349,7 @@ signature, and not how to use it. Please refer to the
 <h1>hopla.pbs.PbsInfoWatcher<a class="headerlink" href="#hopla-pbs-pbsinfowatcher" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hopla.pbs.PbsInfoWatcher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.pbs.</span></span><span class="sig-name descname"><span class="pre">PbsInfoWatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/c43ce1c/hopla/pbs.py#L20"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.pbs.</span></span><span class="sig-name descname"><span class="pre">PbsInfoWatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/6303d70/hopla/pbs.py#L20"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="hopla.utils.InfoWatcher.html#hopla.utils.InfoWatcher" title="hopla.utils.InfoWatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">InfoWatcher</span></code></a></p>
 <p>An instance of this class is shared by all jobs, and is in charge of
 calling pbs to check status for all jobs at once.</p>
@@ -357,12 +363,12 @@ calling pbs to check status for all jobs at once.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.pbs.PbsInfoWatcher.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/c43ce1c/hopla/pbs.py#L29"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/6303d70/hopla/pbs.py#L29"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.pbs.PbsInfoWatcher.read_info">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/c43ce1c/hopla/pbs.py#L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher.read_info" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/6303d70/hopla/pbs.py#L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.pbs.PbsInfoWatcher.read_info" title="Link to this definition">¶</a></dt>
 <dd><p>Reads the output of qstat and returns a dictionary containing
 main jobs information.</p>
 </dd></dl>

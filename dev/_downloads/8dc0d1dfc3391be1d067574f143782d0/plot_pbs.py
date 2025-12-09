@@ -25,6 +25,7 @@ from pprint import pprint
 # ----------------
 
 executor = hopla.Executor(
+    cluster="pbs",
     folder="/tmp/hopla",
     queue="Nspin_short",
     image="/tmp/hopla/my-apptainer-img.simg",
@@ -59,7 +60,7 @@ with open(batch) as of:
 # ----------
 #
 # We can't execute the code on the CI since the PBS infrastructure is not
-# avaialable.
+# available.
 
 from hopla.config import Config
 

@@ -15,4 +15,5 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
    hopla.executor.rst
    hopla.pbs.rst
    hopla.rst
+   hopla.slurm.rst
    hopla.utils.rst

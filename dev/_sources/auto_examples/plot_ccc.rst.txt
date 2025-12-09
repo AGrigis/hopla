@@ -55,12 +55,13 @@ Imports
 Executor Context
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-36
+.. GENERATED FROM PYTHON SOURCE LINES 26-37
 
 .. code-block:: Python
 
 
     executor = hopla.Executor(
+        cluster="ccc",
         folder="/tmp/hopla",
         queue="rome",
         image="/tmp/hopla/my-docker-img.tar",
@@ -76,12 +77,12 @@ Executor Context
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 37-39
+.. GENERATED FROM PYTHON SOURCE LINES 38-40
 
 Submit Jobs
 -----------
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-47
+.. GENERATED FROM PYTHON SOURCE LINES 40-48
 
 .. code-block:: Python
 
@@ -169,12 +170,12 @@ Submit Jobs
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-50
+.. GENERATED FROM PYTHON SOURCE LINES 49-51
 
 Generate a batch
 ----------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-58
+.. GENERATED FROM PYTHON SOURCE LINES 51-59
 
 .. code-block:: Python
 
@@ -195,7 +196,7 @@ Generate a batch
  .. code-block:: none
 
 
-    /home/runner/work/hopla/hopla/examples/plot_ccc.py:51: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/examples/plot_ccc.py:52: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       jobs[0].generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -256,15 +257,15 @@ Generate a batch
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 59-64
+.. GENERATED FROM PYTHON SOURCE LINES 60-65
 
 Start Jobs
 ----------
 
 We can't execute the code on the CI since the CCC infrastructure is not
-avaialable.
+available.
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-69
+.. GENERATED FROM PYTHON SOURCE LINES 65-70
 
 .. code-block:: Python
 
@@ -282,7 +283,7 @@ avaialable.
  .. code-block:: none
 
     CCC_MSUB:   0%|          | 0/10 [00:00<?, ?it/s]
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -304,7 +305,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -326,7 +327,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -348,7 +349,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/3_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -370,7 +371,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/4_submission.sh
     CCC_MSUB:  40%|████      | 4/10 [00:03<00:04,  1.33it/s]
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -392,7 +393,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/5_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -414,7 +415,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/6_submission.sh
     CCC_MSUB:  60%|██████    | 6/10 [00:06<00:04,  1.07s/it]
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -436,7 +437,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/7_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -458,7 +459,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/8_submission.sh
     CCC_MSUB:  80%|████████  | 8/10 [00:09<00:02,  1.23s/it]
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -480,7 +481,7 @@ avaialable.
 
     [command] ccc_msub /tmp/hopla/submissions/9_submission.sh
 
-    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:331: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    /home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 125, in generate_batch
@@ -509,9 +510,9 @@ avaialable.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.298 seconds)
+   **Total running time of the script:** (0 minutes 15.265 seconds)
 
-**Estimated memory usage:**  106 MB
+**Estimated memory usage:**  109 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_ccc.py:

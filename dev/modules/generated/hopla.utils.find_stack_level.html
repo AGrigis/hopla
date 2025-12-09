@@ -234,6 +234,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of User guide</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -268,7 +269,12 @@
 <li class="toctree-l3"><a class="reference internal" href="hopla.Executor.html">hopla.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="../hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="hopla.slurm.DelayedSlurmJob.html">hopla.slurm.DelayedSlurmJob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hopla.slurm.SlurmInfoWatcher.html">hopla.slurm.SlurmInfoWatcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.DelayedJob.html">hopla.utils.DelayedJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.InfoWatcher.html">hopla.utils.InfoWatcher</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hopla.utils.JobPaths.html">hopla.utils.JobPaths</a></li>
@@ -343,7 +349,7 @@ function signature, and not how to use it. Please refer to the
 <h1>hopla.utils.find_stack_level<a class="headerlink" href="#hopla-utils-find-stack-level" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="hopla.utils.find_stack_level">
-<span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">find_stack_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/c43ce1c/hopla/utils.py#L383"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.find_stack_level" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">hopla.utils.</span></span><span class="sig-name descname"><span class="pre">find_stack_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/6303d70/hopla/utils.py#L407"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.utils.find_stack_level" title="Link to this definition">¶</a></dt>
 <dd><p>Find the first place in the stack that is not inside hopla.
 Taken from the pandas codebase.</p>
 </dd></dl>

@@ -236,6 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of User guide</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -270,7 +271,12 @@
 <li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.Executor.html">hopla.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="modules/hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.slurm.DelayedSlurmJob.html">hopla.slurm.DelayedSlurmJob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.slurm.SlurmInfoWatcher.html">hopla.slurm.SlurmInfoWatcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="modules/hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.utils.DelayedJob.html">hopla.utils.DelayedJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.utils.InfoWatcher.html">hopla.utils.InfoWatcher</a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/generated/hopla.utils.JobPaths.html">hopla.utils.JobPaths</a></li>
@@ -368,6 +374,15 @@ deploy it on the <code class="docutils literal notranslate"><span class="pre">de
 </section>
 <section id="github-actions-specification">
 <h2>GitHub Actions Specification<a class="headerlink" href="#github-actions-specification" title="Link to this heading">¶</a></h2>
+<section id="codespell-yml">
+<h3>codespell.yml<a class="headerlink" href="#codespell-yml" title="Link to this heading">¶</a></h3>
+<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/codespell.yml">codespell.yml</a></p>
+<p>Workflow to check common misspellings in text files.</p>
+<p>To run this check locally from the repository folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>codespell<span class="w"> </span>--toml<span class="w"> </span>pyproject.toml<span class="w"> </span>hopla<span class="w"> </span>examples
+</pre></div>
+</div>
+</section>
 <section id="documentation-yml">
 <h3>documentation.yml<a class="headerlink" href="#documentation-yml" title="Link to this heading">¶</a></h3>
 <p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/documentation.yml">documentation.yml</a></p>
@@ -380,21 +395,22 @@ $<span class="w"> </span>make<span class="w"> </span>html-strict
 </pre></div>
 </div>
 </section>
-<section id="linters-yml">
-<h3>linters.yml<a class="headerlink" href="#linters-yml" title="Link to this heading">¶</a></h3>
-<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/linters.yml">linters.yml</a></p>
-<p>Workflow to check code format.</p>
-<p>To run this check locally from the repository folder:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>hopla
-</pre></div>
-</div>
-</section>
-<section id="pep8-yml">
-<h3>pep8.yml<a class="headerlink" href="#pep8-yml" title="Link to this heading">¶</a></h3>
-<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/pep8.yml">pep8.yml</a></p>
+<section id="pycodestyle-yml">
+<h3>pycodestyle.yml<a class="headerlink" href="#pycodestyle-yml" title="Link to this heading">¶</a></h3>
+<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/pycodestyle.yml">pycodestyle.yml</a></p>
 <p>Workflow to check code format.</p>
 <p>To run this check locally from the repository folder:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pycodestyle<span class="w"> </span>hopla<span class="w"> </span>--ignore<span class="o">=</span><span class="s2">&quot;E121,E123,E126,E226,E24,E704,E402,E731,E722,E741,W503,W504,W605,E305&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="pydoclint-yml">
+<h3>pydoclint.yml<a class="headerlink" href="#pydoclint-yml" title="Link to this heading">¶</a></h3>
+<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/pydoclint.yml">pydoclint.yml</a></p>
+<p>Workflow to check whether a docstring’s sections (arguments, returns,
+raises, …) match the function signature or function implementation.</p>
+<p>To run this check locally from the repository folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pydoclint<span class="w"> </span>hopla
 </pre></div>
 </div>
 </section>
@@ -406,6 +422,25 @@ $<span class="w"> </span>make<span class="w"> </span>html-strict
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sphinxdoc<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">$MODULE_DIR</span><span class="w"> </span>-n<span class="w"> </span><span class="nv">$MODULE_NAME</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$MODULE_DIR</span>/doc
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$MODULE_DIR</span>/doc
 $<span class="w"> </span>make<span class="w"> </span>html-strict
+</pre></div>
+</div>
+</section>
+<section id="ruff-yml">
+<h3>ruff.yml<a class="headerlink" href="#ruff-yml" title="Link to this heading">¶</a></h3>
+<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/ruff.yml">ruff.yml</a></p>
+<p>Workflow to check code format.</p>
+<p>To run this check locally from the repository folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>hopla
+</pre></div>
+</div>
+</section>
+<section id="testing-yml">
+<h3>testing.yml<a class="headerlink" href="#testing-yml" title="Link to this heading">¶</a></h3>
+<p>Workflow file: <a class="reference external" href="https://github.com/nilearn/nilearn/blob/main/.github/workflows/testing.yml">testing.yml</a></p>
+<p>Workflow to perform testings and code coverage.</p>
+<p>To run this check locally from the <cite>doc</cite> folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nosetests<span class="w"> </span>--with-coverage<span class="w"> </span>--cover-package<span class="o">=</span>hopla<span class="w"> </span>--verbosity<span class="o">=</span><span class="m">2</span>
+<span class="w">  </span>--with-doctest<span class="w"> </span>--doctest-options<span class="o">=</span><span class="s1">&#39;+ELLIPSIS,+NORMALIZE_WHITESPACE&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -473,10 +508,13 @@ $<span class="w"> </span>make<span class="w"> </span>html-strict
 <li><a class="reference internal" href="#">Continuous integration</a><ul>
 <li><a class="reference internal" href="#documentation-build-and-deploy">Documentation build and deploy</a></li>
 <li><a class="reference internal" href="#github-actions-specification">GitHub Actions Specification</a><ul>
+<li><a class="reference internal" href="#codespell-yml">codespell.yml</a></li>
 <li><a class="reference internal" href="#documentation-yml">documentation.yml</a></li>
-<li><a class="reference internal" href="#linters-yml">linters.yml</a></li>
-<li><a class="reference internal" href="#pep8-yml">pep8.yml</a></li>
+<li><a class="reference internal" href="#pycodestyle-yml">pycodestyle.yml</a></li>
+<li><a class="reference internal" href="#pydoclint-yml">pydoclint.yml</a></li>
 <li><a class="reference internal" href="#release-documentation-yml">release-documentation.yml</a></li>
+<li><a class="reference internal" href="#ruff-yml">ruff.yml</a></li>
+<li><a class="reference internal" href="#testing-yml">testing.yml</a></li>
 </ul>
 </li>
 </ul>

@@ -236,6 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of User guide</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -270,7 +271,12 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/hopla.Executor.html">hopla.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/hopla.slurm.DelayedSlurmJob.html">hopla.slurm.DelayedSlurmJob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/hopla.slurm.SlurmInfoWatcher.html">hopla.slurm.SlurmInfoWatcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/hopla.utils.DelayedJob.html">hopla.utils.DelayedJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/hopla.utils.InfoWatcher.html">hopla.utils.InfoWatcher</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/hopla.utils.JobPaths.html">hopla.utils.JobPaths</a></li>
@@ -346,7 +352,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hopla.executor.DelayedSubmission.html#hopla.executor.DelayedSubmission" title="hopla.executor.DelayedSubmission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DelayedSubmission</span></code></a>(script, *args[, ...])</p></td>
 <td><p>Object for specifying the submit parameters for further processing.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/hopla.executor.Executor.html#hopla.executor.Executor" title="hopla.executor.Executor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a>(folder, queue, image[, name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hopla.executor.Executor.html#hopla.executor.Executor" title="hopla.executor.Executor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a>(cluster, folder, queue, image[, ...])</p></td>
 <td><p>Base job executor.</p></td>
 </tr>
 </tbody>

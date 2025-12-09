@@ -25,6 +25,8 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
       <li><a href='generated/hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
       <li><a href='generated/hopla.pbs.DelayedPbsJob.html'>hopla.pbs.DelayedPbsJob</a></li>
       <li><a href='generated/hopla.pbs.PbsInfoWatcher.html'>hopla.pbs.PbsInfoWatcher</a></li>
+      <li><a href='generated/hopla.slurm.DelayedSlurmJob.html'>hopla.slurm.DelayedSlurmJob</a></li>
+      <li><a href='generated/hopla.slurm.SlurmInfoWatcher.html'>hopla.slurm.SlurmInfoWatcher</a></li>
       <li><a href='generated/hopla.utils.DelayedJob.html'>hopla.utils.DelayedJob</a></li>
       <li><a href='generated/hopla.utils.InfoWatcher.html'>hopla.utils.InfoWatcher</a></li>
       <li><a href='generated/hopla.utils.JobPaths.html'>hopla.utils.JobPaths</a></li>

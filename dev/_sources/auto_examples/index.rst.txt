@@ -64,6 +64,23 @@ Examples
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_slurm_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_slurm.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example on how to use the SLURM cluster</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -77,6 +94,7 @@ Examples
    /auto_examples/plot_ccc
    /auto_examples/plot_ccc_multi_tasks
    /auto_examples/plot_pbs
+   /auto_examples/plot_slurm
 
 
 .. only:: html
