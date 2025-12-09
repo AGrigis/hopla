@@ -33,7 +33,7 @@ class Config:
     ----------
     **options : dict
         Keyword arguments intercepted are:
-        - verbose : bool, default False - print informations or not.
+        - verbose : bool, default False - print information or not.
         - dryrun : bool, default False - execute commands or not.
         - delay_s : int, default 60 - refresh interval in seconds.
 

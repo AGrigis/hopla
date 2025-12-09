@@ -19,6 +19,11 @@ import warnings
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+from .config import (
+    DEFAULT_OPTIONS,
+    hopla_options,
+)
+
 
 def format_attributes(cls, attrs=None):
     """ Automatically format class attributes.
@@ -144,6 +149,11 @@ class InfoWatcher(ABC):
         ----------
         job_id: int
             id of the job on the cluster.
+
+        Returns
+        -------
+        info: dict
+            information about this jobs.
         """
         if job_id not in self._registered:
             self.register_job(job_id)
@@ -159,6 +169,11 @@ class InfoWatcher(ABC):
         ----------
         job_id: str
             id of the job on the cluster.
+
+        Returns
+        -------
+        state: str
+            the current state of the job.
         """
         info = self.get_info(job_id)
         state = info.get("job_state") or "UNKNOWN"
@@ -186,7 +201,7 @@ class InfoWatcher(ABC):
             )
         except Exception as e:
             warnings.warn(
-                f"Call #{self._num_calls} - Bypassing qstat error {e}, status "
+                f"Call #{self._num_calls} - Bypassing stat error {e}, status "
                 "may be inaccurate.", stacklevel=find_stack_level()
             )
         else:
@@ -204,6 +219,11 @@ class InfoWatcher(ABC):
         ----------
         job_id: str
             id of the job on the cluster.
+
+        Returns
+        -------
+        done: bool
+            True if the job is done, False otherwise.
         """
         state = self.get_state(job_id)
         return state.upper() not in self.valid_status
@@ -328,6 +348,9 @@ class DelayedJob(ABC):
         dryrun: bool, default False
             if True, only print the submission command.
         """
+        opts = hopla_options.get()
+        verbose = opts.get("verbose", DEFAULT_OPTIONS["verbose"])
+
         self.generate_batch()
         if self.submission_id is None or self.done:
             if dryrun:
@@ -346,8 +369,9 @@ class DelayedJob(ABC):
                 if not self.submission_id.isdigit():
                     self.submission_id = "EXIT"
                     self.stderr = stderr.decode("utf8")
-            # print(f"Job {self.submission_id} - {self.paths.submission_file} "
-            #        "is running!")
+            if verbose:
+                print(f"Job {self.submission_id} - "
+                      f"{self.paths.submission_file} is running!")
             self._register_in_watcher()
 
     def stop(self):

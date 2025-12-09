@@ -26,6 +26,7 @@ from pprint import pprint
 # ----------------
 
 executor = hopla.Executor(
+    cluster="ccc",
     folder="/tmp/hopla",
     queue="rome",
     image="/tmp/hopla/my-docker-img.tar",
@@ -66,7 +67,7 @@ with open(tasks) as of:
 # ----------
 #
 # We can't execute the code on the CI since the CCC infrastructure is not
-# avaialable.
+# available.
 
 from hopla.config import Config
 
