@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Parameters
+#SBATCH -p {queue}
+#SBATCH --mem={memory}g
+#SBATCH -c {ncpus}
+#SBATCH --gres=gpu:{ngpus}
+#SBATCH --time={walltime}:00:00
+#SBATCH -J {name}
+#SBATCH -e {stderr}
+#SBATCH -o {stdout}
+
+# Environment
+echo $SLURM_JOB_ID
+echo $HOSTNAME
+unset LD_PRELOAD
+
+# Command
+{command}
+echo "HOPLASAY-DONE"
