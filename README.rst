@@ -14,13 +14,25 @@
 
 **Development**
 
-.. image:: https://github.com/AGrigis/hopla/actions/workflows/pep8.yml/badge.svg
+.. image:: https://coveralls.io/repos/github/AGrigis/hopla/badge.svg
+    :target: https://coveralls.io/github/AGrigis/hopla
+    :alt: Code Coverage
+
+.. image:: https://github.com/AGrigis/hopla/actions/workflows/pycodestyle.yml/badge.svg
     :target: https://github.com/AGrigis/hopla/actions
-    :alt: Github Actions Linter Status
+    :alt: Github Actions PyCodeStyle Linter Status
+
+.. image:: https://github.com/AGrigis/hopla/actions/workflows/ruff.yml/badge.svg
+    :target: https://github.com/AGrigis/hopla/actions
+    :alt: Github Actions Ruff Linter Status
+
+.. image:: https://github.com/AGrigis/hopla/actions/workflows/testing.yml/badge.svg
+    :target: https://github.com/AGrigis/hopla/actions
+    :alt: Github Actions Testing Status
 
 .. image:: https://github.com/AGrigis/hopla/actions/workflows/documentation.yml/badge.svg
-    :target: http://AGrigis.github.io/hopla/stable
-    :alt: Github Actions Doc Build Status
+    :target: https://github.com/AGrigis/hopla/actions
+    :alt: Github Actions Documentation Build Status
 
 **Release**
 

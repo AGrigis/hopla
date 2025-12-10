@@ -25,6 +25,7 @@ from pprint import pprint
 # ----------------
 
 executor = hopla.Executor(
+    cluster="pbs",
     folder="/tmp/hopla",
     queue="Nspin_short",
     image="/tmp/hopla/my-apptainer-img.simg",
@@ -58,10 +59,10 @@ with open(batch) as of:
 # Start Jobs
 # ----------
 #
-# We can't execute the code on the CI since the CCC infrastructure is not
-# avaialable.
-#
-# .. code-block:: python
-#
-#   executor(max_jobs=2)
-#   print(executor.report)
+# We can't execute the code on the CI since the PBS infrastructure is not
+# available.
+
+from hopla.config import Config
+
+with Config(dryrun=True, delay_s=3):
+    executor(max_jobs=2)

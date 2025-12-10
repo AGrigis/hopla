@@ -20,6 +20,67 @@ instances infoirmation.
     ``execution_parameters`` attribute.
 
 
+SLURM
+-----
+
+Execution of 10 simple `sleep` commands.
+
+
+.. code-block:: python
+
+    import hopla
+    from pprint import pprint
+
+    executor = hopla.Executor(
+        cluster="slurm",
+        folder="/tmp/hopla",
+        queue="Nspin_short",
+        image="/tmp/hopla/my-apptainer-img.simg",
+        walltime=1
+    )
+
+    jobs = [
+        executor.submit("sleep", k) for k in range(1, 11)
+    ]
+    pprint(jobs)
+
+    executor(max_jobs=2)
+    print(executor.report)
+
+
+.. important::
+
+    To retrieve the logs, the `folder` path must be shared between the compute
+    nodes and the submission machone.
+
+
+.. tip::
+
+    To execute a brainprep command available in an apptainer image, adapt and
+    pass this command to the `executor.submit()` function:
+
+    .. code-block:: bash
+
+        executor.submit(
+            "brainprep",
+            *args,
+            execution_parameters=f"--bind {path} --cleanenv",
+            **kwargs
+        )
+
+
+.. tip::
+
+    A graphical user interface (GUI) lets you view and modify the state of a
+    Slurm-managed cluster. It provides a visual alternative to command-line
+    tools like squeue and sinfo, making it easier to monitor jobs, nodes,
+    partitions, and configurations interactively.
+
+    .. code-block:: bash
+
+        sview
+
+
 PBS
 ---
 
@@ -32,6 +93,7 @@ Execution of 10 simple `sleep` commands.
     from pprint import pprint
 
     executor = hopla.Executor(
+        cluster="pbs",
         folder="/tmp/hopla",
         queue="Nspin_short",
         image="/tmp/hopla/my-apptainer-img.simg",
@@ -74,6 +136,7 @@ Execution of 10 simple `sleep` commands available in an docker image.
     from pprint import pprint
 
     executor = hopla.Executor(
+        cluster="ccc",
         folder="/tmp/hopla",
         queue="rome",
         image="/tmp/hopla/my-docker-img.tar",

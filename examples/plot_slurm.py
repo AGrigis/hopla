@@ -1,13 +1,13 @@
 """
-Basic example on how to use the CCC cluster
-===========================================
+Basic example on how to use the SLURM cluster
+=============================================
 
 Basic example
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.
 
-A simple example of how to use ``hopla`` on a CCC cluster. Please check
+A simple example of how to use ``hopla`` on a SLURM cluster. Please check
 the :ref:`user guide <user_guide>` for a more in depth presentation of all
 functionalities.
 
@@ -25,12 +25,11 @@ from pprint import pprint
 # ----------------
 
 executor = hopla.Executor(
-    cluster="ccc",
+    cluster="slurm",
     folder="/tmp/hopla",
-    queue="rome",
-    image="/tmp/hopla/my-docker-img.tar",
+    queue="Nspin_short",
+    image="/tmp/hopla/my-apptainer-img.simg",
     walltime=1,
-    project_id="genXXX",
 )
 
 
@@ -60,7 +59,7 @@ with open(batch) as of:
 # Start Jobs
 # ----------
 #
-# We can't execute the code on the CI since the CCC infrastructure is not
+# We can't execute the code on the CI since the PBS infrastructure is not
 # available.
 
 from hopla.config import Config

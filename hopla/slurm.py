@@ -7,7 +7,7 @@
 ##########################################################################
 
 """
-Contains PBS specific functions.
+Contains SLURM specific functions.
 """
 
 import json
@@ -17,7 +17,7 @@ from pathlib import Path
 from .utils import DelayedJob, InfoWatcher, format_attributes
 
 
-class PbsInfoWatcher(InfoWatcher):
+class SlurmInfoWatcher(InfoWatcher):
     """ An instance of this class is shared by all jobs, and is in charge of
     calling pbs to check status for all jobs at once.
 
@@ -34,28 +34,28 @@ class PbsInfoWatcher(InfoWatcher):
         """ Return the command to list jobs status.
         """
         active_jobs = self._registered - self._finished
-        print(self._registered, self._finished)
-        return "qstat -fx -F json " + " ".join(active_jobs)
+        return "squeue --states=all --json --jobs=" + ",".join(active_jobs)
 
     @property
     def valid_status(self):
         """ Return the list of valid status.
         """
-        return ["R", "Q", "S", "UNKNOWN"]
+        return ["RUNNING", "PENDING", "SUSPENDED", "COMPLETING", "CONFIGURING",
+                "UNKNOWN"]
 
     @classmethod
     def read_info(cls, string):
-        """ Reads the output of qstat and returns a dictionary containing
+        """ Reads the output of squeue and returns a dictionary containing
         main jobs information.
         """
         if not isinstance(string, str):
             string = string.decode()
-        all_stats = {key.split(".")[0]: val
-                     for key, val in json.loads(string)["Jobs"].items()}
+        all_stats = {str(val["job_id"]): val
+                     for val in json.loads(string)["jobs"]}
         return all_stats
 
 
-class DelayedPbsJob(DelayedJob):
+class DelayedSlurmJob(DelayedJob):
     """ Represents a job that have been queue for submission by an executor,
     but hasn't yet been scheduled.
 
@@ -69,13 +69,13 @@ class DelayedPbsJob(DelayedJob):
     job_id: str
         the job identifier.
     """
-    _submission_cmd = "qsub"
+    _submission_cmd = "sbatch"
     _container_cmd = "apptainer run {params} {image_path} {command}"
 
     def __init__(self, delayed_submission, executor, job_id):
         super().__init__(delayed_submission, executor, job_id)
         resource_dir = Path(__file__).parent / "resources"
-        path = resource_dir / "pbs_batch_template.txt"
+        path = resource_dir / "slurm_batch_template.txt"
         with open(path) as of:
             self.template = of.read()
         self.image_path = self._executor.parameters["image"]
@@ -104,7 +104,7 @@ class DelayedPbsJob(DelayedJob):
         """
         if not isinstance(string, str):
             string = string.decode()
-        return string.rstrip("\n").split(".")[0]
+        return string.rstrip("\n").strip().split(" ")[-1]
 
     @property
     def start_command(self):
@@ -116,7 +116,7 @@ class DelayedPbsJob(DelayedJob):
     def stop_command(self):
         """ Return the stop job command.
         """
-        return "qdel"
+        return "scancel"
 
     def __repr__(self):
         return format_attributes(

@@ -9,7 +9,7 @@ requires-python = ">=3.9"
 authors = [
     {name = "hopla developers", email = "antoine.grigis@cea.fr"},
 ]
-license = {text = "CeCILL-B"}
+license = "CECILL-B"
 classifiers = [
     "Development Status :: 1 - Planning",
     "Environment :: Console",
@@ -18,7 +18,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "tqdm"
+    "tqdm",
 ]
 dynamic = ["version"]
 
@@ -31,7 +31,7 @@ platforms = ["Linux", "OSX"]
 include-package-data = true
 
 [tool.setuptools.dynamic]
-version = {attr = "hopla.info.__version__"}
+version = {attr = "hopla.__version__"}
 
 [tool.setuptools.packages.find]
 exclude = ["doc"]
@@ -75,3 +75,24 @@ extend-exclude = [
 
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401"]
+
+[tool.codespell]
+builtin = "clear,rare,en-GB_to_en-US"
+ignore-words = "./.github/codespellignore.txt"
+skip = "./.git,*.bib,./AUTHORS.rst"
+quiet-level = 2
+
+[tool.pydoclint]
+style = "numpy"
+require-return-section-when-returning-nothing = false
+check-arg-order = true
+check-return-types = false
+check-class-attributes = false
+check-style-mismatch = true
+check-arg-defaults = false
+skip-checking-raises = false
+treat-property-methods-as-class-attributes = true
+should-document-private-class-attributes = true
+arg-type-hints-in-docstring=true
+arg-type-hints-in-signature=false
+should-document-star-arguments=true
