@@ -1,0 +1,30 @@
+:mod:`hopla.slurm`: Contains SLURM specific functions.
+======================================================
+
+.. automodule:: hopla.slurm
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.slurm
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    DelayedSlurmJob
+    SlurmInfoWatcher
+
+.. .. autoclasstree:: hopla.slurm
+       :strict:
+       :align: center
+
+
+
+
+
+

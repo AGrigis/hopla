@@ -1,0 +1,42 @@
+:mod:`hopla.utils`: Contains some utility functions.
+====================================================
+
+.. automodule:: hopla.utils
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.utils
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    DelayedJob
+    InfoWatcher
+    JobPaths
+
+.. .. autoclasstree:: hopla.utils
+       :strict:
+       :align: center
+
+
+Functions
+---------
+
+.. currentmodule:: hopla.utils
+
+.. autosummary::
+   :toctree: generated/
+   :template: function.rst
+
+    find_stack_level
+    format_attributes
+
+
+
+

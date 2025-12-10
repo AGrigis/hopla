@@ -1,0 +1,14 @@
+.. _versions:
+
+========
+Versions
+========
+
+Web-based documentation is available for versions listed below:
+
+
+* `dev documentation <https://AGrigis.github.io/hopla/dev>`_
+
+* `stable documentation <https://AGrigis.github.io/hopla/stable>`_
+
+* `1.0.4 documentation <https://AGrigis.github.io/hopla/1.0.4>`_

@@ -1,0 +1,30 @@
+:mod:`hopla.pbs`: Contains PBS specific functions.
+==================================================
+
+.. automodule:: hopla.pbs
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.pbs
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    DelayedPbsJob
+    PbsInfoWatcher
+
+.. .. autoclasstree:: hopla.pbs
+       :strict:
+       :align: center
+
+
+
+
+
+

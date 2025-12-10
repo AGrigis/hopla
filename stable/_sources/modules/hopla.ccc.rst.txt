@@ -1,0 +1,30 @@
+:mod:`hopla.ccc`: Contains PBS specific functions.
+==================================================
+
+.. automodule:: hopla.ccc
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.ccc
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    CCCInfoWatcher
+    DelayedCCCJob
+
+.. .. autoclasstree:: hopla.ccc
+       :strict:
+       :align: center
+
+
+
+
+
+

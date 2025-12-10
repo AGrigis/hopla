@@ -1,0 +1,29 @@
+:mod:`hopla.config`: Configuration used by hopla.
+=================================================
+
+.. automodule:: hopla.config
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla.config
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    Config
+
+.. .. autoclasstree:: hopla.config
+       :strict:
+       :align: center
+
+
+
+
+
+

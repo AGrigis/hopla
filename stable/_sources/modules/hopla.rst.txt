@@ -1,0 +1,30 @@
+:mod:`hopla`: ``hopla`` can automate job creation, submission, monitoring, and resubmission,
+============================================================================================
+
+.. automodule:: hopla
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+Classes
+-------
+
+.. currentmodule:: hopla
+
+.. autosummary::
+   :toctree: generated/
+   :template: class.rst
+
+    DelayedSubmission
+    Executor
+
+.. .. autoclasstree:: hopla
+       :strict:
+       :align: center
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+.. _modules:
+
+==============
+API References
+==============
+
+This is the class and function reference of ``hopla``. Please refer to
+the :ref:`user guide <user_guide>` for more information and usage examples.
+
+.. toctree::
+   :maxdepth: 1
+
+   hopla.ccc.rst
+   hopla.config.rst
+   hopla.executor.rst
+   hopla.pbs.rst
+   hopla.rst
+   hopla.slurm.rst
+   hopla.utils.rst
