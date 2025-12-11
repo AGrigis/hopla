@@ -29,8 +29,12 @@ class TestGalleryExamples(unittest.TestCase):
         script_path = self.examples_dir / "plot_ccc.py"
         runpy.run_path(str(script_path))
 
-    def test_ccc_multi_tasks(self):
-        script_path = self.examples_dir / "plot_ccc_multi_tasks.py"
+    def test_ccc_flux_multi_tasks(self):
+        script_path = self.examples_dir / "plot_ccc_flux_multi_tasks.py"
+        runpy.run_path(str(script_path))
+
+    def test_ccc_joblib_multi_tasks(self):
+        script_path = self.examples_dir / "plot_ccc_joblib_multi_tasks.py"
         runpy.run_path(str(script_path))
 
 

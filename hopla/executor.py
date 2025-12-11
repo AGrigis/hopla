@@ -111,10 +111,15 @@ class Executor:
         modules = modules or []
         self.parameters = {
             "name": name,
-            "queue": queue, "memory": memory, "walltime": walltime,
-            "ncpus": n_cpus, "nmulticpus": n_multi_cpus, "ngpus": n_gpus,
+            "queue": queue,
+            "memory": memory,
+            "walltime": walltime,
+            "ncpus": n_cpus,
+            "nmulticpus": n_multi_cpus,
+            "ngpus": n_gpus,
             "modules": ",".join(modules),
-            "image": image, "project_id": project_id
+            "image": Path(image).expanduser().absolute(),
+            "project_id": project_id
         }
         self._delayed_jobs = []
 
@@ -146,9 +151,11 @@ class Executor:
                 for job in self._delayed_jobs[_start:_stop]:
                     assert job.status == "NOTSTARTED"
                     job.start(dryrun=dryrun)
+                    pbar.update(1)
+                    pbar.refresh()
                 _start = _stop
-                pbar.update(_delta)
             time.sleep(self._delay_s)
+        pbar.close()
         self.watcher.update()
 
     def submit(self, script, *args, execution_parameters=None, **kwargs):
