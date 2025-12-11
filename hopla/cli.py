@@ -7,10 +7,10 @@
 ##########################################################################
 
 import argparse
+import tomllib
 
 import numpy as np
 import pandas as pd
-import tomllib
 
 import hopla
 from hopla.config import Config
@@ -20,10 +20,10 @@ def main():
     """
     Command-line interface for automated job execution with hopla.
 
-    This function parses command-line arguments, loads a TOML configuration
-    file, initializes a hopla executor, and submits jobs either individually
-    or in chunks depending on the configuration. It then runs the executor
-    with a specified maximum number of jobs and writes a report to disk.
+    This function loads a TOML configuration file, initializes a hopla
+    executor, and submits jobs either individually or in chunks depending
+    on the configuration. It then runs the executor with a specified maximum
+    number of jobs and writes a report to disk.
 
     Workflow
     --------
