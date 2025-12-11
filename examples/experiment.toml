@@ -1,0 +1,23 @@
+[project]
+name = "SleepTest"
+operator = "MyName"
+date = "12/02/2020"
+
+[inputs]
+commands = "sleep {k}s"
+# commands = ["sleep 1", "sleep 2", "sleep 3"]
+data = "./examples/data.tsv"
+parameters = "--cleanenv"
+
+[environment]
+cluster = "slurm"
+folder = "/tmp/hopla"
+queue = "Nspin_short"
+walltime = 1
+n_cpus = 1
+image = "./ubuntu-jammy.sif"
+
+[config]
+dryrun = true
+delay_s = 1
+verbose = false

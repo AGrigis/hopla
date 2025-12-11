@@ -166,7 +166,7 @@ class Executor:
         script: Path/str or list of DelayedSubmission
             script(s) to execute.
         *args: any positional argument of the script.
-        execution_parameters: str or list of str
+        execution_parameters: str
             parameters passed to the container during execution.
         **kwargs: any named argument of the script.
 
