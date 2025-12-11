@@ -245,6 +245,7 @@
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="how_it_works.html">3. How It Works</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clusters.html">4. Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">5. CLI</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../modules/index.html">API References</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of API References</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -365,17 +366,8 @@ pieces of information throughout the guide.</p>
 <li class="toctree-l2"><a class="reference internal" href="clusters.html#ccc">4.3. CCC</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">5. CLI</a></li>
 </ul>
-</div>
-</section>
-<section id="cli">
-<h2>CLI<a class="headerlink" href="#cli" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">hopla</span></code> has a CLI interface. The <cite>hoplacli</cite> command loads a TOML
-configuration file, initializes a hopla executor, and submits jobs either
-individually or in chunks depending on the configuration. It then runs the
-executor with a specified maximum number of jobs and writes a report to disk.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hoplacli<span class="w"> </span>--config<span class="w"> </span>./examples/experiment.toml<span class="w"> </span>--njobs<span class="w"> </span><span class="m">2</span>
-</pre></div>
 </div>
 </section>
 </section>
@@ -440,7 +432,6 @@ executor with a specified maximum number of jobs and writes a report to disk.</p
             <ul>
 <li><a class="reference internal" href="#">User guide</a><ul>
 <li><a class="reference internal" href="#table-of-contents">Table of contents</a></li>
-<li><a class="reference internal" href="#cli">CLI</a></li>
 </ul>
 </li>
 </ul>
