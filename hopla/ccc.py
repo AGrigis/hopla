@@ -74,18 +74,24 @@ class DelayedCCCJob(DelayedJob):
         base job executor.
     job_id: str
         the job identifier.
+    backend: str, default 'flux'
+        the multi-taks backend to use: 'flux' or 'joblib'.
     """
     _hub = "n4h00001rs"
     _submission_cmd = "ccc_msub"
     _container_cmd = "pcocc-rs run {hub}:{image_name} {params} -- {command}"
 
-    def __init__(self, delayed_submission, executor, job_id):
+    def __init__(self, delayed_submission, executor, job_id, backend="flux"):
         super().__init__(delayed_submission, executor, job_id)
         self.multi_task = isinstance(delayed_submission, (list, tuple))
+        self.backend = backend
         resource_dir = Path(__file__).parent / "resources"
-        if self.multi_task:
+        if self.multi_task and self.backend == "flux":
             path = resource_dir / "ccc_multi_batch_template.txt"
             self.worker_file = resource_dir / "worker.sh"
+        elif self.multi_task and self.backend == "joblib":
+            path = resource_dir / "ccc_batch_template.txt"
+            self.worker_file = resource_dir / "joblib_script_template.txt"
         else:
             path = resource_dir / "ccc_batch_template.txt"
         with open(path) as of:
@@ -118,7 +124,11 @@ class DelayedCCCJob(DelayedJob):
         params = copy.deepcopy(self._executor.parameters)
         params["walltime"] *= 3600
         params["memory"] *= 1000
-        print(params["modules"])
+        if self.backend == "joblib":
+            if params["modules"] != "":
+                params["modules"] = f"python3/3.12,{params['modules']}"
+            else:
+                params["modules"] = "python3/3.12"
         if params["modules"] != "":
             params["modules"] = f"module load {params['modules']}"
         try:
@@ -130,7 +140,7 @@ class DelayedCCCJob(DelayedJob):
                 stacklevel=2
             )
             print(err)
-        if self.multi_task:
+        if self.multi_task and self.backend == "flux":
             n_multi_cpus = self._executor.parameters["nmulticpus"]
             shutil.copy(self.worker_file, self.paths.worker_file)
             subcmds = [
@@ -150,6 +160,31 @@ class DelayedCCCJob(DelayedJob):
             with open(self.paths.task_file, "w") as of:
                 of.write("\n".join(subcmds))
             cmd = self.paths.task_file
+        elif self.multi_task and self.backend == "joblib":
+            n_cpus = self._executor.parameters["ncpus"]
+            with open(self.worker_file) as of:
+                joblib_template = of.read()
+            subcmds = [
+                self._container_cmd.format(
+                    hub=self._hub,
+                    image_name=self.image_name,
+                    params=submission.execution_parameters,
+                    command=submission.command
+                )
+                for submission in self.delayed_submission
+            ]
+            subcmds = [
+                f"'{command}',"
+                for command in subcmds
+            ]
+            with open(self.paths.joblib_file, "w") as of:
+                of.write(
+                    joblib_template.format(
+                        commands="\n".join(subcmds),
+                        njobs=n_cpus,
+                    )
+                )
+            cmd = f"python {self.paths.joblib_file}"
         else:
             cmd = self._container_cmd.format(
                 hub=self._hub,
@@ -162,11 +197,14 @@ class DelayedCCCJob(DelayedJob):
                 os.remove(self.paths.stdout)
             if self.paths.stderr.exists():
                 os.remove(self.paths.stderr)
-            of.write(self.template.format(
-                command=cmd,
-                stdout=self.paths.stdout,
-                stderr=self.paths.stderr,
-                **params))
+            of.write(
+                self.template.format(
+                    command=cmd,
+                    stdout=self.paths.stdout,
+                    stderr=self.paths.stderr,
+                    **params
+                )
+            )
 
     def import_image(self):
         """ Load the docker image if not available.

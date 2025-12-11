@@ -103,6 +103,12 @@ class JobPaths:
         return self.submission_folder / "worker.sh"
 
     @property
+    def joblib_file(self):
+        """ Generate the joblib file location.
+        """
+        return self.submission_folder / f"{self.job_id}_joblib_script.py"
+
+    @property
     def flux_dir(self):
         """ Generate the flux output dir.
         """

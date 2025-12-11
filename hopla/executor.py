@@ -59,11 +59,13 @@ class Executor:
     n_gpus: int, default 0
         the number of GPUs allocated for each job.
     n_multi_cpus: int, default 1
-        the number of cores reserved fir each multi-tasks job.
+        the number of cores reserved for each multi-tasks job.
     modules: list of str, default None
         the environment modules to be loaded.
     project_id: str, default None
         the project ID where you have computing hours.
+    backend: str, default 'flux'
+        the multi-taks backend to use: 'flux' or 'jobli
 
     Examples
     --------
@@ -89,7 +91,7 @@ class Executor:
 
     def __init__(self, cluster, folder, queue, image, name="hopla", memory=2,
                  walltime=72, n_cpus=1, n_gpus=0, n_multi_cpus=1, modules=None,
-                 project_id=None):
+                 project_id=None, backend="flux"):
         if cluster == "pbs":
             self._job_class = DelayedPbsJob
             self._watcher_class = PbsInfoWatcher
@@ -103,6 +105,7 @@ class Executor:
             raise ValueError(
                 f"Unsupported cluster type: {cluster}"
             )
+        self.backend = backend
         self.watcher = self._watcher_class(self._delay_s)
         self.folder = Path(folder).expanduser().absolute()
         modules = modules or []
@@ -180,7 +183,8 @@ class Executor:
             job = self._job_class(
                 script,
                 self,
-                self._counter
+                self._counter,
+                backend=self.backend,
             )
         else:
             job = self._job_class(
