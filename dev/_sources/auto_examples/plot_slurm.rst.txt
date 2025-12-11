@@ -177,6 +177,7 @@ Generate a batch
     JobPaths(
       flux_dir=/tmp/hopla/logs/1_flux,
       job_id=1,
+      joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
       log_folder=/tmp/hopla/logs,
       stderr=/tmp/hopla/logs/1_log.err,
       stdout=/tmp/hopla/logs/1_log.out,
@@ -236,16 +237,16 @@ available.
  .. code-block:: none
 
     SBATCH:   0%|          | 0/10 [00:00<?, ?it/s][command] sbatch /tmp/hopla/submissions/1_submission.sh
-    [command] sbatch /tmp/hopla/submissions/2_submission.sh
-    [command] sbatch /tmp/hopla/submissions/3_submission.sh
-    [command] sbatch /tmp/hopla/submissions/4_submission.sh
-    SBATCH:  40%|████      | 4/10 [00:03<00:04,  1.33it/s][command] sbatch /tmp/hopla/submissions/5_submission.sh
-    [command] sbatch /tmp/hopla/submissions/6_submission.sh
-    SBATCH:  60%|██████    | 6/10 [00:06<00:04,  1.06s/it][command] sbatch /tmp/hopla/submissions/7_submission.sh
-    [command] sbatch /tmp/hopla/submissions/8_submission.sh
-    SBATCH:  80%|████████  | 8/10 [00:09<00:02,  1.23s/it][command] sbatch /tmp/hopla/submissions/9_submission.sh
-    [command] sbatch /tmp/hopla/submissions/10_submission.sh
-    SBATCH: 100%|██████████| 10/10 [00:12<00:00,  1.32s/it]    SBATCH: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+    SBATCH:  10%|█         | 1/10 [00:00<00:00, 1551.15it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
+    SBATCH:  20%|██        | 2/10 [00:00<00:00, 1663.75it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
+    SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]      SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it][command] sbatch /tmp/hopla/submissions/4_submission.sh
+    SBATCH:  40%|████      | 4/10 [00:03<00:06,  1.00s/it][command] sbatch /tmp/hopla/submissions/5_submission.sh
+    SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it]    SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it][command] sbatch /tmp/hopla/submissions/6_submission.sh
+    SBATCH:  60%|██████    | 6/10 [00:06<00:04,  1.24s/it][command] sbatch /tmp/hopla/submissions/7_submission.sh
+    SBATCH:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it]    SBATCH:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it][command] sbatch /tmp/hopla/submissions/8_submission.sh
+    SBATCH:  80%|████████  | 8/10 [00:09<00:02,  1.35s/it][command] sbatch /tmp/hopla/submissions/9_submission.sh
+    SBATCH:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]    SBATCH:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it][command] sbatch /tmp/hopla/submissions/10_submission.sh
+    SBATCH: 100%|██████████| 10/10 [00:12<00:00,  1.41s/it]    SBATCH: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
 
 
 
@@ -253,7 +254,7 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.189 seconds)
+   **Total running time of the script:** (0 minutes 15.198 seconds)
 
 **Estimated memory usage:**  108 MB
 

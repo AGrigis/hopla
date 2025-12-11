@@ -36,10 +36,27 @@ Examples
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_multi_tasks_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_joblib_multi_tasks_thumb.png
     :alt:
 
-  :ref:`sphx_glr_auto_examples_plot_ccc_multi_tasks.py`
+  :ref:`sphx_glr_auto_examples_plot_ccc_joblib_multi_tasks.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example on how to use the CCC cluster using multi-tasks</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_flux_multi_tasks_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_plot_ccc_flux_multi_tasks.py`
 
 .. raw:: html
 
@@ -92,7 +109,8 @@ Examples
    :hidden:
 
    /auto_examples/plot_ccc
-   /auto_examples/plot_ccc_multi_tasks
+   /auto_examples/plot_ccc_joblib_multi_tasks
+   /auto_examples/plot_ccc_flux_multi_tasks
    /auto_examples/plot_pbs
    /auto_examples/plot_slurm
 

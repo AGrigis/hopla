@@ -177,6 +177,7 @@ Generate a batch
     JobPaths(
       flux_dir=/tmp/hopla/logs/1_flux,
       job_id=1,
+      joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
       log_folder=/tmp/hopla/logs,
       stderr=/tmp/hopla/logs/1_log.err,
       stdout=/tmp/hopla/logs/1_log.out,
@@ -232,16 +233,16 @@ available.
  .. code-block:: none
 
     QSUB:   0%|          | 0/10 [00:00<?, ?it/s][command] qsub /tmp/hopla/submissions/1_submission.sh
-    [command] qsub /tmp/hopla/submissions/2_submission.sh
-    [command] qsub /tmp/hopla/submissions/3_submission.sh
-    [command] qsub /tmp/hopla/submissions/4_submission.sh
-    QSUB:  40%|████      | 4/10 [00:03<00:04,  1.33it/s][command] qsub /tmp/hopla/submissions/5_submission.sh
-    [command] qsub /tmp/hopla/submissions/6_submission.sh
-    QSUB:  60%|██████    | 6/10 [00:06<00:04,  1.06s/it][command] qsub /tmp/hopla/submissions/7_submission.sh
-    [command] qsub /tmp/hopla/submissions/8_submission.sh
-    QSUB:  80%|████████  | 8/10 [00:09<00:02,  1.23s/it][command] qsub /tmp/hopla/submissions/9_submission.sh
-    [command] qsub /tmp/hopla/submissions/10_submission.sh
-    QSUB: 100%|██████████| 10/10 [00:12<00:00,  1.32s/it]    QSUB: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+    QSUB:  10%|█         | 1/10 [00:00<00:00, 1804.78it/s][command] qsub /tmp/hopla/submissions/2_submission.sh
+    QSUB:  20%|██        | 2/10 [00:00<00:00, 1761.94it/s][command] qsub /tmp/hopla/submissions/3_submission.sh
+    QSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]      QSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it][command] qsub /tmp/hopla/submissions/4_submission.sh
+    QSUB:  40%|████      | 4/10 [00:03<00:06,  1.00s/it][command] qsub /tmp/hopla/submissions/5_submission.sh
+    QSUB:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it]    QSUB:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it][command] qsub /tmp/hopla/submissions/6_submission.sh
+    QSUB:  60%|██████    | 6/10 [00:06<00:04,  1.24s/it][command] qsub /tmp/hopla/submissions/7_submission.sh
+    QSUB:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it]    QSUB:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it][command] qsub /tmp/hopla/submissions/8_submission.sh
+    QSUB:  80%|████████  | 8/10 [00:09<00:02,  1.35s/it][command] qsub /tmp/hopla/submissions/9_submission.sh
+    QSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]    QSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it][command] qsub /tmp/hopla/submissions/10_submission.sh
+    QSUB: 100%|██████████| 10/10 [00:12<00:00,  1.41s/it]    QSUB: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
 
 
 
@@ -249,7 +250,7 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.188 seconds)
+   **Total running time of the script:** (0 minutes 15.204 seconds)
 
 **Estimated memory usage:**  109 MB
 

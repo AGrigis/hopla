@@ -11,7 +11,7 @@
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
 <meta name="description" content="Basic example When you’re running hundreds or thousands of jobs, automation is a necessity. This is where hopla can help you. A simple example of how to use hopla on a CCC cluster. Please check the..." />
-<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_multi_tasks.html" /><link rel="prev" title="Examples" href="index.html" />
+<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_joblib_multi_tasks.html" /><link rel="prev" title="Examples" href="index.html" />
         <link rel="prefetch" href="../_static/hopla-transparent.png" as="image" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2025.07.19 -->
@@ -234,7 +234,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basic example on how to use the CCC cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_flux_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -462,9 +463,9 @@ DelayedSubmission(
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/hopla/hopla/examples/plot_ccc.py:52: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   jobs[0].generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -482,6 +483,7 @@ DelayedSubmission(
 JobPaths(
   flux_dir=/tmp/hopla/logs/1_flux,
   job_id=1,
+  joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
   log_folder=/tmp/hopla/logs,
   stderr=/tmp/hopla/logs/1_log.err,
   stdout=/tmp/hopla/logs/1_log.out,
@@ -528,13 +530,12 @@ available.</p>
     <a href="../modules/generated/hopla.Executor.html#hopla.Executor" title="hopla.Executor" class="sphx-glr-backref-module-hopla sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">executor</span></a><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CCC_MSUB:   0%|          | 0/10 [00:00&lt;?, ?it/s]
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CCC_MSUB:   0%|          | 0/10 [00:00&lt;?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -551,12 +552,12 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  10%|█         | 1/10 [00:00&lt;00:00, 288.13it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -573,12 +574,12 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  20%|██        | 2/10 [00:00&lt;00:00, 336.97it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -595,12 +596,13 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/3_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it]
+CCC_MSUB:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -617,13 +619,12 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/4_submission.sh
 
-CCC_MSUB:  40%|████      | 4/10 [00:03&lt;00:04,  1.33it/s]
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  40%|████      | 4/10 [00:03&lt;00:06,  1.00s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -640,12 +641,13 @@ CCC_MSUB:  40%|████      | 4/10 [00:03&lt;00:04,  1.33it/s]
 
 [command] ccc_msub /tmp/hopla/submissions/5_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  50%|█████     | 5/10 [00:06&lt;00:06,  1.25s/it]
+CCC_MSUB:  50%|█████     | 5/10 [00:06&lt;00:06,  1.25s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -662,13 +664,12 @@ CCC_MSUB:  40%|████      | 4/10 [00:03&lt;00:04,  1.33it/s]
 
 [command] ccc_msub /tmp/hopla/submissions/6_submission.sh
 
-CCC_MSUB:  60%|██████    | 6/10 [00:06&lt;00:04,  1.07s/it]
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  60%|██████    | 6/10 [00:06&lt;00:04,  1.25s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -685,12 +686,13 @@ CCC_MSUB:  60%|██████    | 6/10 [00:06&lt;00:04,  1.07s/it]
 
 [command] ccc_msub /tmp/hopla/submissions/7_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  70%|███████   | 7/10 [00:09&lt;00:04,  1.35s/it]
+CCC_MSUB:  70%|███████   | 7/10 [00:09&lt;00:04,  1.35s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -707,13 +709,12 @@ CCC_MSUB:  60%|██████    | 6/10 [00:06&lt;00:04,  1.07s/it]
 
 [command] ccc_msub /tmp/hopla/submissions/8_submission.sh
 
-CCC_MSUB:  80%|████████  | 8/10 [00:09&lt;00:02,  1.23s/it]
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  80%|████████  | 8/10 [00:09&lt;00:02,  1.35s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -730,12 +731,13 @@ CCC_MSUB:  80%|████████  | 8/10 [00:09&lt;00:02,  1.23s/it]
 
 [command] ccc_msub /tmp/hopla/submissions/9_submission.sh
 
-/home/runner/work/hopla/hopla/doc/../hopla/utils.py:354: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  90%|█████████ | 9/10 [00:12&lt;00:01,  1.41s/it]
+CCC_MSUB:  90%|█████████ | 9/10 [00:12&lt;00:01,  1.41s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 125, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 175, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -752,11 +754,11 @@ CCC_MSUB:  80%|████████  | 8/10 [00:09&lt;00:02,  1.23s/it]
 
 [command] ccc_msub /tmp/hopla/submissions/10_submission.sh
 
-CCC_MSUB: 100%|██████████| 10/10 [00:12&lt;00:00,  1.32s/it]
+CCC_MSUB: 100%|██████████| 10/10 [00:12&lt;00:00,  1.41s/it]
 CCC_MSUB: 100%|██████████| 10/10 [00:15&lt;00:00,  1.50s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.300 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.289 seconds)</p>
 <p><strong>Estimated memory usage:</strong>  108 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-ccc-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
@@ -778,7 +780,7 @@ CCC_MSUB: 100%|██████████| 10/10 [00:15&lt;00:00,  1.50s/it]
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="plot_ccc_multi_tasks.html">
+          <a class="next-page" href="plot_ccc_joblib_multi_tasks.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>

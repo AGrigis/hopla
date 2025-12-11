@@ -234,7 +234,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_flux_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -441,6 +442,7 @@ DelayedSubmission(
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>JobPaths(
   flux_dir=/tmp/hopla/logs/1_flux,
   job_id=1,
+  joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
   log_folder=/tmp/hopla/logs,
   stderr=/tmp/hopla/logs/1_log.err,
   stdout=/tmp/hopla/logs/1_log.out,
@@ -483,24 +485,34 @@ available.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SBATCH:   0%|          | 0/10 [00:00&lt;?, ?it/s][command] sbatch /tmp/hopla/submissions/1_submission.sh
-[command] sbatch /tmp/hopla/submissions/2_submission.sh
-[command] sbatch /tmp/hopla/submissions/3_submission.sh
-[command] sbatch /tmp/hopla/submissions/4_submission.sh
 
-SBATCH:  40%|████      | 4/10 [00:03&lt;00:04,  1.33it/s][command] sbatch /tmp/hopla/submissions/5_submission.sh
-[command] sbatch /tmp/hopla/submissions/6_submission.sh
+SBATCH:  10%|█         | 1/10 [00:00&lt;00:00, 1551.15it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
 
-SBATCH:  60%|██████    | 6/10 [00:06&lt;00:04,  1.06s/it][command] sbatch /tmp/hopla/submissions/7_submission.sh
-[command] sbatch /tmp/hopla/submissions/8_submission.sh
+SBATCH:  20%|██        | 2/10 [00:00&lt;00:00, 1663.75it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
 
-SBATCH:  80%|████████  | 8/10 [00:09&lt;00:02,  1.23s/it][command] sbatch /tmp/hopla/submissions/9_submission.sh
-[command] sbatch /tmp/hopla/submissions/10_submission.sh
+SBATCH:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it]
+SBATCH:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it][command] sbatch /tmp/hopla/submissions/4_submission.sh
 
-SBATCH: 100%|██████████| 10/10 [00:12&lt;00:00,  1.32s/it]
+SBATCH:  40%|████      | 4/10 [00:03&lt;00:06,  1.00s/it][command] sbatch /tmp/hopla/submissions/5_submission.sh
+
+SBATCH:  50%|█████     | 5/10 [00:06&lt;00:06,  1.24s/it]
+SBATCH:  50%|█████     | 5/10 [00:06&lt;00:06,  1.24s/it][command] sbatch /tmp/hopla/submissions/6_submission.sh
+
+SBATCH:  60%|██████    | 6/10 [00:06&lt;00:04,  1.24s/it][command] sbatch /tmp/hopla/submissions/7_submission.sh
+
+SBATCH:  70%|███████   | 7/10 [00:09&lt;00:04,  1.35s/it]
+SBATCH:  70%|███████   | 7/10 [00:09&lt;00:04,  1.35s/it][command] sbatch /tmp/hopla/submissions/8_submission.sh
+
+SBATCH:  80%|████████  | 8/10 [00:09&lt;00:02,  1.35s/it][command] sbatch /tmp/hopla/submissions/9_submission.sh
+
+SBATCH:  90%|█████████ | 9/10 [00:12&lt;00:01,  1.41s/it]
+SBATCH:  90%|█████████ | 9/10 [00:12&lt;00:01,  1.41s/it][command] sbatch /tmp/hopla/submissions/10_submission.sh
+
+SBATCH: 100%|██████████| 10/10 [00:12&lt;00:00,  1.41s/it]
 SBATCH: 100%|██████████| 10/10 [00:15&lt;00:00,  1.50s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.189 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.198 seconds)</p>
 <p><strong>Estimated memory usage:</strong>  108 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-slurm-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
