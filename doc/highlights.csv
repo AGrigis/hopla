@@ -1,3 +1,4 @@
+sphx_glr_auto_examples_plot_slurm.py,/auto_examples/images/thumb/sphx_glr_plot_slurm_thumb.png,Basic example on how to use the SLURM cluster...,Basic example
 sphx_glr_auto_examples_plot_pbs.py,/auto_examples/images/thumb/sphx_glr_plot_pbs_thumb.png,Basic example on how to use the PBS cluster...,Basic example
 sphx_glr_auto_examples_plot_ccc.py,/auto_examples/images/thumb/sphx_glr_plot_ccc_thumb.png,Basic example on how to use the CCC cluster...,Basic example
-sphx_glr_auto_examples_plot_ccc_multi_tasks.py,/auto_examples/images/thumb/sphx_glr_plot_ccc_multi_tasks_thumb.png,Basic example on how to use the CCC cluster using multi-tasks...,Basic example
+sphx_glr_auto_examples_plot_ccc_flux_multi_tasks.py,/auto_examples/images/thumb/sphx_glr_plot_ccc_flux_multi_tasks_thumb.png,Basic example on how to use the CCC cluster using multi-tasks...,Basic example
