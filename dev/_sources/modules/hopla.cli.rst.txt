@@ -1,0 +1,25 @@
+:mod:`hopla.cli`: 
+==================
+
+.. automodule:: hopla.cli
+   :no-members:
+   :no-inherited-members:
+
+.. No relevant user manual section yet.
+
+
+
+Functions
+---------
+
+.. currentmodule:: hopla.cli
+
+.. autosummary::
+   :toctree: generated/
+   :template: function.rst
+
+    main
+
+
+
+
