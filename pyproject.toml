@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hopla"
 readme = "README.rst"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [
     {name = "hopla developers", email = "antoine.grigis@cea.fr"},
 ]
@@ -19,6 +19,7 @@ classifiers = [
 ]
 dependencies = [
     "tqdm",
+    "pandas",
 ]
 dynamic = ["version"]
 

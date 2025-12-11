@@ -25,16 +25,6 @@ def main():
     or in chunks depending on the configuration. It then runs the executor
     with a specified maximum number of jobs and writes a report to disk.
 
-    Parameters
-    ----------
-    --config : str, required
-        Path to an experiment TOML configuration file. The file must contain
-        sections for `project`, `environment`, `inputs`, and `config`.
-        Optionally, a `multi` section can be provided to split commands into
-        chunks.
-    --njobs : int, required
-        The maximum number of job submissions to execute concurrently.
-
     Workflow
     --------
     1. Parse CLI arguments using argparse.
@@ -95,7 +85,7 @@ def main():
 
     Examples
     --------
-    >>> hoplactl --config experiment.toml --njobs 5
+    >>> hoplactl --config experiment.toml --njobs 5 # doctest: +SKIP
 
     Notes
     -----
@@ -106,20 +96,32 @@ def main():
     parser = argparse.ArgumentParser(
         prog="hoplactl",
         description=(
-            "Automate job execution with hopla using a configuration file."
+            "Automate job execution with hopla using a configuration file.\n\n"
+            "This function parses command-line arguments, loads a TOML "
+            "configuration file, initializes a hopla executor, and submits "
+            "jobs either individually or in chunks depending on the "
+            "configuration. It then runs the executor with a specified "
+            "maximum number of jobs and writes a report to disk."
         ),
+        epilog="Notes:\n- Use a valid TOML file.\n- See docs for examples.",
+        formatter_class=argparse.RawTextHelpFormatter,
     )
     parser.add_argument(
         "--config",
         type=str,
         required=True,
-        help="An experiment TOML configuration file."
+        help=(
+            "Path to an experiment TOML configuration file. The file must "
+            "contain sections for `project`, `environment`, `inputs`, and "
+            "`config`. Optionally, a `multi` section can be provided to split "
+            "commands into chunks."
+        )
     )
     parser.add_argument(
         "--njobs",
         type=int,
         required=True,
-        help="The number of submissions."
+        help="The maximum number of job submissions to execute concurrently."
     )
     args = parser.parse_args()
 
