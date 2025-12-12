@@ -29,7 +29,7 @@ DIM = "\033[2m"
 
 def print_header(
         license="CeCILL-B",
-        subtitle="Fast, friendly CLI to submit you jobs"):
+        subtitle="Fast, friendly CLI to submit your jobs"):
     """
     Print a styled header banner for the hoplacli tool.
 
