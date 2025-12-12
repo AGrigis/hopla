@@ -27,7 +27,7 @@ MAGENTA = "\033[35m"
 DIM = "\033[2m"
 
 
-def print_hoplacli_header(
+def print_header(
         license="CeCILL-B",
         subtitle="Fast, friendly CLI to submit you jobs"):
     """
@@ -40,6 +40,10 @@ def print_hoplacli_header(
     subtitle : str, optional
         A secondary line of text displayed below the title.
         Default is "Fast, friendly CLI to submit you jobs".
+
+    Returns
+    -------
+    None
 
     Notes
     -----
@@ -80,10 +84,10 @@ def print_hoplacli_header(
     print(center(line3))
     print(center(line4))
     print(bottom)
-    print()  # spacing
+    print()
 
 
-def display_toml(
+def print_toml(
         data,
         title="TOML Configuration"):
     """
@@ -226,7 +230,7 @@ def main():
     ValueError
         If 'data.tsv' is missing.
     """
-    print_hoplacli_header()
+    print_header()
 
     parser = argparse.ArgumentParser(
         prog="hoplactl",
@@ -265,7 +269,7 @@ def main():
 
     with open(args.config, "rb") as of:
         config = tomllib.load(of)
-    display_toml(config)
+    print_toml(config)
 
     executor = hopla.Executor(
         **config["environment"]
