@@ -7,14 +7,14 @@
    :ref:`user guide <user_guide>` for the big picture.
 
 
-hopla.cli.display_toml
-======================
+hopla.cli.print_toml
+====================
 
 .. currentmodule:: hopla.cli
 
-.. autofunction:: display_toml
+.. autofunction:: print_toml
 
-.. include:: hopla.cli.display_toml.examples
+.. include:: hopla.cli.print_toml.examples
 
 .. raw:: html
 

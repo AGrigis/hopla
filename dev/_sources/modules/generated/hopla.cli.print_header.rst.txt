@@ -7,14 +7,14 @@
    :ref:`user guide <user_guide>` for the big picture.
 
 
-hopla.cli.print_hoplacli_header
-===============================
+hopla.cli.print_header
+======================
 
 .. currentmodule:: hopla.cli
 
-.. autofunction:: print_hoplacli_header
+.. autofunction:: print_header
 
-.. include:: hopla.cli.print_hoplacli_header.examples
+.. include:: hopla.cli.print_header.examples
 
 .. raw:: html
 

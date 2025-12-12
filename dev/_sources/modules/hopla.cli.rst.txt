@@ -19,9 +19,9 @@ Functions
    :template: function.rst
 
     _strip_ansi
-    display_toml
     main
-    print_hoplacli_header
+    print_header
+    print_toml
 
 
 

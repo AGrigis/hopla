@@ -3,17 +3,17 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="hopla.cli.display_toml" />
+<meta property="og:title" content="hopla.cli.print_header" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https:///github.com.github.io/modules/generated/hopla.cli.display_toml.html" />
+<meta property="og:url" content="https:///github.com.github.io/modules/generated/hopla.cli.print_header.html" />
 <meta property="og:site_name" content="hopla" />
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
-<link rel="search" title="Search" href="../../search.html" /><link rel="next" title="hopla.cli.main" href="hopla.cli.main.html" /><link rel="prev" title="hopla.cli._strip_ansi" href="hopla.cli._strip_ansi.html" />
+<link rel="search" title="Search" href="../../search.html" /><link rel="next" title="hopla.cli.print_toml" href="hopla.cli.print_toml.html" /><link rel="prev" title="hopla.cli.main" href="hopla.cli.main.html" />
         <link rel="prefetch" href="../../_static/hopla-transparent.png" as="image" />
 
     <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2025.07.19 -->
-        <title>hopla.cli.display_toml - hopla 2.0.0 documentation</title>
+        <title>hopla.cli.print_header - hopla 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2da93098" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -254,9 +254,9 @@
 </li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../hopla.cli.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.cli</span></code>:</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of hopla.cli:</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="hopla.cli._strip_ansi.html">hopla.cli._strip_ansi</a></li>
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">hopla.cli.display_toml</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hopla.cli.main.html">hopla.cli.main</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hopla.cli.print_hoplacli_header.html">hopla.cli.print_hoplacli_header</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">hopla.cli.print_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hopla.cli.print_toml.html">hopla.cli.print_toml</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../hopla.config.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.config</span></code>: Configuration used by hopla.</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of hopla.config: Configuration used by hopla.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -324,12 +324,12 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="https://github.com/AGrigis/hopla/blob/main/doc/modules/generated/hopla.cli.display_toml.rst?plain=true" title="View this page">
+  <a class="muted-link" href="https://github.com/AGrigis/hopla/blob/main/doc/modules/generated/hopla.cli.print_header.rst?plain=true" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
 </div><div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/AGrigis/hopla/edit/main/doc/modules/generated/hopla.cli.display_toml.rst" rel="edit" title="Edit this page">
+  <a class="muted-link" href="https://github.com/AGrigis/hopla/edit/main/doc/modules/generated/hopla.cli.print_header.rst" rel="edit" title="Edit this page">
     <svg><use href="#svg-pencil"></use></svg>
     <span class="visually-hidden">Edit this page</span>
   </a>
@@ -354,27 +354,35 @@
 function signature, and not how to use it. Please refer to the
 <a class="reference internal" href="../../user_guide/index.html#user-guide"><span class="std std-ref">user guide</span></a> for the big picture.</p>
 </div>
-<section id="hopla-cli-display-toml">
-<h1>hopla.cli.display_toml<a class="headerlink" href="#hopla-cli-display-toml" title="Link to this heading">¶</a></h1>
+<section id="hopla-cli-print-header">
+<h1>hopla.cli.print_header<a class="headerlink" href="#hopla-cli-print-header" title="Link to this heading">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="hopla.cli.display_toml">
-<span class="sig-prename descclassname"><span class="pre">hopla.cli.</span></span><span class="sig-name descname"><span class="pre">display_toml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'TOML</span> <span class="pre">Configuration'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/7ce3839/hopla/cli.py#L86"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.cli.display_toml" title="Link to this definition">¶</a></dt>
-<dd><p>Pretty-print TOML content inside a styled box with colors.</p>
+<dt class="sig sig-object py" id="hopla.cli.print_header">
+<span class="sig-prename descclassname"><span class="pre">hopla.cli.</span></span><span class="sig-name descname"><span class="pre">print_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">license</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CeCILL-B'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtitle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Fast,</span> <span class="pre">friendly</span> <span class="pre">CLI</span> <span class="pre">to</span> <span class="pre">submit</span> <span class="pre">you</span> <span class="pre">jobs'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/d4c6bb8/hopla/cli.py#L30"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.cli.print_header" title="Link to this definition">¶</a></dt>
+<dd><p>Print a styled header banner for the hoplacli tool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>TOML data content.</p>
+<dt><strong>license</strong><span class="classifier">str, optional</span></dt><dd><p>The license displayed in the header. Default is “CeCILL-B”.</p>
 </dd>
-<dt><strong>title</strong><span class="classifier">str, optional</span></dt><dd><p>Title displayed at the top of the box. Default is “TOML Configuration”.</p>
+<dt><strong>subtitle</strong><span class="classifier">str, optional</span></dt><dd><p>A secondary line of text displayed below the title.
+Default is “Fast, friendly CLI to submit you jobs”.</p>
 </dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
-<li><p>Uses ANSI escape codes for colors.</p></li>
-<li><p>Automatically adapts to terminal width (up to 100 characters).</p></li>
-<li><p>Displays keys in cyan and values in magenta for readability.</p></li>
+<li><p>The header is styled with ANSI escape codes for colors and bold text.</p></li>
+<li><p>The width of the banner adapts to the terminal size (up to 100
+characters).</p></li>
+<li><p>Includes a timestamp of when the session started.</p></li>
+<li><p>Uses box-drawing characters for a clean framed look.</p></li>
 </ul>
 </dd></dl>
 
@@ -385,23 +393,23 @@ function signature, and not how to use it. Please refer to the
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="hopla.cli.main.html">
+          <a class="next-page" href="hopla.cli.print_toml.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">hopla.cli.main</div>
+                <div class="title">hopla.cli.print_toml</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="hopla.cli._strip_ansi.html">
+          <a class="prev-page" href="hopla.cli.main.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">hopla.cli._strip_ansi</div>
+                <div class="title">hopla.cli.main</div>
                 
               </div>
             </a>
@@ -438,8 +446,8 @@ function signature, and not how to use it. Please refer to the
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">hopla.cli.display_toml</a><ul>
-<li><a class="reference internal" href="#hopla.cli.display_toml"><code class="docutils literal notranslate"><span class="pre">display_toml</span></code></a></li>
+<li><a class="reference internal" href="#">hopla.cli.print_header</a><ul>
+<li><a class="reference internal" href="#hopla.cli.print_header"><code class="docutils literal notranslate"><span class="pre">print_header</span></code></a></li>
 </ul>
 </li>
 </ul>
