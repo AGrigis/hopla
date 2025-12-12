@@ -303,7 +303,7 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
-    CCC_MSUB:  10%|█         | 1/10 [00:00<00:00, 311.45it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  10%|█         | 1/10 [00:00<00:00, 297.41it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
@@ -324,7 +324,7 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
-    CCC_MSUB:  20%|██        | 2/10 [00:00<00:00, 366.76it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  20%|██        | 2/10 [00:00<00:00, 366.86it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
        |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
@@ -500,9 +500,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.262 seconds)
+   **Total running time of the script:** (0 minutes 15.288 seconds)
 
-**Estimated memory usage:**  107 MB
+**Estimated memory usage:**  109 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_ccc.py:
