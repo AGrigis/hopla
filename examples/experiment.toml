@@ -6,7 +6,6 @@ date = "12/02/2020"
 [inputs]
 commands = "sleep {k}s"
 # commands = ["sleep 1", "sleep 2", "sleep 3"]
-data = "./examples/data.tsv"
 parameters = "--cleanenv"
 
 [environment]

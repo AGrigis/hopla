@@ -7,13 +7,145 @@
 ##########################################################################
 
 import argparse
+import datetime
+import re
+import shutil
 import tomllib
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 import hopla
 from hopla.config import Config
+
+# Colors (ANSI)
+RESET = "\033[0m"
+BOLD = "\033[1m"
+CYAN = "\033[36m"
+MAGENTA = "\033[35m"
+DIM = "\033[2m"
+
+
+def print_hoplacli_header(
+        license="CeCILL-B",
+        subtitle="Fast, friendly CLI to submit you jobs"):
+    """
+    Print a styled header banner for the hoplacli tool.
+
+    Parameters
+    ----------
+    license : str, optional
+        The license displayed in the header. Default is "CeCILL-B".
+    subtitle : str, optional
+        A secondary line of text displayed below the title.
+        Default is "Fast, friendly CLI to submit you jobs".
+
+    Notes
+    -----
+    - The header is styled with ANSI escape codes for colors and bold text.
+    - The width of the banner adapts to the terminal size (up to 100
+      characters).
+    - Includes a timestamp of when the session started.
+    - Uses box-drawing characters for a clean framed look.
+    """
+    # Terminal width
+    width = shutil.get_terminal_size((80, 20)).columns
+    max_content = min(width - 6, 100)  # keep borders tidy
+
+    # Banner text
+    banner = f"{BOLD}{MAGENTA}HOPLA{RESET} {BOLD}{CYAN}CLI{RESET}"
+    meta = f"{DIM}{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}{RESET}"
+
+    # Compose lines (truncate if needed)
+    def clip(s): return (s[:max_content] + "…" if len(s) > max_content else s)
+    line1 = clip(banner)
+    line2 = clip(f"{BOLD}License: {license}{RESET}")
+    line3 = clip(subtitle)
+    line4 = clip(f"Session started • {meta}")
+
+    # Box drawing
+    top = "╭" + "─" * (max_content + 2) + "╮"
+    bottom = "╰" + "─" * (max_content + 2) + "╯"
+
+    def center(s):
+        pad = max_content - len(_strip_ansi(s))
+        left = pad // 2
+        right = pad - left
+        return "│ " + (" " * left) + s + (" " * right) + " │"
+
+    print(top)
+    print(center(line1))
+    print(center(line2))
+    print(center(line3))
+    print(center(line4))
+    print(bottom)
+    print()  # spacing
+
+
+def display_toml(
+        data,
+        title="TOML Configuration"):
+    """
+    Pretty-print TOML content inside a styled box with colors.
+
+    Parameters
+    ----------
+    data : dict
+        TOML data content.
+    title : str, optional
+        Title displayed at the top of the box. Default is "TOML Configuration".
+
+    Notes
+    -----
+    - Uses ANSI escape codes for colors.
+    - Automatically adapts to terminal width (up to 100 characters).
+    - Displays keys in cyan and values in magenta for readability.
+    """
+    # Terminal width
+    width = shutil.get_terminal_size((80, 20)).columns
+    max_content = min(width - 6, 100)
+
+    # Box drawing
+    top = "╭" + "─" * (max_content + 2) + "╮"
+    bottom = "╰" + "─" * (max_content + 2) + "╯"
+
+    def center(s):
+        pad = max_content - len(_strip_ansi(s))
+        left = pad // 2
+        right = pad - left
+        return "│ " + (" " * left) + s + (" " * right) + " │"
+
+    def format_line(key, value=None):
+        if value is None:
+            line = f"{CYAN}{key}{RESET}"
+        else:
+            line = f"{CYAN}{key}{RESET} = {MAGENTA}{value}{RESET}"
+        visible_len = len(_strip_ansi(line))
+        if visible_len > max_content:
+            line = line[:max_content-1] + "…"
+            visible_len = len(_strip_ansi(line))
+        return "│ " + line + " " * (max_content - visible_len) + " │"
+
+    # Print box
+    print(top)
+    print(center(f"{BOLD}{title}{RESET}"))
+    print("│ " + " " * max_content + " │")
+    for section, content in data.items():
+        if isinstance(content, dict):
+            print(format_line(f"[{section}]"))
+            for k, v in content.items():
+                print(format_line(k, v))
+        else:
+            print(format_line(section, content))
+        print(format_line(""))
+
+    print(bottom)
+
+
+def _strip_ansi(s: str) -> str:
+    """Remove ANSI escape codes from a string."""
+    return re.sub(r"\x1b\[[0-9;]*m", "", s)
 
 
 def main():
@@ -53,10 +185,6 @@ def main():
     commands : str or list
         Commands to execute. Can be a Python expression string (e.g.,
         "sleep {k}") or a list of commands.
-    data : str
-        A TSV file used to fill the previous Python expression string.
-        Column names must match expression (e.g., "k" in the previous
-        example).
     parameters : str
         Additional parameters passed to the container execution command
         (e.g., "--cleanenv").
@@ -92,7 +220,14 @@ def main():
     - The `multi` section should define `n_splits` to control chunking.
     - The `Config` context manager is used to apply configuration settings
       during execution.
+
+    Raises
+    ------
+    ValueError
+        If 'data.tsv' is missing.
     """
+    print_hoplacli_header()
+
     parser = argparse.ArgumentParser(
         prog="hoplactl",
         description=(
@@ -103,7 +238,10 @@ def main():
             "configuration. It then runs the executor with a specified "
             "maximum number of jobs and writes a report to disk."
         ),
-        epilog="Notes:\n- Use a valid TOML file.\n- See docs for examples.",
+        epilog=(
+            "Notes:\n- Use a valid TOML file.\n- Add a 'data.tsv' file next "
+            "to the configuration file if needed.\n- See docs for examples."
+        ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
     parser.add_argument(
@@ -127,6 +265,7 @@ def main():
 
     with open(args.config, "rb") as of:
         config = tomllib.load(of)
+    display_toml(config)
 
     executor = hopla.Executor(
         **config["environment"]
@@ -134,24 +273,32 @@ def main():
 
     commands = config["inputs"]["commands"]
     if not isinstance(commands, (list, tuple)):
-        df = pd.read_csv(config["inputs"]["data"], sep="\t")
+        data_file = Path(args.config).parent / "data.tsv"
+        if not data_file.is_file():
+            raise ValueError(
+                "A TSV file named 'data.tsv' must be located next to the "
+                "configuration file. It is needed to fill the 'commands' "
+                "Python expression string in TOML configuration. Column "
+                "names must match expression keys."
+            )
+        df = pd.read_csv(data_file, sep="\t")
         commands = [commands.format(**dict(row)) for _, row in df.iterrows()]
+
     if config.get("multi") is not None:
         chunks = np.array_split(commands, config["multi"]["n_splits"])
-        jobs = [
+        _ = [
             executor.submit(
                 [hopla.DelayedSubmission(cmd) for cmd in subcmds],
                 execution_parameters=config["inputs"].get("parameters"),
             ) for subcmds in chunks
         ]
     else:
-        jobs = [
+        _ = [
             executor.submit(
                 cmd,
                 execution_parameters=config["inputs"].get("parameters"),
             ) for cmd in commands
         ]
-    print(jobs)
 
     with Config(**config["config"]):
         executor(max_jobs=args.njobs)
