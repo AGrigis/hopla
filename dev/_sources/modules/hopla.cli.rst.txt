@@ -18,7 +18,10 @@ Functions
    :toctree: generated/
    :template: function.rst
 
+    _strip_ansi
+    display_toml
     main
+    print_hoplacli_header
 
 
 

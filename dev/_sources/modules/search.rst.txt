@@ -20,7 +20,10 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
       <li><a href='generated/hopla.Executor.html'>hopla.Executor</a></li>
       <li><a href='generated/hopla.ccc.CCCInfoWatcher.html'>hopla.ccc.CCCInfoWatcher</a></li>
       <li><a href='generated/hopla.ccc.DelayedCCCJob.html'>hopla.ccc.DelayedCCCJob</a></li>
+      <li><a href='generated/hopla.cli._strip_ansi.html'>hopla.cli._strip_ansi</a></li>
+      <li><a href='generated/hopla.cli.display_toml.html'>hopla.cli.display_toml</a></li>
       <li><a href='generated/hopla.cli.main.html'>hopla.cli.main</a></li>
+      <li><a href='generated/hopla.cli.print_hoplacli_header.html'>hopla.cli.print_hoplacli_header</a></li>
       <li><a href='generated/hopla.config.Config.html'>hopla.config.Config</a></li>
       <li><a href='generated/hopla.executor.DelayedSubmission.html'>hopla.executor.DelayedSubmission</a></li>
       <li><a href='generated/hopla.executor.Executor.html'>hopla.executor.Executor</a></li>
