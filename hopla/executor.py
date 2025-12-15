@@ -119,7 +119,11 @@ class Executor:
             "nmulticpus": n_multi_cpus,
             "ngpus": n_gpus,
             "modules": ",".join(modules),
-            "image": Path(image).expanduser().absolute(),
+            "image": (
+                Path(image).expanduser().absolute()
+                if Path(image).is_file()
+                else image
+            ),
             "project_id": project_id
         }
         self._delayed_jobs = []
