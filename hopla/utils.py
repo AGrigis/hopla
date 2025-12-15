@@ -109,11 +109,23 @@ class JobPaths:
         return self.submission_folder / f"{self.job_id}_joblib_script.py"
 
     @property
+    def oneshot_file(self):
+        """ Generate the oneshot file location.
+        """
+        return self.submission_folder / f"{self.job_id}_oneshot_script.sh"
+
+    @property
     def flux_dir(self):
         """ Generate the flux output dir.
         """
         path = self.log_folder / f"{self.job_id}_flux"
-        path.mkdir(parents=True, exist_ok=True)
+        return path
+
+    @property
+    def oneshot_dir(self):
+        """ Generate the oneshot output dir.
+        """
+        path = self.log_folder / f"{self.job_id}_oneshot"
         return path
 
     def __repr__(self):

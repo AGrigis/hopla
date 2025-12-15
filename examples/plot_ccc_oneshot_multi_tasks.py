@@ -1,13 +1,13 @@
 """
-Basic example on how to use the PBS cluster
-===========================================
+Basic example on how to use the CCC cluster using multi-tasks
+=============================================================
 
 Basic example
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.
 
-A simple example of how to use ``hopla`` on a PBS cluster. Please check
+A simple example of how to use ``hopla`` on a CCC cluster. Please check
 the :ref:`user guide <user_guide>` for a more in depth presentation of all
 functionalities.
 
@@ -17,6 +17,7 @@ Imports
 """
 
 import hopla
+import numpy as np
 from pprint import pprint
 
 
@@ -25,11 +26,13 @@ from pprint import pprint
 # ----------------
 
 executor = hopla.Executor(
-    cluster="pbs",
+    cluster="ccc",
     folder="/tmp/hopla",
-    queue="Nspin_short",
-    image="/tmp/hopla/my-apptainer-img.simg",
-    walltime=1
+    queue="rome",
+    image="/tmp/hopla/my-docker-img.tar",
+    walltime=1,
+    project_id="genXXX",
+    backend="oneshot",
 )
 
 
@@ -37,8 +40,10 @@ executor = hopla.Executor(
 # Submit Jobs
 # -----------
 
+chunks = np.array_split(range(1, 11), 3)
 jobs = [
-    executor.submit("sleep", k) for k in range(1, 11)
+    executor.submit([hopla.DelayedSubmission("sleep", k) for k in c])
+    for c in chunks
 ]
 pprint(jobs)
 print(jobs[0].delayed_submission)
@@ -53,13 +58,16 @@ print(jobs[0].paths)
 batch = jobs[0].paths.submission_file
 with open(batch) as of:
     print(of.read())
+script = jobs[0].paths.submission_file
+with open(script) as of:
+    print(of.read())
 
 
 # %%
 # Start Jobs
 # ----------
 #
-# We can't execute the code on the CI since the PBS infrastructure is not
+# We can't execute the code on the CI since the CCC infrastructure is not
 # available.
 
 from hopla.config import Config

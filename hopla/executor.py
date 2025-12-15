@@ -65,7 +65,8 @@ class Executor:
     project_id: str, default None
         the project ID where you have computing hours.
     backend: str, default 'flux'
-        the multi-taks backend to use: 'flux' or 'jobli
+        the multi-taks backend to use: 'flux', 'joblib or 'oneshot'. This
+        option is only used with CCC cluster type.
 
     Examples
     --------

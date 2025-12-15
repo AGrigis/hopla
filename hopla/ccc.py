@@ -75,15 +75,28 @@ class DelayedCCCJob(DelayedJob):
     job_id: str
         the job identifier.
     backend: str, default 'flux'
-        the multi-taks backend to use: 'flux' or 'joblib'.
+        the multi-taks backend to use: 'flux', 'joblib' or 'oneshot'.
+
+    Raises
+    ------
+    ValueError
+        If an invalid backend is specified.
     """
     _hub = "n4h00001rs"
     _submission_cmd = "ccc_msub"
     _container_cmd = "pcocc-rs run {hub}:{image_name} {params} -- {command}"
+    _container_onshot_cmd = (
+        "pcocc-rs run {hub}:{image_name} {params} /bin/bash -- -c '{command}'"
+    )
 
     def __init__(self, delayed_submission, executor, job_id, backend="flux"):
         super().__init__(delayed_submission, executor, job_id)
         self.multi_task = isinstance(delayed_submission, (list, tuple))
+        if backend not in ("flux", "joblib", "oneshot"):
+            raise ValueError(
+                "Invalid backend. Valid multi-taks backends are: 'flux', "
+                "'joblib' or 'oneshot'."
+            )
         self.backend = backend
         resource_dir = Path(__file__).parent / "resources"
         if self.multi_task and self.backend == "flux":
@@ -92,6 +105,9 @@ class DelayedCCCJob(DelayedJob):
         elif self.multi_task and self.backend == "joblib":
             path = resource_dir / "ccc_batch_template.txt"
             self.worker_file = resource_dir / "joblib_script_template.txt"
+        elif self.multi_task and self.backend == "oneshot":
+            path = resource_dir / "ccc_batch_template.txt"
+            self.worker_file = resource_dir / "oneshot_script_template.txt"
         else:
             path = resource_dir / "ccc_batch_template.txt"
         with open(path) as of:
@@ -157,6 +173,7 @@ class DelayedCCCJob(DelayedJob):
                 for command in subcmds
             ]
             params["logdir"] = self.paths.flux_dir
+            self.paths.flux_dir.mkdir(parents=True, exist_ok=True)
             with open(self.paths.task_file, "w") as of:
                 of.write("\n".join(subcmds))
             cmd = self.paths.task_file
@@ -185,6 +202,31 @@ class DelayedCCCJob(DelayedJob):
                     )
                 )
             cmd = f"python {self.paths.joblib_file}"
+        elif self.multi_task and self.backend == "oneshot":
+            with open(self.worker_file) as of:
+                oneshot_template = of.read()
+            subcmds = [
+                submission.command
+                for submission in self.delayed_submission
+            ]
+            subcmds = [
+                f"'{command}'"
+                for command in subcmds
+            ]
+            with open(self.paths.oneshot_file, "w") as of:
+                of.write(
+                    oneshot_template.format(
+                        logdir=self.paths.oneshot_dir,
+                        commands="\n".join(subcmds),
+                    )
+                )
+            self.paths.oneshot_dir.mkdir(parents=True, exist_ok=True)
+            cmd = self._container_onshot_cmd.format(
+                hub=self._hub,
+                image_name=self.image_name,
+                params=self.delayed_submission[0].execution_parameters,
+                command=self.paths.oneshot_file
+            )
         else:
             cmd = self._container_cmd.format(
                 hub=self._hub,
@@ -243,7 +285,7 @@ class DelayedCCCJob(DelayedJob):
     def sub_report(self):
         report = []
         prefix = f"{self.__class__.__name__}<job_id={self.job_id}>"
-        if self.multi_task:
+        if self.multi_task and self.backend == "flux":
             log_files = list(self.paths.flux_dir.glob("bulk_*"))
             tasks_ids = [
                 path.name.split("_")[1]
@@ -254,6 +296,20 @@ class DelayedCCCJob(DelayedJob):
                 f"{prefix}number_of_tasks: {len(self.delayed_submission)}")
             report.append(f"{prefix}failed_tasks: {tasks_ids}")
             report.append(f"{prefix}running_tasks: {len(log_files)}")
+            report.append(f"{prefix}logdir: {self.paths.flux_dir}")
+        elif self.multi_task and self.backend == "oneshot":
+            log_files = list(self.paths.flux_dir.glob("job_*.exitcode"))
+            exitcodes = []
+            for path in log_files:
+                with open(path) as of:
+                    exitcodes.append(int(of.read().strip()))
+            n_fail = sum(1 for code in exitcodes if code != 0)
+            n_submissions = len(self.delayed_submission)
+            n_tasks = len(log_files)
+            report.append(f"{prefix}number_of_tasks: {n_submissions}")
+            report.append(f"{prefix}failed_tasks: {n_fail}")
+            report.append(f"{prefix}running_tasks: {n_tasks}")
+            report.append(f"{prefix}logdir: {self.paths.oneshot_dir}")
         return report
 
     @property

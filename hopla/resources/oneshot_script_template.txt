@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+# First parameter = log directory
+LOG_DIR="{logdir}"
+echo "Logs written to $LOG_DIR/job_N.out, job_N.err, and job_N.exitcode"
+
+# List of jobs
+jobs=(
+{commands}
+)
+
+# Run jobs in parallel and redirect stdout/stderr
+pids=()
+for i in "${{!jobs[@]}}"; do
+  (
+    bash -c "${{jobs[$i]}}" \
+      >"$LOG_DIR/job_${{i}}.out" \
+      2>"$LOG_DIR/job_${{i}}.err"
+    echo $? >"$LOG_DIR/job_${{i}}.exitcode"
+  ) &
+  pids+=($!)
+done
+
+# Wait for all jobs and collect exit codes
+exit_code=0
+for pid in "${{pids[@]}}"; do
+  if ! wait "$pid"; then
+    exit_code=$?
+  fi
+done
+
+# Return proper exit code (0 if all succeeded, non‑zero if any failed)
+exit $exit_code
