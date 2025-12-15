@@ -198,9 +198,9 @@ Generate a batch
     /home/runner/work/hopla/hopla/examples/plot_ccc.py:52: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       jobs[0].generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -288,9 +288,9 @@ available.
     CCC_MSUB:   0%|          | 0/10 [00:00<?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -306,12 +306,12 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
-    CCC_MSUB:  10%|█         | 1/10 [00:00<00:00, 302.36it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  10%|█         | 1/10 [00:00<00:00, 259.60it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -327,12 +327,12 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
-    CCC_MSUB:  20%|██        | 2/10 [00:00<00:00, 360.12it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  20%|██        | 2/10 [00:00<00:00, 312.04it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -351,9 +351,9 @@ available.
     CCC_MSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]     CCC_MSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -372,9 +372,9 @@ available.
     CCC_MSUB:  40%|████      | 4/10 [00:03<00:06,  1.00s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -393,9 +393,9 @@ available.
     CCC_MSUB:  50%|█████     | 5/10 [00:06<00:06,  1.25s/it]    CCC_MSUB:  50%|█████     | 5/10 [00:06<00:06,  1.25s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -414,9 +414,9 @@ available.
     CCC_MSUB:  60%|██████    | 6/10 [00:06<00:04,  1.25s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -435,9 +435,9 @@ available.
     CCC_MSUB:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it]    CCC_MSUB:  70%|███████   | 7/10 [00:09<00:04,  1.35s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -456,9 +456,9 @@ available.
     CCC_MSUB:  80%|████████  | 8/10 [00:09<00:02,  1.35s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -477,9 +477,9 @@ available.
     CCC_MSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]    CCC_MSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 152, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 256, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -553,9 +553,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.245 seconds)
+   **Total running time of the script:** (0 minutes 15.331 seconds)
 
-**Estimated memory usage:**  107 MB
+**Estimated memory usage:**  109 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_ccc.py:

@@ -446,9 +446,9 @@ functionalities.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/hopla/hopla/examples/plot_ccc_oneshot_multi_tasks.py:56: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   jobs[0].generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 152, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 256, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -500,7 +500,7 @@ echo $HOSTNAME
 
 
 # Command
-pcocc-rs run n4h00001rs:/tmp/hopla/my-docker-img.tar  /bin/bash -- -c &#39;/tmp/hopla/submissions/1_oneshot_script.sh&#39;
+pcocc-rs run n4h00001rs:/tmp/hopla/my-docker-img.tar  /bin/bash -- -c &#39;/bin/bash /tmp/hopla/submissions/1_oneshot_script.sh&#39;
 echo &quot;HOPLASAY-DONE&quot;
 
 #!/bin/bash
@@ -526,7 +526,7 @@ echo $HOSTNAME
 
 
 # Command
-pcocc-rs run n4h00001rs:/tmp/hopla/my-docker-img.tar  /bin/bash -- -c &#39;/tmp/hopla/submissions/1_oneshot_script.sh&#39;
+pcocc-rs run n4h00001rs:/tmp/hopla/my-docker-img.tar  /bin/bash -- -c &#39;/bin/bash /tmp/hopla/submissions/1_oneshot_script.sh&#39;
 echo &quot;HOPLASAY-DONE&quot;
 </pre></div>
 </div>
@@ -545,9 +545,9 @@ available.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CCC_MSUB:   0%|          | 0/3 [00:00&lt;?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 152, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 256, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -564,12 +564,12 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
 
-CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 311.08it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 255.27it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 152, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 256, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -586,12 +586,12 @@ CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 311.08it/s]/home/runner/
 
 [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
 
-CCC_MSUB:  67%|██████▋   | 2/3 [00:00&lt;00:00, 356.64it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  67%|██████▋   | 2/3 [00:00&lt;00:00, 292.26it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 152, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 256, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -640,8 +640,8 @@ DelayedCCCJob&lt;job_id=3&gt;running_tasks: 0
 DelayedCCCJob&lt;job_id=3&gt;logdir: /tmp/hopla/logs/3_oneshot
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.185 seconds)</p>
-<p><strong>Estimated memory usage:</strong>  107 MB</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.260 seconds)</p>
+<p><strong>Estimated memory usage:</strong>  108 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-ccc-oneshot-multi-tasks-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/aee9f68b150bc4886a774616e12d48f6/plot_ccc_oneshot_multi_tasks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_ccc_oneshot_multi_tasks.ipynb</span></code></a></p>
