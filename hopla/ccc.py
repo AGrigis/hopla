@@ -86,7 +86,8 @@ class DelayedCCCJob(DelayedJob):
     _submission_cmd = "ccc_msub"
     _container_cmd = "pcocc-rs run {hub}:{image_name} {params} -- {command}"
     _container_onshot_cmd = (
-        "pcocc-rs run {hub}:{image_name} {params} /bin/bash -- -c '{command}'"
+        "pcocc-rs run {hub}:{image_name} {params} /bin/bash -- "
+        "-c '/bin/bash {command}'"
     )
 
     def __init__(self, delayed_submission, executor, job_id, backend="flux"):
