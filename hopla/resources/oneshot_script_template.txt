@@ -15,9 +15,12 @@ jobs=(
 pids=()
 for i in "${{!jobs[@]}}"; do
   (
+    echo "=== Job $i started at $(date '+%Y-%m-%d %H:%M:%S') ===" >>"$LOG_DIR/job_${{i}}.out"
+    echo "Command: ${{jobs[$i]}}" >>"$LOG_DIR/job_${{i}}.out"
     bash -c "${{jobs[$i]}}" \
-      >"$LOG_DIR/job_${{i}}.out" \
+      >>"$LOG_DIR/job_${{i}}.out" \
       2>"$LOG_DIR/job_${{i}}.err"
+    echo "=== Job $i ended at $(date '+%Y-%m-%d %H:%M:%S') ===" >>"$LOG_DIR/job_${{i}}.out"
     echo $? >"$LOG_DIR/job_${{i}}.exitcode"
   ) &
   pids+=($!)
