@@ -172,9 +172,9 @@ Generate a batch
     /home/runner/work/hopla/hopla/examples/plot_ccc_flux_multi_tasks.py:56: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       jobs[0].generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 213, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -194,6 +194,8 @@ Generate a batch
       job_id=1,
       joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
       log_folder=/tmp/hopla/logs,
+      oneshot_dir=/tmp/hopla/logs/1_oneshot,
+      oneshot_file=/tmp/hopla/submissions/1_oneshot_script.sh,
       stderr=/tmp/hopla/logs/1_log.err,
       stdout=/tmp/hopla/logs/1_log.out,
       submission_file=/tmp/hopla/submissions/1_submission.sh,
@@ -251,7 +253,7 @@ Start Jobs
 We can't execute the code on the CI since the CCC infrastructure is not
 available.
 
-.. GENERATED FROM PYTHON SOURCE LINES 72-77
+.. GENERATED FROM PYTHON SOURCE LINES 72-78
 
 .. code-block:: Python
 
@@ -260,6 +262,7 @@ available.
 
     with Config(dryrun=True, delay_s=3):
         executor(max_jobs=2)
+        print(executor.report)
 
 
 
@@ -268,12 +271,12 @@ available.
 
  .. code-block:: none
 
-    CCC_MSUB:   0%|          | 0/3 [00:00<?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:   0%|          | 0/3 [00:00<?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 213, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -289,12 +292,12 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
-    CCC_MSUB:  33%|███▎      | 1/3 [00:00<00:00, 251.35it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  33%|███▎      | 1/3 [00:00<00:00, 261.75it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 213, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -310,12 +313,12 @@ available.
        |FileNotFoundError: [Errno 2] No such file or directory: 'pcocc-rs'
 
     [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
-    CCC_MSUB:  67%|██████▋   | 2/3 [00:00<00:00, 283.34it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
+    CCC_MSUB:  67%|██████▋   | 2/3 [00:00<00:00, 285.73it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can't import image: /tmp/hopla/my-docker-img.tar
       self.generate_batch()
        |Traceback (most recent call last):
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 135, in generate_batch
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 151, in generate_batch
        |    self.import_image()
-       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 213, in import_image
+       |  File "/home/runner/work/hopla/hopla/doc/../hopla/ccc.py", line 255, in import_image
        |    stdout = subprocess.check_output(cmd)
        |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
        |  File "/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py", line 466, in check_output
@@ -332,6 +335,33 @@ available.
 
     [command] ccc_msub /tmp/hopla/submissions/3_submission.sh
     CCC_MSUB: 100%|██████████| 3/3 [00:03<00:00,  1.00s/it]     CCC_MSUB: 100%|██████████| 3/3 [00:03<00:00,  1.00s/it]    CCC_MSUB: 100%|██████████| 3/3 [00:06<00:00,  2.00s/it]
+    ----------------------------------------
+    DelayedCCCJob<job_id=1>exitcode: failure
+    DelayedCCCJob<job_id=1>submission: /tmp/hopla/submissions/1_submission.sh
+    DelayedCCCJob<job_id=1>stdout: none
+    DelayedCCCJob<job_id=1>stderr: none
+    DelayedCCCJob<job_id=1>number_of_tasks: 4
+    DelayedCCCJob<job_id=1>failed_tasks: []
+    DelayedCCCJob<job_id=1>running_tasks: 0
+    DelayedCCCJob<job_id=1>logdir: /tmp/hopla/logs/1_flux
+    ----------------------------------------
+    DelayedCCCJob<job_id=2>exitcode: failure
+    DelayedCCCJob<job_id=2>submission: /tmp/hopla/submissions/2_submission.sh
+    DelayedCCCJob<job_id=2>stdout: none
+    DelayedCCCJob<job_id=2>stderr: none
+    DelayedCCCJob<job_id=2>number_of_tasks: 3
+    DelayedCCCJob<job_id=2>failed_tasks: []
+    DelayedCCCJob<job_id=2>running_tasks: 0
+    DelayedCCCJob<job_id=2>logdir: /tmp/hopla/logs/2_flux
+    ----------------------------------------
+    DelayedCCCJob<job_id=3>exitcode: failure
+    DelayedCCCJob<job_id=3>submission: /tmp/hopla/submissions/3_submission.sh
+    DelayedCCCJob<job_id=3>stdout: none
+    DelayedCCCJob<job_id=3>stderr: none
+    DelayedCCCJob<job_id=3>number_of_tasks: 3
+    DelayedCCCJob<job_id=3>failed_tasks: []
+    DelayedCCCJob<job_id=3>running_tasks: 0
+    DelayedCCCJob<job_id=3>logdir: /tmp/hopla/logs/3_flux
 
 
 
@@ -339,9 +369,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.226 seconds)
+   **Total running time of the script:** (0 minutes 6.190 seconds)
 
-**Estimated memory usage:**  109 MB
+**Estimated memory usage:**  107 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_ccc_flux_multi_tasks.py:

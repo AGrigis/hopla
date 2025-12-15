@@ -11,7 +11,7 @@
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
 <meta name="description" content="Basic example When you’re running hundreds or thousands of jobs, automation is a necessity. This is where hopla can help you. A simple example of how to use hopla on a PBS cluster. Please check the..." />
-<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the SLURM cluster" href="plot_slurm.html" /><link rel="prev" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_flux_multi_tasks.html" />
+<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the SLURM cluster" href="plot_slurm.html" /><link rel="prev" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_oneshot_multi_tasks.html" />
         <link rel="prefetch" href="../_static/hopla-transparent.png" as="image" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2025.07.19 -->
@@ -236,6 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc_flux_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_oneshot_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -452,6 +453,8 @@ DelayedSubmission(
   job_id=1,
   joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
   log_folder=/tmp/hopla/logs,
+  oneshot_dir=/tmp/hopla/logs/1_oneshot,
+  oneshot_file=/tmp/hopla/submissions/1_oneshot_script.sh,
   stderr=/tmp/hopla/logs/1_log.err,
   stdout=/tmp/hopla/logs/1_log.out,
   submission_file=/tmp/hopla/submissions/1_submission.sh,
@@ -486,13 +489,14 @@ available.</p>
 
 <span class="k">with</span> <a href="../modules/generated/hopla.config.Config.html#hopla.config.Config" title="hopla.config.Config" class="sphx-glr-backref-module-hopla-config sphx-glr-backref-type-py-class"><span class="n">Config</span></a><span class="p">(</span><span class="n">dryrun</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delay_s</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <a href="../modules/generated/hopla.Executor.html#hopla.Executor" title="hopla.Executor" class="sphx-glr-backref-module-hopla sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">executor</span></a><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><a href="../modules/generated/hopla.Executor.html#hopla.Executor.report" title="hopla.Executor.report" class="sphx-glr-backref-module-hopla sphx-glr-backref-type-py-property"><span class="n">executor</span><span class="o">.</span><span class="n">report</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>QSUB:   0%|          | 0/10 [00:00&lt;?, ?it/s][command] qsub /tmp/hopla/submissions/1_submission.sh
 
-QSUB:  10%|█         | 1/10 [00:00&lt;00:00, 1584.55it/s][command] qsub /tmp/hopla/submissions/2_submission.sh
+QSUB:  10%|█         | 1/10 [00:00&lt;00:00, 1832.37it/s][command] qsub /tmp/hopla/submissions/2_submission.sh
 
-QSUB:  20%|██        | 2/10 [00:00&lt;00:00, 1674.37it/s][command] qsub /tmp/hopla/submissions/3_submission.sh
+QSUB:  20%|██        | 2/10 [00:00&lt;00:00, 2037.55it/s][command] qsub /tmp/hopla/submissions/3_submission.sh
 
 QSUB:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it]
 QSUB:  30%|███       | 3/10 [00:03&lt;00:07,  1.00s/it][command] qsub /tmp/hopla/submissions/4_submission.sh
@@ -514,10 +518,60 @@ QSUB:  90%|█████████ | 9/10 [00:12&lt;00:01,  1.41s/it][comman
 
 QSUB: 100%|██████████| 10/10 [00:12&lt;00:00,  1.41s/it]
 QSUB: 100%|██████████| 10/10 [00:15&lt;00:00,  1.50s/it]
+----------------------------------------
+DelayedPbsJob&lt;job_id=1&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=1&gt;submission: /tmp/hopla/submissions/1_submission.sh
+DelayedPbsJob&lt;job_id=1&gt;stdout: none
+DelayedPbsJob&lt;job_id=1&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=2&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=2&gt;submission: /tmp/hopla/submissions/2_submission.sh
+DelayedPbsJob&lt;job_id=2&gt;stdout: none
+DelayedPbsJob&lt;job_id=2&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=3&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=3&gt;submission: /tmp/hopla/submissions/3_submission.sh
+DelayedPbsJob&lt;job_id=3&gt;stdout: none
+DelayedPbsJob&lt;job_id=3&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=4&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=4&gt;submission: /tmp/hopla/submissions/4_submission.sh
+DelayedPbsJob&lt;job_id=4&gt;stdout: none
+DelayedPbsJob&lt;job_id=4&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=5&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=5&gt;submission: /tmp/hopla/submissions/5_submission.sh
+DelayedPbsJob&lt;job_id=5&gt;stdout: none
+DelayedPbsJob&lt;job_id=5&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=6&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=6&gt;submission: /tmp/hopla/submissions/6_submission.sh
+DelayedPbsJob&lt;job_id=6&gt;stdout: none
+DelayedPbsJob&lt;job_id=6&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=7&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=7&gt;submission: /tmp/hopla/submissions/7_submission.sh
+DelayedPbsJob&lt;job_id=7&gt;stdout: none
+DelayedPbsJob&lt;job_id=7&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=8&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=8&gt;submission: /tmp/hopla/submissions/8_submission.sh
+DelayedPbsJob&lt;job_id=8&gt;stdout: none
+DelayedPbsJob&lt;job_id=8&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=9&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=9&gt;submission: /tmp/hopla/submissions/9_submission.sh
+DelayedPbsJob&lt;job_id=9&gt;stdout: none
+DelayedPbsJob&lt;job_id=9&gt;stderr: none
+----------------------------------------
+DelayedPbsJob&lt;job_id=10&gt;exitcode: failure
+DelayedPbsJob&lt;job_id=10&gt;submission: /tmp/hopla/submissions/10_submission.sh
+DelayedPbsJob&lt;job_id=10&gt;stdout: none
+DelayedPbsJob&lt;job_id=10&gt;stderr: none
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.223 seconds)</p>
-<p><strong>Estimated memory usage:</strong>  109 MB</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.184 seconds)</p>
+<p><strong>Estimated memory usage:</strong>  107 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-pbs-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/aa11d4309713d5a4b1fc5fb9d5b7050d/plot_pbs.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_pbs.ipynb</span></code></a></p>
@@ -547,7 +601,7 @@ QSUB: 100%|██████████| 10/10 [00:15&lt;00:00,  1.50s/it]
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="plot_ccc_flux_multi_tasks.html">
+          <a class="prev-page" href="plot_ccc_oneshot_multi_tasks.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">

@@ -179,6 +179,8 @@ Generate a batch
       job_id=1,
       joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
       log_folder=/tmp/hopla/logs,
+      oneshot_dir=/tmp/hopla/logs/1_oneshot,
+      oneshot_file=/tmp/hopla/submissions/1_oneshot_script.sh,
       stderr=/tmp/hopla/logs/1_log.err,
       stdout=/tmp/hopla/logs/1_log.out,
       submission_file=/tmp/hopla/submissions/1_submission.sh,
@@ -219,7 +221,7 @@ Start Jobs
 We can't execute the code on the CI since the PBS infrastructure is not
 available.
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-69
+.. GENERATED FROM PYTHON SOURCE LINES 64-70
 
 .. code-block:: Python
 
@@ -228,6 +230,7 @@ available.
 
     with Config(dryrun=True, delay_s=3):
         executor(max_jobs=2)
+        print(executor.report)
 
 
 
@@ -237,8 +240,8 @@ available.
  .. code-block:: none
 
     SBATCH:   0%|          | 0/10 [00:00<?, ?it/s][command] sbatch /tmp/hopla/submissions/1_submission.sh
-    SBATCH:  10%|█         | 1/10 [00:00<00:00, 1801.68it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
-    SBATCH:  20%|██        | 2/10 [00:00<00:00, 1828.78it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
+    SBATCH:  10%|█         | 1/10 [00:00<00:00, 1937.32it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
+    SBATCH:  20%|██        | 2/10 [00:00<00:00, 2046.50it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
     SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]      SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it][command] sbatch /tmp/hopla/submissions/4_submission.sh
     SBATCH:  40%|████      | 4/10 [00:03<00:06,  1.00s/it][command] sbatch /tmp/hopla/submissions/5_submission.sh
     SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it]    SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it][command] sbatch /tmp/hopla/submissions/6_submission.sh
@@ -247,6 +250,56 @@ available.
     SBATCH:  80%|████████  | 8/10 [00:09<00:02,  1.35s/it][command] sbatch /tmp/hopla/submissions/9_submission.sh
     SBATCH:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]    SBATCH:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it][command] sbatch /tmp/hopla/submissions/10_submission.sh
     SBATCH: 100%|██████████| 10/10 [00:12<00:00,  1.41s/it]    SBATCH: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+    ----------------------------------------
+    DelayedSlurmJob<job_id=1>exitcode: failure
+    DelayedSlurmJob<job_id=1>submission: /tmp/hopla/submissions/1_submission.sh
+    DelayedSlurmJob<job_id=1>stdout: none
+    DelayedSlurmJob<job_id=1>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=2>exitcode: failure
+    DelayedSlurmJob<job_id=2>submission: /tmp/hopla/submissions/2_submission.sh
+    DelayedSlurmJob<job_id=2>stdout: none
+    DelayedSlurmJob<job_id=2>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=3>exitcode: failure
+    DelayedSlurmJob<job_id=3>submission: /tmp/hopla/submissions/3_submission.sh
+    DelayedSlurmJob<job_id=3>stdout: none
+    DelayedSlurmJob<job_id=3>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=4>exitcode: failure
+    DelayedSlurmJob<job_id=4>submission: /tmp/hopla/submissions/4_submission.sh
+    DelayedSlurmJob<job_id=4>stdout: none
+    DelayedSlurmJob<job_id=4>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=5>exitcode: failure
+    DelayedSlurmJob<job_id=5>submission: /tmp/hopla/submissions/5_submission.sh
+    DelayedSlurmJob<job_id=5>stdout: none
+    DelayedSlurmJob<job_id=5>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=6>exitcode: failure
+    DelayedSlurmJob<job_id=6>submission: /tmp/hopla/submissions/6_submission.sh
+    DelayedSlurmJob<job_id=6>stdout: none
+    DelayedSlurmJob<job_id=6>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=7>exitcode: failure
+    DelayedSlurmJob<job_id=7>submission: /tmp/hopla/submissions/7_submission.sh
+    DelayedSlurmJob<job_id=7>stdout: none
+    DelayedSlurmJob<job_id=7>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=8>exitcode: failure
+    DelayedSlurmJob<job_id=8>submission: /tmp/hopla/submissions/8_submission.sh
+    DelayedSlurmJob<job_id=8>stdout: none
+    DelayedSlurmJob<job_id=8>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=9>exitcode: failure
+    DelayedSlurmJob<job_id=9>submission: /tmp/hopla/submissions/9_submission.sh
+    DelayedSlurmJob<job_id=9>stdout: none
+    DelayedSlurmJob<job_id=9>stderr: none
+    ----------------------------------------
+    DelayedSlurmJob<job_id=10>exitcode: failure
+    DelayedSlurmJob<job_id=10>submission: /tmp/hopla/submissions/10_submission.sh
+    DelayedSlurmJob<job_id=10>stdout: none
+    DelayedSlurmJob<job_id=10>stderr: none
 
 
 
@@ -254,9 +307,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.222 seconds)
+   **Total running time of the script:** (0 minutes 15.180 seconds)
 
-**Estimated memory usage:**  109 MB
+**Estimated memory usage:**  107 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_slurm.py:

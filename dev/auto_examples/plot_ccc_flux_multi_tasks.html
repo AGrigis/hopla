@@ -11,7 +11,7 @@
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
 <meta name="description" content="Basic example When you’re running hundreds or thousands of jobs, automation is a necessity. This is where hopla can help you. A simple example of how to use hopla on a CCC cluster. Please check the..." />
-<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the PBS cluster" href="plot_pbs.html" /><link rel="prev" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_joblib_multi_tasks.html" />
+<link rel="search" title="Search" href="../search.html" /><link rel="next" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_oneshot_multi_tasks.html" /><link rel="prev" title="Basic example on how to use the CCC cluster using multi-tasks" href="plot_ccc_joblib_multi_tasks.html" />
         <link rel="prefetch" href="../_static/hopla-transparent.png" as="image" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2025.07.19 -->
@@ -236,6 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_ccc_oneshot_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -445,9 +446,9 @@ functionalities.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/runner/work/hopla/hopla/examples/plot_ccc_flux_multi_tasks.py:56: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   jobs[0].generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -467,6 +468,8 @@ JobPaths(
   job_id=1,
   joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
   log_folder=/tmp/hopla/logs,
+  oneshot_dir=/tmp/hopla/logs/1_oneshot,
+  oneshot_file=/tmp/hopla/submissions/1_oneshot_script.sh,
   stderr=/tmp/hopla/logs/1_log.err,
   stdout=/tmp/hopla/logs/1_log.out,
   submission_file=/tmp/hopla/submissions/1_submission.sh,
@@ -523,14 +526,15 @@ available.</p>
 
 <span class="k">with</span> <a href="../modules/generated/hopla.config.Config.html#hopla.config.Config" title="hopla.config.Config" class="sphx-glr-backref-module-hopla-config sphx-glr-backref-type-py-class"><span class="n">Config</span></a><span class="p">(</span><span class="n">dryrun</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delay_s</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <a href="../modules/generated/hopla.Executor.html#hopla.Executor" title="hopla.Executor" class="sphx-glr-backref-module-hopla sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">executor</span></a><span class="p">(</span><span class="n">max_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><a href="../modules/generated/hopla.Executor.html#hopla.Executor.report" title="hopla.Executor.report" class="sphx-glr-backref-module-hopla sphx-glr-backref-type-py-property"><span class="n">executor</span><span class="o">.</span><span class="n">report</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CCC_MSUB:   0%|          | 0/3 [00:00&lt;?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CCC_MSUB:   0%|          | 0/3 [00:00&lt;?, ?it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -547,12 +551,12 @@ available.</p>
 
 [command] ccc_msub /tmp/hopla/submissions/1_submission.sh
 
-CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 251.35it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 261.75it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -569,12 +573,12 @@ CCC_MSUB:  33%|███▎      | 1/3 [00:00&lt;00:00, 251.35it/s]/home/runner/
 
 [command] ccc_msub /tmp/hopla/submissions/2_submission.sh
 
-CCC_MSUB:  67%|██████▋   | 2/3 [00:00&lt;00:00, 283.34it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:360: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
+CCC_MSUB:  67%|██████▋   | 2/3 [00:00&lt;00:00, 285.73it/s]/home/runner/work/hopla/hopla/doc/../hopla/utils.py:372: UserWarning: Can&#39;t import image: /tmp/hopla/my-docker-img.tar
   self.generate_batch()
    |Traceback (most recent call last):
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 135, in generate_batch
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 151, in generate_batch
    |    self.import_image()
-   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 213, in import_image
+   |  File &quot;/home/runner/work/hopla/hopla/doc/../hopla/ccc.py&quot;, line 255, in import_image
    |    stdout = subprocess.check_output(cmd)
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    |  File &quot;/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/subprocess.py&quot;, line 466, in check_output
@@ -594,10 +598,37 @@ CCC_MSUB:  67%|██████▋   | 2/3 [00:00&lt;00:00, 283.34it/s]/home/r
 CCC_MSUB: 100%|██████████| 3/3 [00:03&lt;00:00,  1.00s/it]
 CCC_MSUB: 100%|██████████| 3/3 [00:03&lt;00:00,  1.00s/it]
 CCC_MSUB: 100%|██████████| 3/3 [00:06&lt;00:00,  2.00s/it]
+----------------------------------------
+DelayedCCCJob&lt;job_id=1&gt;exitcode: failure
+DelayedCCCJob&lt;job_id=1&gt;submission: /tmp/hopla/submissions/1_submission.sh
+DelayedCCCJob&lt;job_id=1&gt;stdout: none
+DelayedCCCJob&lt;job_id=1&gt;stderr: none
+DelayedCCCJob&lt;job_id=1&gt;number_of_tasks: 4
+DelayedCCCJob&lt;job_id=1&gt;failed_tasks: []
+DelayedCCCJob&lt;job_id=1&gt;running_tasks: 0
+DelayedCCCJob&lt;job_id=1&gt;logdir: /tmp/hopla/logs/1_flux
+----------------------------------------
+DelayedCCCJob&lt;job_id=2&gt;exitcode: failure
+DelayedCCCJob&lt;job_id=2&gt;submission: /tmp/hopla/submissions/2_submission.sh
+DelayedCCCJob&lt;job_id=2&gt;stdout: none
+DelayedCCCJob&lt;job_id=2&gt;stderr: none
+DelayedCCCJob&lt;job_id=2&gt;number_of_tasks: 3
+DelayedCCCJob&lt;job_id=2&gt;failed_tasks: []
+DelayedCCCJob&lt;job_id=2&gt;running_tasks: 0
+DelayedCCCJob&lt;job_id=2&gt;logdir: /tmp/hopla/logs/2_flux
+----------------------------------------
+DelayedCCCJob&lt;job_id=3&gt;exitcode: failure
+DelayedCCCJob&lt;job_id=3&gt;submission: /tmp/hopla/submissions/3_submission.sh
+DelayedCCCJob&lt;job_id=3&gt;stdout: none
+DelayedCCCJob&lt;job_id=3&gt;stderr: none
+DelayedCCCJob&lt;job_id=3&gt;number_of_tasks: 3
+DelayedCCCJob&lt;job_id=3&gt;failed_tasks: []
+DelayedCCCJob&lt;job_id=3&gt;running_tasks: 0
+DelayedCCCJob&lt;job_id=3&gt;logdir: /tmp/hopla/logs/3_flux
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.226 seconds)</p>
-<p><strong>Estimated memory usage:</strong>  109 MB</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.190 seconds)</p>
+<p><strong>Estimated memory usage:</strong>  107 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-ccc-flux-multi-tasks-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/2dc37cfddb3953fa5a25cede74981bf8/plot_ccc_flux_multi_tasks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_ccc_flux_multi_tasks.ipynb</span></code></a></p>
@@ -618,12 +649,12 @@ CCC_MSUB: 100%|██████████| 3/3 [00:06&lt;00:00,  2.00s/it]
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="plot_pbs.html">
+          <a class="next-page" href="plot_ccc_oneshot_multi_tasks.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Basic example on how to use the PBS cluster</div>
+                <div class="title">Basic example on how to use the CCC cluster using multi-tasks</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

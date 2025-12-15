@@ -179,6 +179,8 @@ Generate a batch
       job_id=1,
       joblib_file=/tmp/hopla/submissions/1_joblib_script.py,
       log_folder=/tmp/hopla/logs,
+      oneshot_dir=/tmp/hopla/logs/1_oneshot,
+      oneshot_file=/tmp/hopla/submissions/1_oneshot_script.sh,
       stderr=/tmp/hopla/logs/1_log.err,
       stdout=/tmp/hopla/logs/1_log.out,
       submission_file=/tmp/hopla/submissions/1_submission.sh,
@@ -215,7 +217,7 @@ Start Jobs
 We can't execute the code on the CI since the PBS infrastructure is not
 available.
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-69
+.. GENERATED FROM PYTHON SOURCE LINES 64-70
 
 .. code-block:: Python
 
@@ -224,6 +226,7 @@ available.
 
     with Config(dryrun=True, delay_s=3):
         executor(max_jobs=2)
+        print(executor.report)
 
 
 
@@ -233,8 +236,8 @@ available.
  .. code-block:: none
 
     QSUB:   0%|          | 0/10 [00:00<?, ?it/s][command] qsub /tmp/hopla/submissions/1_submission.sh
-    QSUB:  10%|█         | 1/10 [00:00<00:00, 1584.55it/s][command] qsub /tmp/hopla/submissions/2_submission.sh
-    QSUB:  20%|██        | 2/10 [00:00<00:00, 1674.37it/s][command] qsub /tmp/hopla/submissions/3_submission.sh
+    QSUB:  10%|█         | 1/10 [00:00<00:00, 1832.37it/s][command] qsub /tmp/hopla/submissions/2_submission.sh
+    QSUB:  20%|██        | 2/10 [00:00<00:00, 2037.55it/s][command] qsub /tmp/hopla/submissions/3_submission.sh
     QSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]      QSUB:  30%|███       | 3/10 [00:03<00:07,  1.00s/it][command] qsub /tmp/hopla/submissions/4_submission.sh
     QSUB:  40%|████      | 4/10 [00:03<00:06,  1.00s/it][command] qsub /tmp/hopla/submissions/5_submission.sh
     QSUB:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it]    QSUB:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it][command] qsub /tmp/hopla/submissions/6_submission.sh
@@ -243,6 +246,56 @@ available.
     QSUB:  80%|████████  | 8/10 [00:09<00:02,  1.35s/it][command] qsub /tmp/hopla/submissions/9_submission.sh
     QSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it]    QSUB:  90%|█████████ | 9/10 [00:12<00:01,  1.41s/it][command] qsub /tmp/hopla/submissions/10_submission.sh
     QSUB: 100%|██████████| 10/10 [00:12<00:00,  1.41s/it]    QSUB: 100%|██████████| 10/10 [00:15<00:00,  1.50s/it]
+    ----------------------------------------
+    DelayedPbsJob<job_id=1>exitcode: failure
+    DelayedPbsJob<job_id=1>submission: /tmp/hopla/submissions/1_submission.sh
+    DelayedPbsJob<job_id=1>stdout: none
+    DelayedPbsJob<job_id=1>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=2>exitcode: failure
+    DelayedPbsJob<job_id=2>submission: /tmp/hopla/submissions/2_submission.sh
+    DelayedPbsJob<job_id=2>stdout: none
+    DelayedPbsJob<job_id=2>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=3>exitcode: failure
+    DelayedPbsJob<job_id=3>submission: /tmp/hopla/submissions/3_submission.sh
+    DelayedPbsJob<job_id=3>stdout: none
+    DelayedPbsJob<job_id=3>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=4>exitcode: failure
+    DelayedPbsJob<job_id=4>submission: /tmp/hopla/submissions/4_submission.sh
+    DelayedPbsJob<job_id=4>stdout: none
+    DelayedPbsJob<job_id=4>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=5>exitcode: failure
+    DelayedPbsJob<job_id=5>submission: /tmp/hopla/submissions/5_submission.sh
+    DelayedPbsJob<job_id=5>stdout: none
+    DelayedPbsJob<job_id=5>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=6>exitcode: failure
+    DelayedPbsJob<job_id=6>submission: /tmp/hopla/submissions/6_submission.sh
+    DelayedPbsJob<job_id=6>stdout: none
+    DelayedPbsJob<job_id=6>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=7>exitcode: failure
+    DelayedPbsJob<job_id=7>submission: /tmp/hopla/submissions/7_submission.sh
+    DelayedPbsJob<job_id=7>stdout: none
+    DelayedPbsJob<job_id=7>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=8>exitcode: failure
+    DelayedPbsJob<job_id=8>submission: /tmp/hopla/submissions/8_submission.sh
+    DelayedPbsJob<job_id=8>stdout: none
+    DelayedPbsJob<job_id=8>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=9>exitcode: failure
+    DelayedPbsJob<job_id=9>submission: /tmp/hopla/submissions/9_submission.sh
+    DelayedPbsJob<job_id=9>stdout: none
+    DelayedPbsJob<job_id=9>stderr: none
+    ----------------------------------------
+    DelayedPbsJob<job_id=10>exitcode: failure
+    DelayedPbsJob<job_id=10>submission: /tmp/hopla/submissions/10_submission.sh
+    DelayedPbsJob<job_id=10>stdout: none
+    DelayedPbsJob<job_id=10>stderr: none
 
 
 
@@ -250,9 +303,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.223 seconds)
+   **Total running time of the script:** (0 minutes 15.184 seconds)
 
-**Estimated memory usage:**  109 MB
+**Estimated memory usage:**  107 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_pbs.py:

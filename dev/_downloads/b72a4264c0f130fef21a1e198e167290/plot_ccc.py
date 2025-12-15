@@ -67,3 +67,4 @@ from hopla.config import Config
 
 with Config(dryrun=True, delay_s=3):
     executor(max_jobs=2)
+    print(executor.report)

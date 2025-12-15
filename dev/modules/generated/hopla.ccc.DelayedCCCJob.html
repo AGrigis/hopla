@@ -234,6 +234,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc_flux_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_ccc_oneshot_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -358,7 +359,7 @@ signature, and not how to use it. Please refer to the
 <h1>hopla.ccc.DelayedCCCJob<a class="headerlink" href="#hopla-ccc-delayedcccjob" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.ccc.</span></span><span class="sig-name descname"><span class="pre">DelayedCCCJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flux'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hopla.ccc.</span></span><span class="sig-name descname"><span class="pre">DelayedCCCJob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flux'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="hopla.utils.DelayedJob.html#hopla.utils.DelayedJob" title="hopla.utils.DelayedJob"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelayedJob</span></code></a></p>
 <p>Represents a job that have been queue for submission by an executor,
 but hasn’t yet been scheduled.</p>
@@ -372,38 +373,44 @@ execute.</p>
 </dd>
 <dt><strong>job_id: str</strong></dt><dd><p>the job identifier.</p>
 </dd>
-<dt><strong>backend: str, default ‘flux’</strong></dt><dd><p>the multi-taks backend to use: ‘flux’ or ‘joblib’.</p>
+<dt><strong>backend: str, default ‘flux’</strong></dt><dd><p>the multi-taks backend to use: ‘flux’, ‘joblib’ or ‘oneshot’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If an invalid backend is specified.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flux'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L84"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delayed_submission</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'flux'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L92"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.generate_batch">
-<span class="sig-name descname"><span class="pre">generate_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L121"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.generate_batch" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L137"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.generate_batch" title="Link to this definition">¶</a></dt>
 <dd><p>Write the batch file.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.import_image">
-<span class="sig-name descname"><span class="pre">import_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L209"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.import_image" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">import_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L251"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.import_image" title="Link to this definition">¶</a></dt>
 <dd><p>Load the docker image if not available.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.read_index">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.read_index" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L267"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.read_index" title="Link to this definition">¶</a></dt>
 <dd><p>Reads the output of of pcocc-rs image list and returns a
 list available container.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.read_jobid">
-<span class="sig-name descname"><span class="pre">read_jobid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L236"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.read_jobid" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">read_jobid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L278"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.read_jobid" title="Link to this definition">¶</a></dt>
 <dd><p>Return the started job ID.</p>
 </dd></dl>
 
@@ -421,7 +428,7 @@ list available container.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hopla.ccc.DelayedCCCJob.sub_report">
-<span class="sig-name descname"><span class="pre">sub_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/43d7f48/hopla/ccc.py#L243"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.sub_report" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">sub_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/AGrigis/hopla/blob/611614c/hopla/ccc.py#L285"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hopla.ccc.DelayedCCCJob.sub_report" title="Link to this definition">¶</a></dt>
 <dd><p>Overload this method to extend the final report.</p>
 </dd></dl>
 
