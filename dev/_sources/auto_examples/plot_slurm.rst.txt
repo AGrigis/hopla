@@ -240,8 +240,8 @@ available.
  .. code-block:: none
 
     SBATCH:   0%|          | 0/10 [00:00<?, ?it/s][command] sbatch /tmp/hopla/submissions/1_submission.sh
-    SBATCH:  10%|█         | 1/10 [00:00<00:00, 1680.41it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
-    SBATCH:  20%|██        | 2/10 [00:00<00:00, 1722.15it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
+    SBATCH:  10%|█         | 1/10 [00:00<00:00, 1790.14it/s][command] sbatch /tmp/hopla/submissions/2_submission.sh
+    SBATCH:  20%|██        | 2/10 [00:00<00:00, 1831.97it/s][command] sbatch /tmp/hopla/submissions/3_submission.sh
     SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it]      SBATCH:  30%|███       | 3/10 [00:03<00:07,  1.00s/it][command] sbatch /tmp/hopla/submissions/4_submission.sh
     SBATCH:  40%|████      | 4/10 [00:03<00:06,  1.00s/it][command] sbatch /tmp/hopla/submissions/5_submission.sh
     SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it]    SBATCH:  50%|█████     | 5/10 [00:06<00:06,  1.24s/it][command] sbatch /tmp/hopla/submissions/6_submission.sh
@@ -307,9 +307,9 @@ available.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.231 seconds)
+   **Total running time of the script:** (0 minutes 15.230 seconds)
 
-**Estimated memory usage:**  109 MB
+**Estimated memory usage:**  108 MB
 
 
 .. _sphx_glr_download_auto_examples_plot_slurm.py:
