@@ -65,7 +65,7 @@ jobs:
         make html-strict
         cd $DIR
     - name: Upload documentation as an artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       env:
         BRANCH: ${{ steps.extract-branch.outputs.BRANCH }}
       with: 
