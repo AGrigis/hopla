@@ -17,4 +17,11 @@ unset LD_PRELOAD
 
 # Command
 {command}
-echo "HOPLASAY-DONE"
+exitcode=$?
+echo "Exit code was: $exitcode"
+
+# Exit
+if [ "$exitcode" -ne 1 ]; then
+    echo "HOPLASAY-DONE"
+fi
+
