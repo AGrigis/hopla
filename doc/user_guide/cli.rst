@@ -30,6 +30,7 @@ Workflow
 3. Initialize a `:class:`~hopla.executor.Executor`` with ``[environment]``
    settings.
 4. Extract and submit commands from the ``[inputs]`` settings:
+
    - If a ``[multi]`` section is present, split commands into chunks and
      submit them as delayed submissions.
    - Otherwise, submit commands directly.

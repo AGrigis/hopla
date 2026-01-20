@@ -10,10 +10,11 @@ import argparse
 import datetime
 import re
 import shutil
+
 try:
-    import tomllib # Python 3.11+
+    import tomllib  # Python 3.11+
 except ModuleNotFoundError:
-    import tomli as tomllib # Python 3.8–3.10
+    import tomli as tomllib
 from pathlib import Path
 
 import numpy as np
