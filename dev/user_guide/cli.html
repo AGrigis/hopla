@@ -7,10 +7,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https:///github.com.github.io/user_guide/cli.html" />
 <meta property="og:site_name" content="hopla" />
-<meta property="og:description" content="hopla has a CLI interface. The hoplacli command loads a TOML configuration file, initializes a hopla executor, and submits jobs either individually or in chunks depending on the configuration. It t..." />
+<meta property="og:description" content="hoplacli is a command-line interface designed to automate job submission and execution using the hopla framework. It loads a TOML configuration file, prepares an execution environment, submits jobs..." />
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
-<meta name="description" content="hopla has a CLI interface. The hoplacli command loads a TOML configuration file, initializes a hopla executor, and submits jobs either individually or in chunks depending on the configuration. It t..." />
+<meta name="description" content="hoplacli is a command-line interface designed to automate job submission and execution using the hopla framework. It loads a TOML configuration file, prepares an execution environment, submits jobs..." />
 <link rel="search" title="Search" href="../search.html" /><link rel="next" title="API References" href="../modules/index.html" /><link rel="prev" title="4. Clusters" href="clusters.html" />
         <link rel="prefetch" href="../_static/hopla-transparent.png" as="image" />
 
@@ -208,7 +208,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -345,7 +345,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -353,13 +353,98 @@
         <article role="main" id="furo-main-content">
           <section id="cli">
 <span id="id1"></span><h1><span class="section-number">5. </span>CLI<a class="headerlink" href="#cli" title="Link to this heading">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">hopla</span></code> has a CLI interface. The <cite>hoplacli</cite> command loads a TOML
-configuration file, initializes a hopla executor, and submits jobs either
-individually or in chunks depending on the configuration. It then runs the
-executor with a specified maximum number of jobs and writes a report to disk.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hoplacli<span class="w"> </span>--config<span class="w"> </span>./examples/experiment.toml<span class="w"> </span>--njobs<span class="w"> </span><span class="m">2</span>
+<p><cite>hoplacli</cite> is a command-line interface designed to automate job submission and
+execution using the <code class="docutils literal notranslate"><span class="pre">hopla</span></code> framework.
+It loads a TOML configuration file, prepares an execution environment, submits
+jobs (individually or in chunks), and produces a final execution report.
+This guide explains how to use the CLI, how to structure the TOML
+configuration file, and how the workflow operates.</p>
+<section id="usage">
+<h2><span class="section-number">5.1. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hoplacli<span class="w"> </span>--config<span class="w"> </span>--config<span class="w"> </span>&lt;config_file.toml&gt;<span class="w"> </span>--njobs<span class="w"> </span>&lt;N&gt;
 </pre></div>
 </div>
+<p>An <code class="docutils literal notranslate"><span class="pre">experiment.toml</span></code> demonstration configuration file can be found in the
+project examples folder.</p>
+</section>
+<section id="workflow">
+<h2><span class="section-number">5.2. </span>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Parse CLI arguments using <code class="docutils literal notranslate"><span class="pre">argparse</span></code>.</p></li>
+<li><p>Load the TOML configuration file with <code class="docutils literal notranslate"><span class="pre">tomllib</span></code>: expect four mandatory
+sections (<code class="docutils literal notranslate"><span class="pre">[project]</span></code>, <code class="docutils literal notranslate"><span class="pre">[inputs]</span></code>, <code class="docutils literal notranslate"><span class="pre">[environment]</span></code>, and <code class="docutils literal notranslate"><span class="pre">[config]</span></code>)
+and one optional (<code class="docutils literal notranslate"><span class="pre">[multi]</span></code>).</p></li>
+<li><p>Initialize a <cite>:class:`~hopla.executor.Executor`</cite> with <code class="docutils literal notranslate"><span class="pre">[environment]</span></code>
+settings.</p></li>
+<li><p>Extract and submit commands from the <code class="docutils literal notranslate"><span class="pre">[inputs]</span></code> settings:</p>
+<ul class="simple">
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">[multi]</span></code> section is present, split commands into chunks and
+submit them as delayed submissions.</p></li>
+<li><p>Otherwise, submit commands directly.</p></li>
+</ul>
+</li>
+<li><p>Run the executor with the specified maximum number of jobs using the
+<code class="docutils literal notranslate"><span class="pre">[config]</span></code> settings.</p></li>
+<li><p>Write a textual report to <code class="docutils literal notranslate"><span class="pre">report.txt</span></code> inside the executor’s working
+directory.</p></li>
+</ol>
+</section>
+<section id="toml-configuration">
+<h2><span class="section-number">5.3. </span>TOML Configuration<a class="headerlink" href="#toml-configuration" title="Link to this heading">¶</a></h2>
+<p>The configuration file is divided into several sections.</p>
+<section id="project">
+<h3><span class="section-number">5.3.1. </span><code class="docutils literal notranslate"><span class="pre">[project]</span></code><a class="headerlink" href="#project" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code> (str)</dt><dd><p>Project name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">operator</span></code> (str)</dt><dd><p>Person responsible for running the analysis.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">date</span></code> (str)</dt><dd><p>Date of the experiment in <code class="docutils literal notranslate"><span class="pre">DD/MM/YYYY</span></code> format.</p>
+</dd>
+</dl>
+</section>
+<section id="inputs">
+<h3><span class="section-number">5.3.2. </span><code class="docutils literal notranslate"><span class="pre">[inputs]</span></code><a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">commands</span></code> (str or list)</dt><dd><p>Commands to execute. May be a Python expression string (e.g.
+<code class="docutils literal notranslate"><span class="pre">&quot;sleep</span> <span class="pre">{k}&quot;</span></code>) or a list of explicit commands.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parameters</span></code> (str)</dt><dd><p>Additional parameters passed to the container execution command
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;--cleanenv&quot;</span></code>).</p>
+</dd>
+</dl>
+</section>
+<section id="environment">
+<h3><span class="section-number">5.3.3. </span><code class="docutils literal notranslate"><span class="pre">[environment]</span></code><a class="headerlink" href="#environment" title="Link to this heading">¶</a></h3>
+<p>See the <a class="reference internal" href="../modules/generated/hopla.executor.Executor.html#hopla.executor.Executor" title="hopla.executor.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> parameters.</p>
+</section>
+<section id="config">
+<h3><span class="section-number">5.3.4. </span><code class="docutils literal notranslate"><span class="pre">[config]</span></code><a class="headerlink" href="#config" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">dryrun</span></code> (bool)</dt><dd><p>Simulate job submission without executing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">delay_s</span></code> (int)</dt><dd><p>Delay (seconds) between submissions.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code> (bool)</dt><dd><p>Enable verbose logging.</p>
+</dd>
+</dl>
+</section>
+<section id="multi-optional">
+<h3><span class="section-number">5.3.5. </span><code class="docutils literal notranslate"><span class="pre">[multi]</span></code> (optional)<a class="headerlink" href="#multi-optional" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">n_splits</span></code> (int)</dt><dd><p>Number of chunks to split commands into.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="notes">
+<h2><span class="section-number">5.4. </span>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">multi</span></code> section is optional but required for chunked submissions.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Config</span></code> context manager is used internally to apply configuration
+settings during execution.</p></li>
+</ul>
+</section>
 </section>
 
         </article>
@@ -408,8 +493,37 @@ executor with a specified maximum number of jobs and writes a report to disk.</p
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">5. CLI</a><ul>
+<li><a class="reference internal" href="#usage">5.1. Usage</a></li>
+<li><a class="reference internal" href="#workflow">5.2. Workflow</a></li>
+<li><a class="reference internal" href="#toml-configuration">5.3. TOML Configuration</a><ul>
+<li><a class="reference internal" href="#project">5.3.1. <code class="docutils literal notranslate"><span class="pre">[project]</span></code></a></li>
+<li><a class="reference internal" href="#inputs">5.3.2. <code class="docutils literal notranslate"><span class="pre">[inputs]</span></code></a></li>
+<li><a class="reference internal" href="#environment">5.3.3. <code class="docutils literal notranslate"><span class="pre">[environment]</span></code></a></li>
+<li><a class="reference internal" href="#config">5.3.4. <code class="docutils literal notranslate"><span class="pre">[config]</span></code></a></li>
+<li><a class="reference internal" href="#multi-optional">5.3.5. <code class="docutils literal notranslate"><span class="pre">[multi]</span></code> (optional)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notes">5.4. Notes</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
