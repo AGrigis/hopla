@@ -10,7 +10,10 @@ import argparse
 import datetime
 import re
 import shutil
-import tomllib
+try:
+    import tomllib # Python 3.11+
+except ModuleNotFoundError:
+    import tomli as tomllib # Python 3.8–3.10
 from pathlib import Path
 
 import numpy as np
@@ -292,14 +295,14 @@ def main():
         chunks = np.array_split(commands, config["multi"]["n_splits"])
         _ = [
             executor.submit(
-                [hopla.DelayedSubmission(cmd) for cmd in subcmds],
+                [hopla.DelayedSubmission(*cmd) for cmd in subcmds],
                 execution_parameters=config["inputs"].get("parameters"),
             ) for subcmds in chunks
         ]
     else:
         _ = [
             executor.submit(
-                cmd,
+                *cmd,
                 execution_parameters=config["inputs"].get("parameters"),
             ) for cmd in commands
         ]
