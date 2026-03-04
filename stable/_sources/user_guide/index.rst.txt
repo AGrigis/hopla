@@ -20,3 +20,4 @@ Table of contents
    introduction.rst
    how_it_works.rst
    clusters.rst
+   cli.rst

@@ -166,6 +166,28 @@ multi tasks strategy (3 chunks here).
     ]
 
 
+.. important::
+
+    Don't forget to decalre the `n4h00001` hub by copying the 
+    **.../n4h00001/n4h00001/config/repositories.yaml** file in your home directory
+    **$HOME/.config/pcocc/repositories.yaml**.To list images don't forget
+    also to export the **CCCWORKDIR** env variable to **n4h00001/n4h00001/gaia**.
+
+.. important::
+
+    Don't forget to load the **gcc/11.1.0** module to launch multi tasks jobs,
+    and the **python3/3.12** (or another compatible version of Python) module.
+    Dont't forget also to switch to the appropriate data
+    **dfldatadir/XXX** module.
+
+.. important::
+
+    Use the appropriate backend when performing chunked submissions:
+
+    - flux by default.
+    - oneshot when using MCR: you need to reserve one full node and it will
+      ran the chuncked commands in a single container call.
+
 .. tip::
 
     You need to adapt the the `n_multi_cpus` parameter of the `Executor` in
@@ -183,20 +205,6 @@ multi tasks strategy (3 chunks here).
     .. code-block:: bash
 
         brainprep <args>
-
-.. important::
-
-    Don't forget to decalre the `n4h00001` hub by copying the 
-    **.../n4h00001/n4h00001/config/repositories.yaml** file in your home directory
-    **$HOME/.config/pcocc/repositories.yaml**.To list images don't forget
-    also to export the **CCCWORKDIR** env variable to **n4h00001/n4h00001/gaia**.
-
-.. important::
-
-    Don't forget to load the **gcc/11.1.0** module to launch multi tasks jobs,
-    and the **python3/3.12** (or another compatible version of Python) module.
-    Dont't forget also to switch to the appropriate data
-    **dfldatadir/XXX** module.
 
 .. tip::
 

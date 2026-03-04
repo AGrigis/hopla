@@ -2,7 +2,7 @@
 Basic example on how to use the CCC cluster
 ===========================================
 
-Basic example
+CCC-based cluster
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.
@@ -67,3 +67,4 @@ from hopla.config import Config
 
 with Config(dryrun=True, delay_s=3):
     executor(max_jobs=2)
+    print(executor.report)

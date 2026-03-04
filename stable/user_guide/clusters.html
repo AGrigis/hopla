@@ -11,7 +11,7 @@
 <meta property="og:image" content="https:/github.com.github.io/AGrigis/_static/hopla-logo.png" />
 <meta property="og:image:alt" content="hopla" />
 <meta name="description" content="hopla is preconfigured to operate with the NeuroSpin clusters. However, adapting the code to suit your own infrastructure is possible. The DelayedPbsJob and DelayedCCCJob_container_cmd class attrib..." />
-<link rel="search" title="Search" href="../search.html" /><link rel="next" title="API References" href="../modules/index.html" /><link rel="prev" title="3. How It Works" href="how_it_works.html" />
+<link rel="search" title="Search" href="../search.html" /><link rel="next" title="5. CLI" href="cli.html" /><link rel="prev" title="3. How It Works" href="how_it_works.html" />
         <link rel="prefetch" href="../_static/hopla-transparent.png" as="image" />
 
     <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2025.07.19 -->
@@ -234,7 +234,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc.html">Basic example on how to use the CCC cluster</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc_joblib_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc_flux_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_ccc_oneshot_multi_tasks.html">Basic example on how to use the CCC cluster using multi-tasks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_pbs.html">Basic example on how to use the PBS cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/plot_slurm.html">Basic example on how to use the SLURM cluster</a></li>
 </ul>
@@ -244,6 +246,7 @@
 <li class="toctree-l2"><a class="reference internal" href="introduction.html">2. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="how_it_works.html">3. How It Works</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">4. Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">5. CLI</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../modules/index.html">API References</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of API References</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -252,31 +255,38 @@
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.ccc.DelayedCCCJob.html">hopla.ccc.DelayedCCCJob</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.config.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.config</span></code>: Configuration used by hopla.</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of hopla.config: Configuration used by hopla.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.cli.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.cli</span></code>:</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of hopla.cli:</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.cli._strip_ansi.html">hopla.cli._strip_ansi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.cli.main.html">hopla.cli.main</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.cli.print_header.html">hopla.cli.print_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.cli.print_toml.html">hopla.cli.print_toml</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.config.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.config</span></code>: Configuration used by hopla.</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of hopla.config: Configuration used by hopla.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.config.Config.html">hopla.config.Config</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.executor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.executor</span></code>: Contains job execution functions.</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of hopla.executor: Contains job execution functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.executor.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.executor</span></code>: Contains job execution functions.</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of hopla.executor: Contains job execution functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.executor.DelayedSubmission.html">hopla.executor.DelayedSubmission</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.executor.Executor.html">hopla.executor.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.pbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.pbs</span></code>: Contains PBS specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of hopla.pbs: Contains PBS specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.pbs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.pbs</span></code>: Contains PBS specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of hopla.pbs: Contains PBS specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.pbs.DelayedPbsJob.html">hopla.pbs.DelayedPbsJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.pbs.PbsInfoWatcher.html">hopla.pbs.PbsInfoWatcher</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla</span></code>: <code class="docutils literal notranslate"><span class="pre">hopla</span></code> can automate job creation, submission, monitoring, and resubmission,</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of hopla: hopla can automate job creation, submission, monitoring, and resubmission,</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla</span></code>: <code class="docutils literal notranslate"><span class="pre">hopla</span></code> can automate job creation, submission, monitoring, and resubmission,</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla: hopla can automate job creation, submission, monitoring, and resubmission,</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.DelayedSubmission.html">hopla.DelayedSubmission</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.Executor.html">hopla.Executor</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.slurm.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.slurm</span></code>: Contains SLURM specific functions.</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.slurm: Contains SLURM specific functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.slurm.DelayedSlurmJob.html">hopla.slurm.DelayedSlurmJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.slurm.SlurmInfoWatcher.html">hopla.slurm.SlurmInfoWatcher</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../modules/hopla.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hopla.utils</span></code>: Contains some utility functions.</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of hopla.utils: Contains some utility functions.</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.utils.DelayedJob.html">hopla.utils.DelayedJob</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.utils.InfoWatcher.html">hopla.utils.InfoWatcher</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../modules/generated/hopla.utils.JobPaths.html">hopla.utils.JobPaths</a></li>
@@ -478,6 +488,29 @@ multi tasks strategy (3 chunks here).</p>
 <span class="p">]</span>
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Don’t forget to decalre the <cite>n4h00001</cite> hub by copying the
+<strong>…/n4h00001/n4h00001/config/repositories.yaml</strong> file in your home directory
+<strong>$HOME/.config/pcocc/repositories.yaml</strong>.To list images don’t forget
+also to export the <strong>CCCWORKDIR</strong> env variable to <strong>n4h00001/n4h00001/gaia</strong>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Don’t forget to load the <strong>gcc/11.1.0</strong> module to launch multi tasks jobs,
+and the <strong>python3/3.12</strong> (or another compatible version of Python) module.
+Dont’t forget also to switch to the appropriate data
+<strong>dfldatadir/XXX</strong> module.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Use the appropriate backend when performing chunked submissions:</p>
+<ul class="simple">
+<li><p>flux by default.</p></li>
+<li><p>oneshot when using MCR: you need to reserve one full node and it will
+ran the chuncked commands in a single container call.</p></li>
+</ul>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You need to adapt the the <cite>n_multi_cpus</cite> parameter of the <cite>Executor</cite> in
@@ -496,20 +529,6 @@ pass this command to the <cite>executor.submit()</cite> function:</p>
 </pre></div>
 </div>
 </div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Don’t forget to decalre the <cite>n4h00001</cite> hub by copying the
-<strong>…/n4h00001/n4h00001/config/repositories.yaml</strong> file in your home directory
-<strong>$HOME/.config/pcocc/repositories.yaml</strong>.To list images don’t forget
-also to export the <strong>CCCWORKDIR</strong> env variable to <strong>n4h00001/n4h00001/gaia</strong>.</p>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Don’t forget to load the <strong>gcc/11.1.0</strong> module to launch multi tasks jobs,
-and the <strong>python3/3.12</strong> (or another compatible version of Python) module.
-Dont’t forget also to switch to the appropriate data
-<strong>dfldatadir/XXX</strong> module.</p>
-</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can export your docker image in a <cite>.tar</cite> file as follows:</p>
@@ -525,12 +544,12 @@ Dont’t forget also to switch to the appropriate data
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../modules/index.html">
+          <a class="next-page" href="cli.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">API References</div>
+                <div class="title"><span class="section-number">5. </span>CLI</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

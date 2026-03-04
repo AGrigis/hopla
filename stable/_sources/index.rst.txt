@@ -55,6 +55,24 @@ Featured works
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Basic example on how to use the SLURM cluster...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_slurm_thumb.png
+    :alt: Basic example
+
+  :ref:`sphx_glr_auto_examples_plot_slurm.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Basic example</div>
+    </div>
+
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Basic example on how to use the PBS cluster...">
 
 .. only:: html
@@ -95,10 +113,10 @@ Featured works
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_multi_tasks_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_ccc_flux_multi_tasks_thumb.png
     :alt: Basic example
 
-  :ref:`sphx_glr_auto_examples_plot_ccc_multi_tasks.py`
+  :ref:`sphx_glr_auto_examples_plot_ccc_flux_multi_tasks.py`
 
 .. raw:: html
 

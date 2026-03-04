@@ -2,7 +2,7 @@
 Basic example on how to use the CCC cluster using multi-tasks
 =============================================================
 
-Basic example
+CCC-based cluster - joblib
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.
@@ -32,6 +32,7 @@ executor = hopla.Executor(
     image="/tmp/hopla/my-docker-img.tar",
     walltime=1,
     project_id="genXXX",
+    backend="joblib",
 )
 
 
@@ -57,8 +58,8 @@ print(jobs[0].paths)
 batch = jobs[0].paths.submission_file
 with open(batch) as of:
     print(of.read())
-tasks = jobs[0].paths.task_file
-with open(tasks) as of:
+script = jobs[0].paths.joblib_file
+with open(script) as of:
     print(of.read())
 
 
@@ -73,3 +74,4 @@ from hopla.config import Config
 
 with Config(dryrun=True, delay_s=3):
     executor(max_jobs=2)
+    print(executor.report)

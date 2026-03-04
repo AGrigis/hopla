@@ -11,6 +11,7 @@ the :ref:`user guide <user_guide>` for more information and usage examples.
    :maxdepth: 1
 
    hopla.ccc.rst
+   hopla.cli.rst
    hopla.config.rst
    hopla.executor.rst
    hopla.pbs.rst
