@@ -2,7 +2,7 @@
 Basic example on how to use the CCC cluster using multi-tasks
 =============================================================
 
-Basic example
+CCC-based cluster - flux
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.

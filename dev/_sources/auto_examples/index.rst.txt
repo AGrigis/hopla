@@ -15,7 +15,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster">
 
 .. only:: html
 
@@ -32,7 +32,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster - joblib">
 
 .. only:: html
 
@@ -49,7 +49,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster - flux">
 
 .. only:: html
 
@@ -66,7 +66,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster - oneshot">
 
 .. only:: html
 
@@ -83,7 +83,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster - PBS">
 
 .. only:: html
 
@@ -100,7 +100,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Basic example">
+    <div class="sphx-glr-thumbcontainer" tooltip="CCC-based cluster - SLURM">
 
 .. only:: html
 

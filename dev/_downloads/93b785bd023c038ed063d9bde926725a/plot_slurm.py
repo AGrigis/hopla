@@ -2,7 +2,7 @@
 Basic example on how to use the SLURM cluster
 =============================================
 
-Basic example
+CCC-based cluster - SLURM
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.

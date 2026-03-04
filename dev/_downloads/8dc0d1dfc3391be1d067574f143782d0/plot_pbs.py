@@ -2,7 +2,7 @@
 Basic example on how to use the PBS cluster
 ===========================================
 
-Basic example
+CCC-based cluster - PBS
 
 When you're running hundreds or thousands of jobs, automation is a necessity. 
 This is where ``hopla`` can help you.

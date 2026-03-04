@@ -361,11 +361,14 @@ This guide explains how to use the CLI, how to structure the TOML
 configuration file, and how the workflow operates.</p>
 <section id="usage">
 <h2><span class="section-number">5.1. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hoplacli<span class="w"> </span>--config<span class="w"> </span>--config<span class="w"> </span>&lt;config_file.toml&gt;<span class="w"> </span>--njobs<span class="w"> </span>&lt;N&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hoplacli<span class="w"> </span>--config<span class="w"> </span>&lt;config_file.toml&gt;<span class="w"> </span>--njobs<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="o">[</span>--venv<span class="o">]</span>
 </pre></div>
 </div>
 <p>An <code class="docutils literal notranslate"><span class="pre">experiment.toml</span></code> demonstration configuration file can be found in the
-project examples folder.</p>
+project examples folder.
+If the <code class="docutils literal notranslate"><span class="pre">venv</span></code> option is enabled, run the command outside of a container.
+In this case, the image environment parameter is automatically set to None,
+so providing it is optional.</p>
 </section>
 <section id="workflow">
 <h2><span class="section-number">5.2. </span>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
@@ -374,7 +377,7 @@ project examples folder.</p>
 <li><p>Load the TOML configuration file with <code class="docutils literal notranslate"><span class="pre">tomllib</span></code>: expect four mandatory
 sections (<code class="docutils literal notranslate"><span class="pre">[project]</span></code>, <code class="docutils literal notranslate"><span class="pre">[inputs]</span></code>, <code class="docutils literal notranslate"><span class="pre">[environment]</span></code>, and <code class="docutils literal notranslate"><span class="pre">[config]</span></code>)
 and one optional (<code class="docutils literal notranslate"><span class="pre">[multi]</span></code>).</p></li>
-<li><p>Initialize a <cite>:class:`~hopla.executor.Executor`</cite> with <code class="docutils literal notranslate"><span class="pre">[environment]</span></code>
+<li><p>Initialize a <a class="reference internal" href="../modules/generated/hopla.executor.Executor.html#hopla.executor.Executor" title="hopla.executor.Executor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Executor</span></code></a> with <code class="docutils literal notranslate"><span class="pre">[environment]</span></code>
 settings.</p></li>
 <li><p>Extract and submit commands from the <code class="docutils literal notranslate"><span class="pre">[inputs]</span></code> settings:</p>
 <ul class="simple">
@@ -407,7 +410,8 @@ directory.</p></li>
 <h3><span class="section-number">5.3.2. </span><code class="docutils literal notranslate"><span class="pre">[inputs]</span></code><a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">commands</span></code> (str or list)</dt><dd><p>Commands to execute. May be a Python expression string (e.g.
-<code class="docutils literal notranslate"><span class="pre">&quot;sleep</span> <span class="pre">{k}&quot;</span></code>) or a list of explicit commands.</p>
+<code class="docutils literal notranslate"><span class="pre">&quot;sleep</span> <span class="pre">{k}&quot;</span></code>) or a list of explicit commands. In the first case,
+a <code class="docutils literal notranslate"><span class="pre">data.tsv</span></code> file is expected for the mapping.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">parameters</span></code> (str)</dt><dd><p>Additional parameters passed to the container execution command
 (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;--cleanenv&quot;</span></code>).</p>
@@ -423,7 +427,7 @@ directory.</p></li>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">dryrun</span></code> (bool)</dt><dd><p>Simulate job submission without executing.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">delay_s</span></code> (int)</dt><dd><p>Delay (seconds) between submissions.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">delay_s</span></code> (int)</dt><dd><p>Delay (seconds) between refresh.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code> (bool)</dt><dd><p>Enable verbose logging.</p>
 </dd>

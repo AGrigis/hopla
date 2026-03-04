@@ -15,10 +15,13 @@ Usage
 
 .. code-block:: bash
 
-    hoplacli --config --config <config_file.toml> --njobs <N>
+    hoplacli --config <config_file.toml> --njobs <N> [--venv]
 
 An ``experiment.toml`` demonstration configuration file can be found in the
 project examples folder.
+If the ``venv`` option is enabled, run the command outside of a container.
+In this case, the image environment parameter is automatically set to None,
+so providing it is optional.
 
 Workflow
 --------
@@ -27,7 +30,7 @@ Workflow
 2. Load the TOML configuration file with ``tomllib``: expect four mandatory
    sections (``[project]``, ``[inputs]``, ``[environment]``, and ``[config]``)
    and one optional (``[multi]``).
-3. Initialize a `:class:`~hopla.executor.Executor`` with ``[environment]``
+3. Initialize a :class:`~hopla.executor.Executor` with ``[environment]``
    settings.
 4. Extract and submit commands from the ``[inputs]`` settings:
 
@@ -61,7 +64,8 @@ The configuration file is divided into several sections.
 
 ``commands`` (str or list)
     Commands to execute. May be a Python expression string (e.g.
-    ``"sleep {k}"``) or a list of explicit commands.
+    ``"sleep {k}"``) or a list of explicit commands. In the first case,
+    a ``data.tsv`` file is expected for the mapping.
 
 ``parameters`` (str)
     Additional parameters passed to the container execution command
@@ -79,7 +83,7 @@ See the :class:`~hopla.executor.Executor` parameters.
     Simulate job submission without executing.
 
 ``delay_s`` (int)
-    Delay (seconds) between submissions.
+    Delay (seconds) between refresh.
 
 ``verbose`` (bool)
     Enable verbose logging.
